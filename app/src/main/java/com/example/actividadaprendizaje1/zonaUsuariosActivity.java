@@ -86,7 +86,7 @@ public class zonaUsuariosActivity extends AppCompatActivity {
                     mostrarInfo.setText(trabajador.toString());
                 }
             }
-            //Si no ha encontrado resultados es que el textView esta vacio y muestro lo siguiente
+            //Si no ha encontrado resultados es que el textView esta vacio y muestro lo siguiente.
             if (mostrarInfo.equals("")){
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();
             }
