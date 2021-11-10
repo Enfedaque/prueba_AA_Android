@@ -1,0 +1,8 @@
+
+* INDEX terminado por completo diseño y funcionalidad
+* Dialogo antes de borrar un cliente
+* Tanto clientes como trabajadores ya tienen el menu contextual funcionando, les falta programar
+     la opcion de editar
+     **ACTIONBAR hecha en todas las pantallas, pero faltan programar algunas opciones
+
+* Zona de busqueda de clientes a traves del apellido y de un checkbox

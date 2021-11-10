@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/icons8_casa_150"
+        android:title="home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/acercaDe"
+        android:icon="@drawable/icons8_informaci_n_150"
+        android:title="Item" />
+    <item
+        android:id="@+id/opcion1"
+        android:title="Item" />
+    <item
+        android:id="@+id/buscadorUsuarios"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/opcion2"
+        android:title="Item" />
+</menu>

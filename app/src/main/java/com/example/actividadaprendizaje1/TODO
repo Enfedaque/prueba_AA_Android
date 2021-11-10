@@ -1,0 +1,18 @@
+
+* En los vehiculos cuando se va a registrar, en el apartado clientes que salga la lista de
+clientes y te deje seleccionar que cliente ya registrado es, para ello en la clase vehiculos tengo
+que hacer el idCliente y el trabajador como objetos y quitarlos de String
+
+* Añadir como atributo los kms a los vehiculos
+
+* El registrar un vehiculo no funciona y por lo tanto el listado tambien aparece vacio
+
+* Hacer que en la lista de clientes, trabajadores, etc... se muestre al lado la imagen
+
+* Hacer que en la lista de clientes, trabajadores, etc... al hacer click salte un menu contextual
+que nos permita ver toda la informacion o editarla o hacer algo
+
+* Menu contextual en el listado de clientes que deje ver la informacion completa, de momento
+solo se puede borrar al cliente de la lista
+
+
