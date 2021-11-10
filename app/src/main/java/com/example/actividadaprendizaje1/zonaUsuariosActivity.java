@@ -67,6 +67,8 @@ public class zonaUsuariosActivity extends AppCompatActivity {
             }
         }
     }
+
+    //Metodo para mostrar el buscador y buscar trabajadores
     public void mostrarInfoTrabajadores(View view){
         //Vacio el textView del resultado cada vez
         mostrarInfo.setText("");
