@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
@@ -33,22 +34,19 @@ public class indexActivity extends AppCompatActivity {
         listadoTrabajadores=new ArrayList<>();
         listadoVehiculos=new ArrayList<>();
 
-
     }
+
     //Menu actionBar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.action_bar_index, menu);
         return true;
     }
-    //Manu actionBar opciones
+    //Manu actionBar y menu lateral opciones
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==R.id.buscadorListas){
-            return true;
-        }else if (item.getItemId()==R.id.talleres){
-            //todo
-        }
+
+
         //todo por hacer las opciones
 
         return false;

@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 
 public class listadoTrabajadoresActivity extends AppCompatActivity {
@@ -56,7 +55,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
             // aplicacion
             return true;
-        } else if (item.getItemId()==R.id.opcion1) {
+        } else if (item.getItemId()==R.id.navegador) {
             //todo aun no se que opcion poner
             return true;
         }else if (item.getItemId()==R.id.opcion2){

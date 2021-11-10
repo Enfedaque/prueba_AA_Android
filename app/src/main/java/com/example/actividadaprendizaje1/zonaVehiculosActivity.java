@@ -37,7 +37,7 @@ public class zonaVehiculosActivity extends AppCompatActivity {
             // aplicacion
         } else if (item.getItemId()==R.id.webCoches) {
             //todo aun no se que opcion poner
-        }else if (item.getItemId()==R.id.opcion1){
+        }else if (item.getItemId()==R.id.navegador){
             //todo aun no se que opcion poner
         }
 

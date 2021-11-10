@@ -12,7 +12,7 @@
         android:icon="@drawable/icons8_informaci_n_150"
         android:title="Item" />
     <item
-        android:id="@+id/opcion1"
+        android:id="@+id/navegador"
         android:title="Item" />
     <item
         android:id="@+id/buscadorUsuarios"

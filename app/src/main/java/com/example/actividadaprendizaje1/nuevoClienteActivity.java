@@ -8,14 +8,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
-
-import java.util.ArrayList;
 
 public class nuevoClienteActivity extends AppCompatActivity {
 
@@ -47,7 +43,7 @@ public class nuevoClienteActivity extends AppCompatActivity {
             //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
             // aplicacion
             return true;
-        } else if (item.getItemId()==R.id.opcion1) {
+        } else if (item.getItemId()==R.id.navegador) {
             //todo aun no se que opcion poner
             return true;
         }else if (item.getItemId()==R.id.opcion2){
