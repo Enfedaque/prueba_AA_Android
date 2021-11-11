@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.nuevos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +11,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.domain.Trabajadores;
+import com.example.actividadaprendizaje1.indexActivity;
 
-public class nuevoClienteActivity extends AppCompatActivity {
+/*Aqui se podra registar un nuevo trabajador que haya sido contratado*/
 
+public class nuevoTrabajadorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nuevo_cliente);
-
+        setContentView(R.layout.activity_nuevo_trabajador);
     }
 
     //Menu actionBar
@@ -54,57 +56,47 @@ public class nuevoClienteActivity extends AppCompatActivity {
         return false;
     }
 
-    //Boton para registar a un nuevo cliente
-    public void añadirCliente(View view){
-        EditText etNombre=findViewById(R.id.nombreCliente);
-        EditText etApellido=findViewById(R.id.apellidoCliente);
-        EditText etDNI=findViewById(R.id.dniCliente);
-        EditText etTelefono=findViewById(R.id.telefonoCliente);
-        EditText etEmail=findViewById(R.id.emailCliente);
-        EditText etIdCliente=findViewById(R.id.idCliente);
+    //Boton para registar a un nuevo trabajador
+    public void añadirTrabajador(View view){
+        EditText etNombre=findViewById(R.id.nombreTrabajador);
+        EditText etApellido=findViewById(R.id.apellidoTrabajador);
+        EditText etDni=findViewById(R.id.dniTrabajador);
+        EditText etTelefono=findViewById(R.id.telefonoTrabajador);
+        EditText etEmail=findViewById(R.id.emailTrabajador);
+        EditText etIdTrabajador=findViewById(R.id.idTrabajador);
+        EditText etDepartamento=findViewById(R.id.departamentoTrabajador);
+        EditText etPuesto=findViewById(R.id.puestoTrabajador);
 
         if(etNombre.getText().toString().equals("") || etApellido.getText().toString().equals("") ||
-                etDNI.getText().toString().equals("") || etTelefono.getText().toString().equals("") ||
-                etEmail.getText().toString().equals("") || etIdCliente.getText().toString().equals("")){
+                etDni.getText().toString().equals("") || etTelefono.getText().toString().equals("") ||
+                etEmail.getText().toString().equals("") || etIdTrabajador.getText().toString().equals("")
+                || etDepartamento.getText().toString().equals("")
+                || etPuesto.getText().toString().equals("")){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
         }
 
         String nombre=etNombre.getText().toString();
         String apellido=etApellido.getText().toString();
-        String dni=etDNI.getText().toString();
+        String dni=etDni.getText().toString();
         String telefono=etTelefono.getText().toString();
         String email=etEmail.getText().toString();
-        String idCliente=etIdCliente.getText().toString();
+        String idTrabajador=etIdTrabajador.getText().toString();
+        String departamento=etDepartamento.getText().toString();
+        String puesto=etPuesto.getText().toString();
 
-        Clientes miCliente=new Clientes(nombre,apellido, dni, telefono, email, idCliente);
+        Trabajadores miTrabajador=new Trabajadores(nombre, apellido, dni, telefono, email,
+                idTrabajador, puesto, departamento);
 
-        indexActivity.listadoClientes.add(miCliente);
-        Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
-
-        //Vacio los campos para poder seguir introduciendo
-        etNombre.setText("");
-        etApellido.setText("");
-        etDNI.setText("");
-        etTelefono.setText("");
-        etEmail.setText("");
-        etIdCliente.setText("");
-    }
-
-    public void cancelarCliente(View view){
-        EditText etNombre=findViewById(R.id.nombreCliente);
-        EditText etApellido=findViewById(R.id.apellidoCliente);
-        EditText etDNI=findViewById(R.id.dniCliente);
-        EditText etTelefono=findViewById(R.id.telefonoCliente);
-        EditText etEmail=findViewById(R.id.emailCliente);
-        EditText etIdCliente=findViewById(R.id.idCliente);
+        indexActivity.listadoTrabajadores.add(miTrabajador);
+        Toast.makeText(this, "Trabajador registrado correctamente", Toast.LENGTH_LONG).show();
 
         etNombre.setText("");
         etApellido.setText("");
-        etDNI.setText("");
+        etDni.setText("");
         etTelefono.setText("");
         etEmail.setText("");
-        etIdCliente.setText("");
-
+        etDepartamento.setText("");
+        etPuesto.setText("");
+        etIdTrabajador.setText("");
     }
-
 }

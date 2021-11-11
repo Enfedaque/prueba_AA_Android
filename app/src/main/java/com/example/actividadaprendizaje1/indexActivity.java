@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
-import com.google.android.material.navigation.NavigationView;
+import com.example.actividadaprendizaje1.nuevos.nuevaEntradaActivity;
 
 import java.util.ArrayList;
 

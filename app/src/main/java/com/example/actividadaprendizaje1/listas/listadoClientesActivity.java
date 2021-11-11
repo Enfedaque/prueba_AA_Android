@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.listas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -15,24 +15,27 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.actividadaprendizaje1.domain.Trabajadores;
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.indexActivity;
 
-public class listadoTrabajadoresActivity extends AppCompatActivity {
+public class listadoClientesActivity extends AppCompatActivity {
 
-    private ArrayAdapter<Trabajadores> listadoTrabajadoresAdapter;
+    private ArrayAdapter<Clientes> listadoClientesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listado_trabajadores);
+        setContentView(R.layout.activity_listado_clientes);
 
-        listadoTrabajadoresAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                indexActivity.listadoTrabajadores);
+        listadoClientesAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                indexActivity.listadoClientes);
 
-        ListView lvListadoTrabajadores=findViewById(R.id.listadoTrabajadores);
-        lvListadoTrabajadores.setAdapter(listadoTrabajadoresAdapter);
+        ListView lvListadoClientes=findViewById(R.id.listadoClientes);
+        lvListadoClientes.setAdapter(listadoClientesAdapter);
 
-        registerForContextMenu(lvListadoTrabajadores);
+        registerForContextMenu(lvListadoClientes);
+
     }
 
     //Menu actionBar
@@ -66,10 +69,10 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         return false;
     }
 
-    //Metodo para eliminar trabajadores de mi lista
+    //Metodo para eliminar clientes de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        indexActivity.listadoTrabajadores.remove(info.position);
-        listadoTrabajadoresAdapter.notifyDataSetChanged();
+        indexActivity.listadoClientes.remove(info.position);
+        listadoClientesAdapter.notifyDataSetChanged();
     }
 
     //MENU CONTEXTUAL
@@ -94,7 +97,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             //DIALOGO PARA PREGUNTAR EL QUERER ELIMINAR
             AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
             dialogoBorrar.setTitle("Importante");
-            dialogoBorrar.setMessage("¿ Estas seguro de eliminar este trabajador ?");
+            dialogoBorrar.setMessage("¿ Estas seguro de eliminar este cliente ?");
             //Que hace si aprieta el boton de confirmar
             dialogoBorrar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
@@ -112,4 +115,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         }
         return false;
     }
+
+
+
 }

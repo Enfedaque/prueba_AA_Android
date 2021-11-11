@@ -16,6 +16,10 @@ import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
+import com.example.actividadaprendizaje1.listas.listadoClientesActivity;
+import com.example.actividadaprendizaje1.listas.listadoTrabajadoresActivity;
+import com.example.actividadaprendizaje1.nuevos.nuevoClienteActivity;
+import com.example.actividadaprendizaje1.nuevos.nuevoTrabajadorActivity;
 
 /*Activity de la zona de usuarios*/
 
