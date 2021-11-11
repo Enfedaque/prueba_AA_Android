@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.nuevos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.R;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.indexActivity;
 
 /*Aqui se va a mostrar el registrar un nuevo vehiculo para arreglar en el taller*/
 

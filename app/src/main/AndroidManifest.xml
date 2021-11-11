@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ActividadAprendizaje1">
         <activity
-            android:name=".listadoVehiculosActivity"
+            android:name=".listas.listadoVehiculosActivity"
             android:exported="false" />
         <activity
-            android:name=".listadoTrabajadoresActivity"
+            android:name=".listas.listadoTrabajadoresActivity"
             android:exported="false" />
         <activity
-            android:name=".listadoClientesActivity"
+            android:name=".listas.listadoClientesActivity"
             android:exported="false" />
         <activity
-            android:name=".nuevoClienteActivity"
+            android:name=".nuevos.nuevoClienteActivity"
             android:exported="false" />
         <activity
             android:name=".zonaUsuariosActivity"
@@ -37,10 +37,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".nuevoTrabajadorActivity"
+            android:name=".nuevos.nuevoTrabajadorActivity"
             android:exported="false" />
         <activity
-            android:name=".nuevaEntradaActivity"
+            android:name=".nuevos.nuevaEntradaActivity"
             android:exported="false" />
     </application>
 

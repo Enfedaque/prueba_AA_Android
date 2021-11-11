@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.listas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.actividadaprendizaje1.R;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.indexActivity;
 
 public class listadoVehiculosActivity extends AppCompatActivity {
 

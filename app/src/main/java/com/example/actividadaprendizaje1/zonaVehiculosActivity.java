@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.actividadaprendizaje1.listas.listadoVehiculosActivity;
+import com.example.actividadaprendizaje1.nuevos.nuevaEntradaActivity;
+
 public class zonaVehiculosActivity extends AppCompatActivity {
 
     @Override
