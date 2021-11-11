@@ -10,7 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ActividadAprendizaje1">
         <activity
-            android:name=".listas.listadoVehiculosActivity"
+            android:name=".InitActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".listadoVehiculosActivity"
             android:exported="false" />
         <activity
             android:name=".listas.listadoTrabajadoresActivity"
