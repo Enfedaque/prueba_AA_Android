@@ -2,6 +2,7 @@ package com.example.actividadaprendizaje1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.BBDD.VehiculosBBDD;
 import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
@@ -90,6 +92,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
                 || !spTrabajadorAlCargo.isClickable()
                 || etAveria.getText().toString().equals("") || !spCliente.isClickable()){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
+            return;
         }
 
         String marca=etMarca.getText().toString();
@@ -101,8 +104,17 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         //Guardo como objeto cliente la opcion del spinner selecionado
         Clientes miCliente= (Clientes) spCliente.getSelectedItem();
 
-        Vehiculos miVehiculo=new Vehiculos(miCliente, marca, modelo, matricula, trabajador, averia);
-        indexActivity.listadoVehiculos.add(miVehiculo);
+        Vehiculos miVehiculo=new Vehiculos(miCliente.getClienteID(), marca, modelo,
+                matricula, trabajador.getTrabajadorID(), averia);
+
+        //Instancia la clase BBDD creada antes
+        VehiculosBBDD vDB= Room.databaseBuilder(getApplicationContext(), VehiculosBBDD.class,
+                "taller").build();
+
+        //Añado mi vehiculo a la BBDD a traves del DAO
+        vDB.vehiculosDAO().insert(miVehiculo);
+
+
 
         //Aqui hago que si esta marcado como urgente salga el primero en la lista
         if (cbUrgente.isChecked()){

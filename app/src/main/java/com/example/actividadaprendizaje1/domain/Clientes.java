@@ -3,21 +3,25 @@ package com.example.actividadaprendizaje1.domain;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Clientes extends Usuarios{
 
-    private String clienteID;
+    //Lo tengo que definir como PrimaryKey autogenerado en la bbdd
+    @PrimaryKey(autoGenerate = true)
+    private long clienteID;
 
-    public Clientes(String nombre, String apellido, String dni, String telefono, String email,
-                    String clienteID) {
+    public Clientes(String nombre, String apellido, String dni, String telefono, String email) {
         super(nombre, apellido, dni, telefono, email);
-        this.clienteID = clienteID;
     }
 
-    public String getClienteID() {
+    public long getClienteID() {
         return clienteID;
     }
 
-    public void setClienteID(String clienteID) {
+    public void setClienteID(long clienteID) {
         this.clienteID = clienteID;
     }
 

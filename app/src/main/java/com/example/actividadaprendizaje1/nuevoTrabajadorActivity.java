@@ -61,13 +61,12 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
         EditText etDni=findViewById(R.id.dniTrabajador);
         EditText etTelefono=findViewById(R.id.telefonoTrabajador);
         EditText etEmail=findViewById(R.id.emailTrabajador);
-        EditText etIdTrabajador=findViewById(R.id.idTrabajador);
         EditText etDepartamento=findViewById(R.id.departamentoTrabajador);
         EditText etPuesto=findViewById(R.id.puestoTrabajador);
 
         if(etNombre.getText().toString().equals("") || etApellido.getText().toString().equals("") ||
                 etDni.getText().toString().equals("") || etTelefono.getText().toString().equals("") ||
-                etEmail.getText().toString().equals("") || etIdTrabajador.getText().toString().equals("")
+                etEmail.getText().toString().equals("")
                 || etDepartamento.getText().toString().equals("")
                 || etPuesto.getText().toString().equals("")){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
@@ -78,12 +77,11 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
         String dni=etDni.getText().toString();
         String telefono=etTelefono.getText().toString();
         String email=etEmail.getText().toString();
-        String idTrabajador=etIdTrabajador.getText().toString();
         String departamento=etDepartamento.getText().toString();
         String puesto=etPuesto.getText().toString();
 
-        Trabajadores miTrabajador=new Trabajadores(nombre, apellido, dni, telefono, email,
-                idTrabajador, puesto, departamento);
+        Trabajadores miTrabajador=new Trabajadores(nombre, apellido, dni, telefono, email, puesto,
+                departamento);
 
         indexActivity.listadoTrabajadores.add(miTrabajador);
         Toast.makeText(this, "Trabajador registrado correctamente", Toast.LENGTH_LONG).show();
@@ -95,6 +93,5 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
         etEmail.setText("");
         etDepartamento.setText("");
         etPuesto.setText("");
-        etIdTrabajador.setText("");
     }
 }

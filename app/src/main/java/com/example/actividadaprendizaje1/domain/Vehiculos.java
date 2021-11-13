@@ -1,20 +1,32 @@
 package com.example.actividadaprendizaje1.domain;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+//Indico que quiero que se cree una tabla
+@Entity
 public class Vehiculos {
 
-    private Clientes miCliente;
+    //Con la anotacion @ColumnInfo hago que sea un campo de la tabla
+    @PrimaryKey(autoGenerate = true)
+    private long idVehiculo; //No lo meto en el constructor porque sera automatico en la BBDD
+    @ColumnInfo
+    private long idCliente;
+    @ColumnInfo
     private String marca;
+    @ColumnInfo
     private String modelo;
+    @ColumnInfo
     private String matricula;
-
-    private Trabajadores miTrabajador;
-
+    @ColumnInfo
+    private long miTrabajador;
+    @ColumnInfo
     private String averia;
 
-    public Vehiculos(Clientes miCliente, String marca, String modelo, String matricula,
-                     Trabajadores miTrabajador, String averia) {
-        this.miCliente = miCliente;
+    public Vehiculos(long idCliente, String marca, String modelo, String matricula,
+                     long miTrabajador, String averia) {
+        this.idCliente = idCliente;
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
@@ -22,12 +34,12 @@ public class Vehiculos {
         this.averia=averia;
     }
 
-    public Clientes getMiCliente() {
-        return miCliente;
+    public long getIdCliente() {
+        return idCliente;
     }
 
-    public void setMiCliente(Clientes miCliente) {
-        this.miCliente = miCliente;
+    public void setIdCliente(long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getMarca() {
@@ -54,18 +66,34 @@ public class Vehiculos {
         this.matricula = matricula;
     }
 
-    public Trabajadores getMiTrabajador() {
+    public long getMiTrabajador() {
         return miTrabajador;
     }
 
-    public void setMiTrabajador(Trabajadores miTrabajador) {
+    public void setMiTrabajador(long miTrabajador) {
         this.miTrabajador = miTrabajador;
+    }
+
+    public long getIdVehiculo() {
+        return idVehiculo;
+    }
+
+    public void setIdVehiculo(long idVehiculo) {
+        this.idVehiculo = idVehiculo;
+    }
+
+    public String getAveria() {
+        return averia;
+    }
+
+    public void setAveria(String averia) {
+        this.averia = averia;
     }
 
     @Override
     public String toString() {
         return "Vehiculos{" +
-                "miCliente=" + miCliente +
+                "miCliente=" + idCliente +
                 ", marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", matricula='" + matricula + '\'' +

@@ -1,24 +1,32 @@
 package com.example.actividadaprendizaje1.domain;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+
+@Entity
 public class Trabajadores extends Usuarios{
 
-    private String trabajadorID;
+    @PrimaryKey(autoGenerate = true)
+    private long trabajadorID;
+    @ColumnInfo
     private String departamento;
+    @ColumnInfo
     private String puesto;
 
-    public Trabajadores(String nombre, String apellido, String dni, String telefono, String email,
-                        String trabajadorID, String departamento, String puesto) {
+    public Trabajadores(String nombre, String apellido, String dni, String telefono, String email
+            , String departamento, String puesto) {
         super(nombre, apellido, dni, telefono, email);
-        this.trabajadorID = trabajadorID;
         this.departamento = departamento;
         this.puesto = puesto;
     }
 
-    public String getTrabajadorID() {
+    public long getTrabajadorID() {
         return trabajadorID;
     }
 
-    public void setTrabajadorID(String trabajadorID) {
+    public void setTrabajadorID(long trabajadorID) {
         this.trabajadorID = trabajadorID;
     }
 

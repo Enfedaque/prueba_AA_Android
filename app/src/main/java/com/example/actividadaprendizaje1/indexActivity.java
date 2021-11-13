@@ -17,13 +17,15 @@ import com.example.actividadaprendizaje1.domain.Vehiculos;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class indexActivity extends AppCompatActivity {
 
-    //Creo el array para mostrar los clientes, trabajadores, vehiculos...
+    //Los ARRAyList los voy a usar para mostrar la info que me da la BBDD a traves del ListView,
+    // ya que para guardar la informacion uso la BBDD
     public static ArrayList<Clientes> listadoClientes;
     public static ArrayList<Trabajadores> listadoTrabajadores;
-    public static ArrayList<Vehiculos> listadoVehiculos;
+    public static List<Vehiculos> listadoVehiculos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

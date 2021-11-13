@@ -60,14 +60,6 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/idTrabajador"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:ems="10"
-            android:hint="Trabajador ID"
-            android:inputType="textPersonName" />
-
-        <EditText
             android:id="@+id/departamentoTrabajador"
             android:layout_width="match_parent"
             android:layout_height="61dp"
