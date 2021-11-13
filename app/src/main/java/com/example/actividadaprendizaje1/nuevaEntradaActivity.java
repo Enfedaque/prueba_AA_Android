@@ -15,25 +15,34 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.domain.Trabajadores;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
 
 /*Aqui se va a mostrar el registrar un nuevo vehiculo para arreglar en el taller*/
 
 public class nuevaEntradaActivity extends AppCompatActivity {
 
-    //Spinner de los clientes
-    Spinner miSpinner;
+    //Spinner de los clientes y trabajadores
+    Spinner miSpinnerClientes;
+    Spinner miSpinnerTrabajadores;
+    //Adapter para el spinner
     ArrayAdapter<Clientes> miAdapter;
+    ArrayAdapter<Trabajadores> miAdapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_entrada);
 
-        miSpinner=findViewById(R.id.spClientes);
+        //Instancio el spinner y el adapter
+        miSpinnerClientes =findViewById(R.id.spClientes);
+        miSpinnerTrabajadores=findViewById(R.id.spTrabajadores);
         miAdapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 indexActivity.listadoClientes);
-        miSpinner.setAdapter(miAdapter);
+        miSpinnerClientes.setAdapter(miAdapter);
+        miAdapter2=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                indexActivity.listadoTrabajadores);
+        miSpinnerTrabajadores.setAdapter(miAdapter2);
 
     }
 
@@ -65,10 +74,11 @@ public class nuevaEntradaActivity extends AppCompatActivity {
 
     public void añadirEntrada(View view){
 
+        //recojo los campos segun el id
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
-        EditText etTrabajadorAlCargo=findViewById(R.id.trabajadorAlCargo);
+        Spinner spTrabajadorAlCargo=findViewById(R.id.spTrabajadores);
         EditText etAveria=findViewById(R.id.averia);
         Spinner spCliente=findViewById(R.id.spClientes);
 
@@ -77,7 +87,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         if(etMarca.getText().toString().equals("")
                 || etModelo.getText().toString().equals("")
                 || etMatricula.getText().toString().equals("")
-                || etTrabajadorAlCargo.getText().toString().equals("")
+                || !spTrabajadorAlCargo.isClickable()
                 || etAveria.getText().toString().equals("") || !spCliente.isClickable()){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
         }
@@ -85,8 +95,10 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         String marca=etMarca.getText().toString();
         String modelo=etModelo.getText().toString();
         String matricula=etMatricula.getText().toString();
-        String trabajador=etTrabajadorAlCargo.getText().toString();
+        //Guardo como objeto trabajador la opcion del spinner selecionado
+        Trabajadores trabajador= (Trabajadores) spTrabajadorAlCargo.getSelectedItem();
         String averia=etAveria.getText().toString();
+        //Guardo como objeto cliente la opcion del spinner selecionado
         Clientes miCliente= (Clientes) spCliente.getSelectedItem();
 
         Vehiculos miVehiculo=new Vehiculos(miCliente, marca, modelo, matricula, trabajador, averia);
@@ -103,19 +115,16 @@ public class nuevaEntradaActivity extends AppCompatActivity {
     }
 
     public void cancelarEntrada(View view){
-        EditText etIdCliente=findViewById(R.id.idCliente);
+
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
-        EditText etTrabajadorAlCargo=findViewById(R.id.trabajadorAlCargo);
         EditText etAveria=findViewById(R.id.averia);
         CheckBox cbUrgente=findViewById(R.id.urgente);
 
-        etIdCliente.setText("");
         etMarca.setText("");
         etModelo.setText("");
         etMatricula.setText("");
-        etTrabajadorAlCargo.setText("");
         etAveria.setText("");
         cbUrgente.setChecked(false);
     }

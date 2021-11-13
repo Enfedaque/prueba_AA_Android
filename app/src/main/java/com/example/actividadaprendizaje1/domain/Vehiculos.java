@@ -1,16 +1,19 @@
 package com.example.actividadaprendizaje1.domain;
 
+
 public class Vehiculos {
 
     private Clientes miCliente;
     private String marca;
     private String modelo;
     private String matricula;
-    private String miTrabajador;
+
+    private Trabajadores miTrabajador;
+
     private String averia;
 
     public Vehiculos(Clientes miCliente, String marca, String modelo, String matricula,
-                     String miTrabajador, String averia) {
+                     Trabajadores miTrabajador, String averia) {
         this.miCliente = miCliente;
         this.marca = marca;
         this.modelo = modelo;
@@ -51,11 +54,11 @@ public class Vehiculos {
         this.matricula = matricula;
     }
 
-    public String getMiTrabajador() {
+    public Trabajadores getMiTrabajador() {
         return miTrabajador;
     }
 
-    public void setMiTrabajador(String miTrabajador) {
+    public void setMiTrabajador(Trabajadores miTrabajador) {
         this.miTrabajador = miTrabajador;
     }
 
