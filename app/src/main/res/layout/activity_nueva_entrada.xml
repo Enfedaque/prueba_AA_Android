@@ -14,14 +14,6 @@
         android:padding="30dp">
 
         <EditText
-            android:id="@+id/IdCliente"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:ems="10"
-            android:hint="ClienteID"
-            android:inputType="textPersonName" />
-
-        <EditText
             android:id="@+id/marca"
             android:layout_width="match_parent"
             android:layout_height="59dp"
@@ -60,6 +52,19 @@
             android:ems="10"
             android:hint="Descripcion de la averia"
             android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar cliente"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+        <Spinner
+            android:id="@+id/spClientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <CheckBox
             android:id="@+id/urgente"

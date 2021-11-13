@@ -8,20 +8,33 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
 
 /*Aqui se va a mostrar el registrar un nuevo vehiculo para arreglar en el taller*/
 
 public class nuevaEntradaActivity extends AppCompatActivity {
 
+    //Spinner de los clientes
+    Spinner miSpinner;
+    ArrayAdapter<Clientes> miAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_entrada);
+
+        miSpinner=findViewById(R.id.spClientes);
+        miAdapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                indexActivity.listadoClientes);
+        miSpinner.setAdapter(miAdapter);
+
     }
 
     //Menu actionBar
@@ -52,31 +65,31 @@ public class nuevaEntradaActivity extends AppCompatActivity {
 
     public void añadirEntrada(View view){
 
-        EditText etIdCliente=findViewById(R.id.idCliente);
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
         EditText etTrabajadorAlCargo=findViewById(R.id.trabajadorAlCargo);
         EditText etAveria=findViewById(R.id.averia);
+        Spinner spCliente=findViewById(R.id.spClientes);
 
         CheckBox cbUrgente=findViewById(R.id.urgente);
 
-        if(etIdCliente.getText().toString().equals("") || etMarca.getText().toString().equals("")
+        if(etMarca.getText().toString().equals("")
                 || etModelo.getText().toString().equals("")
                 || etMatricula.getText().toString().equals("")
                 || etTrabajadorAlCargo.getText().toString().equals("")
-                || etAveria.getText().toString().equals("")){
+                || etAveria.getText().toString().equals("") || !spCliente.isClickable()){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
         }
 
-        String idCliente=etIdCliente.getText().toString();
         String marca=etMarca.getText().toString();
         String modelo=etModelo.getText().toString();
         String matricula=etMatricula.getText().toString();
         String trabajador=etTrabajadorAlCargo.getText().toString();
         String averia=etAveria.getText().toString();
+        Clientes miCliente= (Clientes) spCliente.getSelectedItem();
 
-        Vehiculos miVehiculo=new Vehiculos(idCliente, marca, modelo, matricula, trabajador, averia);
+        Vehiculos miVehiculo=new Vehiculos(miCliente, marca, modelo, matricula, trabajador, averia);
         indexActivity.listadoVehiculos.add(miVehiculo);
 
         //Aqui hago que si esta marcado como urgente salga el primero en la lista

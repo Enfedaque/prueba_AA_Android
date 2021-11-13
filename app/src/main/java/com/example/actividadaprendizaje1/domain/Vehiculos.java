@@ -2,14 +2,14 @@ package com.example.actividadaprendizaje1.domain;
 
 public class Vehiculos {
 
-    private String miCliente;
+    private Clientes miCliente;
     private String marca;
     private String modelo;
     private String matricula;
     private String miTrabajador;
     private String averia;
 
-    public Vehiculos(String miCliente, String marca, String modelo, String matricula,
+    public Vehiculos(Clientes miCliente, String marca, String modelo, String matricula,
                      String miTrabajador, String averia) {
         this.miCliente = miCliente;
         this.marca = marca;
@@ -19,11 +19,11 @@ public class Vehiculos {
         this.averia=averia;
     }
 
-    public String getMiCliente() {
+    public Clientes getMiCliente() {
         return miCliente;
     }
 
-    public void setMiCliente(String miCliente) {
+    public void setMiCliente(Clientes miCliente) {
         this.miCliente = miCliente;
     }
 

@@ -6,3 +6,4 @@
      **ACTIONBAR hecha en todas las pantallas, pero faltan programar algunas opciones
 
 * Zona de busqueda de clientes a traves del apellido y de un checkbox
+* Añadido un spinner para seleccionar el cliente al que pertenece el vehiculo a reparar
