@@ -1,19 +1,32 @@
 package com.example.actividadaprendizaje1.domain;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+//Indico que quiero que se cree una tabla
+@Entity
 public class Vehiculos {
 
+    //Con la anotacion @ColumnInfo hago que sea un campo de la tabla
+    @PrimaryKey(autoGenerate = true)
+    private long idVehiculo; //No lo meto en el constructor porque sera automatico en la BBDD
+    @ColumnInfo
     private Clientes miCliente;
+    @ColumnInfo
     private String marca;
+    @ColumnInfo
     private String modelo;
+    @ColumnInfo
     private String matricula;
-
+    @ColumnInfo
     private Trabajadores miTrabajador;
-
+    @ColumnInfo
     private String averia;
 
     public Vehiculos(Clientes miCliente, String marca, String modelo, String matricula,
                      Trabajadores miTrabajador, String averia) {
+        this.idVehiculo=idVehiculo;
         this.miCliente = miCliente;
         this.marca = marca;
         this.modelo = modelo;
@@ -60,6 +73,22 @@ public class Vehiculos {
 
     public void setMiTrabajador(Trabajadores miTrabajador) {
         this.miTrabajador = miTrabajador;
+    }
+
+    public long getIdVehiculo() {
+        return idVehiculo;
+    }
+
+    public void setIdVehiculo(long idVehiculo) {
+        this.idVehiculo = idVehiculo;
+    }
+
+    public String getAveria() {
+        return averia;
+    }
+
+    public void setAveria(String averia) {
+        this.averia = averia;
     }
 
     @Override
