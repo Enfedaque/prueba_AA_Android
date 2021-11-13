@@ -1,7 +1,6 @@
 package com.example.actividadaprendizaje1;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,12 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +67,8 @@ public class zonaUsuariosActivity extends AppCompatActivity {
             }
         }
     }
+
+    //Metodo para mostrar el buscador y buscar trabajadores
     public void mostrarInfoTrabajadores(View view){
         //Vacio el textView del resultado cada vez
         mostrarInfo.setText("");
@@ -86,7 +84,7 @@ public class zonaUsuariosActivity extends AppCompatActivity {
                     mostrarInfo.setText(trabajador.toString());
                 }
             }
-            //Si no ha encontrado resultados es que el textView esta vacio y muestro lo siguiente
+            //Si no ha encontrado resultados es que el textView esta vacio y muestro lo siguiente.
             if (mostrarInfo.equals("")){
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();
             }
@@ -140,7 +138,7 @@ public class zonaUsuariosActivity extends AppCompatActivity {
             //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
             // aplicacion
             return true;
-        } else if (item.getItemId()==R.id.opcion1) {
+        } else if (item.getItemId()==R.id.navegador) {
             //todo aun no se que opcion poner
             return true;
         }else if (item.getItemId()==R.id.opcion2){

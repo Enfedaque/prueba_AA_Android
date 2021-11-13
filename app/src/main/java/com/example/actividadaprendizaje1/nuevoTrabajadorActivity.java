@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,7 +43,7 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
             //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
             // aplicacion
             return true;
-        } else if (item.getItemId()==R.id.opcion1) {
+        } else if (item.getItemId()==R.id.navegador) {
             //todo aun no se que opcion poner
             return true;
         }else if (item.getItemId()==R.id.opcion2){

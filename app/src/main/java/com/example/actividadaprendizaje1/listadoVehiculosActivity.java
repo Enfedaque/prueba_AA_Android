@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
 
 public class listadoVehiculosActivity extends AppCompatActivity {
@@ -48,7 +47,7 @@ public class listadoVehiculosActivity extends AppCompatActivity {
             // aplicacion
         } else if (item.getItemId()==R.id.webCoches) {
             //todo aun no se que opcion poner
-        }else if (item.getItemId()==R.id.opcion1){
+        }else if (item.getItemId()==R.id.navegador){
             //todo aun no se que opcion poner
         }
 

@@ -8,20 +8,33 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
 
 /*Aqui se va a mostrar el registrar un nuevo vehiculo para arreglar en el taller*/
 
 public class nuevaEntradaActivity extends AppCompatActivity {
 
+    //Me declaro mi spinner que voy a usar para elegir los clientes en el registro
+    Spinner miSpinner;
+    //El adapter para el Spinner
+    ArrayAdapter<Clientes> miAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_entrada);
+
+        miSpinner=findViewById(R.id.spCliente);
+        miAdapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                indexActivity.listadoClientes);
+        miSpinner.setAdapter(miAdapter);
     }
 
     //Menu actionBar
@@ -43,7 +56,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
             // aplicacion
         } else if (item.getItemId()==R.id.webCoches) {
             //todo aun no se que opcion poner
-        }else if (item.getItemId()==R.id.opcion1){
+        }else if (item.getItemId()==R.id.navegador){
             //todo aun no se que opcion poner
         }
 
@@ -52,7 +65,6 @@ public class nuevaEntradaActivity extends AppCompatActivity {
 
     public void añadirEntrada(View view){
 
-        EditText etIdCliente=findViewById(R.id.idCliente);
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
@@ -61,7 +73,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
 
         CheckBox cbUrgente=findViewById(R.id.urgente);
 
-        if(etIdCliente.getText().toString().equals("") || etMarca.getText().toString().equals("")
+        if(etMarca.getText().toString().equals("")
                 || etModelo.getText().toString().equals("")
                 || etMatricula.getText().toString().equals("")
                 || etTrabajadorAlCargo.getText().toString().equals("")
@@ -69,14 +81,13 @@ public class nuevaEntradaActivity extends AppCompatActivity {
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
         }
 
-        String idCliente=etIdCliente.getText().toString();
         String marca=etMarca.getText().toString();
         String modelo=etModelo.getText().toString();
         String matricula=etMatricula.getText().toString();
         String trabajador=etTrabajadorAlCargo.getText().toString();
         String averia=etAveria.getText().toString();
 
-        Vehiculos miVehiculo=new Vehiculos(idCliente, marca, modelo, matricula, trabajador, averia);
+        /*Vehiculos miVehiculo=new Vehiculos(marca, modelo, matricula, trabajador, averia);
         indexActivity.listadoVehiculos.add(miVehiculo);
 
         //Aqui hago que si esta marcado como urgente salga el primero en la lista
@@ -86,11 +97,10 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         }else{
             indexActivity.listadoVehiculos.add(miVehiculo);
             Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 
     public void cancelarEntrada(View view){
-        EditText etIdCliente=findViewById(R.id.idCliente);
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
@@ -98,7 +108,6 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         EditText etAveria=findViewById(R.id.averia);
         CheckBox cbUrgente=findViewById(R.id.urgente);
 
-        etIdCliente.setText("");
         etMarca.setText("");
         etModelo.setText("");
         etMatricula.setText("");
