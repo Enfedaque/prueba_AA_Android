@@ -92,6 +92,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
                 || !spTrabajadorAlCargo.isClickable()
                 || etAveria.getText().toString().equals("") || !spCliente.isClickable()){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
+            return;
         }
 
         String marca=etMarca.getText().toString();
@@ -103,7 +104,8 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         //Guardo como objeto cliente la opcion del spinner selecionado
         Clientes miCliente= (Clientes) spCliente.getSelectedItem();
 
-        Vehiculos miVehiculo=new Vehiculos(miCliente, marca, modelo, matricula, trabajador, averia);
+        Vehiculos miVehiculo=new Vehiculos(miCliente.getClienteID(), marca, modelo,
+                matricula, trabajador.getTrabajadorID(), averia);
 
         //Instancia la clase BBDD creada antes
         VehiculosBBDD vDB= Room.databaseBuilder(getApplicationContext(), VehiculosBBDD.class,

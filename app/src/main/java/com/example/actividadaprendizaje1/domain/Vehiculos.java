@@ -12,7 +12,7 @@ public class Vehiculos {
     @PrimaryKey(autoGenerate = true)
     private long idVehiculo; //No lo meto en el constructor porque sera automatico en la BBDD
     @ColumnInfo
-    private Clientes miCliente;
+    private long idCliente;
     @ColumnInfo
     private String marca;
     @ColumnInfo
@@ -20,14 +20,13 @@ public class Vehiculos {
     @ColumnInfo
     private String matricula;
     @ColumnInfo
-    private Trabajadores miTrabajador;
+    private long miTrabajador;
     @ColumnInfo
     private String averia;
 
-    public Vehiculos(Clientes miCliente, String marca, String modelo, String matricula,
-                     Trabajadores miTrabajador, String averia) {
-        this.idVehiculo=idVehiculo;
-        this.miCliente = miCliente;
+    public Vehiculos(long idCliente, String marca, String modelo, String matricula,
+                     long miTrabajador, String averia) {
+        this.idCliente = idCliente;
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
@@ -35,12 +34,12 @@ public class Vehiculos {
         this.averia=averia;
     }
 
-    public Clientes getMiCliente() {
-        return miCliente;
+    public long getIdCliente() {
+        return idCliente;
     }
 
-    public void setMiCliente(Clientes miCliente) {
-        this.miCliente = miCliente;
+    public void setIdCliente(long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getMarca() {
@@ -67,11 +66,11 @@ public class Vehiculos {
         this.matricula = matricula;
     }
 
-    public Trabajadores getMiTrabajador() {
+    public long getMiTrabajador() {
         return miTrabajador;
     }
 
-    public void setMiTrabajador(Trabajadores miTrabajador) {
+    public void setMiTrabajador(long miTrabajador) {
         this.miTrabajador = miTrabajador;
     }
 
@@ -94,7 +93,7 @@ public class Vehiculos {
     @Override
     public String toString() {
         return "Vehiculos{" +
-                "miCliente=" + miCliente +
+                "miCliente=" + idCliente +
                 ", marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", matricula='" + matricula + '\'' +

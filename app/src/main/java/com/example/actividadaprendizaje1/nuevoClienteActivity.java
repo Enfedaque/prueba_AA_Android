@@ -61,11 +61,10 @@ public class nuevoClienteActivity extends AppCompatActivity {
         EditText etDNI=findViewById(R.id.dniCliente);
         EditText etTelefono=findViewById(R.id.telefonoCliente);
         EditText etEmail=findViewById(R.id.emailCliente);
-        EditText etIdCliente=findViewById(R.id.idCliente);
 
         if(etNombre.getText().toString().equals("") || etApellido.getText().toString().equals("") ||
                 etDNI.getText().toString().equals("") || etTelefono.getText().toString().equals("") ||
-                etEmail.getText().toString().equals("") || etIdCliente.getText().toString().equals("")){
+                etEmail.getText().toString().equals("")){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
         }
 
@@ -74,9 +73,8 @@ public class nuevoClienteActivity extends AppCompatActivity {
         String dni=etDNI.getText().toString();
         String telefono=etTelefono.getText().toString();
         String email=etEmail.getText().toString();
-        String idCliente=etIdCliente.getText().toString();
 
-        Clientes miCliente=new Clientes(nombre,apellido, dni, telefono, email, idCliente);
+        Clientes miCliente=new Clientes(nombre,apellido, dni, telefono, email);
 
         indexActivity.listadoClientes.add(miCliente);
         Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
@@ -87,7 +85,6 @@ public class nuevoClienteActivity extends AppCompatActivity {
         etDNI.setText("");
         etTelefono.setText("");
         etEmail.setText("");
-        etIdCliente.setText("");
     }
 
     public void cancelarCliente(View view){
@@ -96,14 +93,12 @@ public class nuevoClienteActivity extends AppCompatActivity {
         EditText etDNI=findViewById(R.id.dniCliente);
         EditText etTelefono=findViewById(R.id.telefonoCliente);
         EditText etEmail=findViewById(R.id.emailCliente);
-        EditText etIdCliente=findViewById(R.id.idCliente);
 
         etNombre.setText("");
         etApellido.setText("");
         etDNI.setText("");
         etTelefono.setText("");
         etEmail.setText("");
-        etIdCliente.setText("");
 
     }
 
