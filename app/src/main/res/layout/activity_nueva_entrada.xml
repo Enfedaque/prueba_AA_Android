@@ -37,13 +37,18 @@
             android:hint="Matricula"
             android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/trabajadorAlCargo"
+        <TextView
+            android:id="@+id/textView9"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:ems="10"
-            android:hint="Trabajador encargado del arreglo"
-            android:inputType="textPersonName" />
+            android:layout_height="wrap_content"
+            android:text="Trabajador al cargo"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+        <Spinner
+            android:id="@+id/spTrabajadores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/averia"
