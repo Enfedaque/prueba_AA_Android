@@ -48,6 +48,12 @@ public class Trabajadores extends Usuarios{
 
     @Override
     public String toString() {
-        return getApellido() + ", " + getNombre() + " / " + getDni();
+        return getApellido().toUpperCase() + ", " + getNombre().toUpperCase();
+    }
+
+    public String toString2(){
+        return getNombre().toUpperCase() + ", " + getApellido().toUpperCase() + " / " + getDni()
+                + " / " + getTelefono() + " / " + getEmail() + " / " + getDepartamento() +
+                " / " + getPuesto();
     }
 }

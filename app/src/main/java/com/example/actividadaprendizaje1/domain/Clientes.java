@@ -25,8 +25,16 @@ public class Clientes extends Usuarios{
         this.clienteID = clienteID;
     }
 
+    //Para mostrar simplemente en los arrayList
     @Override
     public String toString() {
-        return getApellido() + ", " + getNombre() + " / " + getDni();
+
+        return getApellido().toUpperCase() + ", " + getNombre().toUpperCase();
+    }
+
+    //Este lo uso para mostrar la informacion completa por un dialog
+    public String toString2(){
+        return getNombre().toUpperCase() + ", " + getApellido().toUpperCase() + "/ " + getDni()
+                + " / " + getTelefono() + "/ " + getEmail() ;
     }
 }
