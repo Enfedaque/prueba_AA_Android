@@ -9,14 +9,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ACE1AE"
         android:orientation="vertical"
-        android:padding="30dp">
+        android:padding="10dp">
 
         <EditText
             android:id="@+id/marca"
             android:layout_width="match_parent"
             android:layout_height="59dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Marca"
             android:inputType="textPersonName" />
@@ -25,6 +25,7 @@
             android:id="@+id/modelo"
             android:layout_width="match_parent"
             android:layout_height="69dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Modelo"
             android:inputType="textPersonName" />
@@ -33,6 +34,7 @@
             android:id="@+id/matricula"
             android:layout_width="match_parent"
             android:layout_height="61dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Matricula"
             android:inputType="textPersonName" />
@@ -41,6 +43,7 @@
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="Trabajador al cargo"
             android:textAlignment="center"
             android:textSize="18dp" />
@@ -48,12 +51,14 @@
         <Spinner
             android:id="@+id/spTrabajadores"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
 
         <EditText
             android:id="@+id/averia"
             android:layout_width="match_parent"
             android:layout_height="67dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Descripcion de la averia"
             android:inputType="textPersonName" />
@@ -62,6 +67,7 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="Seleccionar cliente"
             android:textAlignment="center"
             android:textSize="18dp" />
@@ -69,13 +75,30 @@
         <Spinner
             android:id="@+id/spClientes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
 
-        <CheckBox
-            android:id="@+id/urgente"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:text="URGENTE" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/urgente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="URGENTE" />
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="50dp"
+                android:backgroundTint="#7A7979"
+                android:text="foto"
+                app:icon="@android:drawable/ic_menu_gallery" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,18 +111,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#67DBE6"
                 android:onClick="añadirEntrada"
                 android:text="Añadir"
-                android:translationX="-10dp" />
+                android:textColor="#000000"
+                android:translationX="-10dp"
+                app:icon="@android:drawable/ic_input_add" />
 
             <Button
                 android:id="@+id/button14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#F37D7D"
                 android:onClick="cancelarEntrada"
                 android:text="cancelar"
-                android:translationX="10dp" />
+                android:textColor="#000000"
+                android:translationX="10dp"
+                app:icon="@android:drawable/ic_menu_delete" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

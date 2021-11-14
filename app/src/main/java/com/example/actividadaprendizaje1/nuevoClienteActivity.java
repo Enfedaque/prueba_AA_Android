@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
@@ -101,5 +103,6 @@ public class nuevoClienteActivity extends AppCompatActivity {
         etEmail.setText("");
 
     }
+
 
 }
