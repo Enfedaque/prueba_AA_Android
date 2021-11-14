@@ -13,18 +13,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 
+import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 
 public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     private ArrayAdapter<Trabajadores> listadoTrabajadoresAdapter;
+    Switch miSwitch;
+    EditText apellidoBuscador;
+    Button btBuscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_trabajadores);
+
+        miSwitch=findViewById(R.id.swBuscarTrabajador);
+        apellidoBuscador=findViewById(R.id.apellidoBuscadorTrabajador);
+        btBuscar=findViewById(R.id.btBuscadorTrabajador);
 
         listadoTrabajadoresAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 indexActivity.listadoTrabajadores);
@@ -39,6 +50,41 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         super.onResume();
 
     }
+
+    //Metodo para el switch que muestra el buscador
+    public void buscadorTrabajadoresVisible(View view){
+        if (view.getId()==R.id.swBuscarTrabajador){
+            if (miSwitch.isChecked()){
+                apellidoBuscador.setVisibility(View.VISIBLE);
+                btBuscar.setVisibility(View.VISIBLE);
+            }else{
+                apellidoBuscador.setVisibility(View.GONE);
+                btBuscar.setVisibility(View.GONE);
+            }
+        }
+
+    }
+
+    //Metodo que busca al trabajador en la lista y lo muestra
+    public void resultadoBusquedaTrabajador(View view){
+        for (Trabajadores miTrabajador : indexActivity.listadoTrabajadores){
+            if (miTrabajador.getApellido()
+                    .equalsIgnoreCase(apellidoBuscador.getText().toString())){
+                String mostrarResultado=miTrabajador.toString2();
+                //Muestro en un dialogo la informacion completa del usuario
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+                dialogo.setTitle("Informarción");
+                dialogo.setMessage(mostrarResultado);
+                dialogo.show();
+            }else{
+                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                dialogoBorrar.setTitle("Informarción");
+                dialogoBorrar.setMessage("Usuario no encontrado");
+                dialogoBorrar.show();
+            }
+        }
+    }
+
 
     //Menu actionBar
     @Override
@@ -91,7 +137,12 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            //todo crear pantalla que muestre la informacion
+            //todo , no se como mostrar la info del objeto en el menu
+            //Muestro en un dialogo la informacion completa del usuario
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            dialogo.setTitle("Informarción");
+            dialogo.setMessage("");
+            dialogo.show();
             return true;
         }
         //Opcion de eliminar de la lista

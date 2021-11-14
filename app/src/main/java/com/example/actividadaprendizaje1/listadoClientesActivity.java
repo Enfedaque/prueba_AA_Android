@@ -13,18 +13,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
 
 public class listadoClientesActivity extends AppCompatActivity {
 
     private ArrayAdapter<Clientes> listadoClientesAdapter;
+    Switch miSwitch;
+    EditText apellidoBuscador;
+    Button btBuscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_clientes);
+
+        miSwitch=findViewById(R.id.swBuscarCliente);
+        apellidoBuscador=findViewById(R.id.apellidosBuscadorCliente);
+        btBuscar=findViewById(R.id.btBuscadorCliente);
 
         listadoClientesAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 indexActivity.listadoClientes);
@@ -40,6 +50,41 @@ public class listadoClientesActivity extends AppCompatActivity {
         super.onResume();
 
     }
+
+    //Metodo para el switch que muestra el buscador
+    public void buscadorClientesVisible(View view){
+        if (view.getId()==R.id.swBuscarCliente){
+            if (miSwitch.isChecked()){
+                apellidoBuscador.setVisibility(View.VISIBLE);
+                btBuscar.setVisibility(View.VISIBLE);
+            }else{
+                apellidoBuscador.setVisibility(View.GONE);
+                btBuscar.setVisibility(View.GONE);
+            }
+        }
+
+    }
+
+    //Metodo que busca al cliente en la lista y lo muestra
+    public void resultadoBusquedaCliente(View view){
+        for (Clientes miCliente : indexActivity.listadoClientes){
+            if (miCliente.getApellido()
+                    .equalsIgnoreCase(apellidoBuscador.getText().toString())){
+                String mostrarResultado=miCliente.toString2();
+                //Muestro en un dialogo la informacion completa del usuario
+                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                dialogoBorrar.setTitle("Informarción");
+                dialogoBorrar.setMessage(mostrarResultado);
+                dialogoBorrar.show();
+            }else{
+                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                dialogoBorrar.setTitle("Informarción");
+                dialogoBorrar.setMessage("Usuario no encontrado");
+                dialogoBorrar.show();
+            }
+        }
+    }
+
 
     //Menu actionBar
     @Override
