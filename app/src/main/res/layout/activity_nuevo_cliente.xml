@@ -9,21 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ACE1AE"
+        android:layout_margin="10dp"
         android:orientation="vertical"
         android:padding="30dp">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_manage"
-            tools:srcCompat="@tools:sample/avatars" />
 
         <EditText
             android:id="@+id/nombreCliente"
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Nombre"
             android:inputType="textPersonName" />
@@ -32,6 +26,7 @@
             android:id="@+id/apellidoCliente"
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Apellido"
             android:inputType="textPersonName" />
@@ -40,6 +35,7 @@
             android:id="@+id/dniCliente"
             android:layout_width="match_parent"
             android:layout_height="65dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="DNI"
             android:inputType="textPersonName" />
@@ -48,6 +44,7 @@
             android:id="@+id/telefonoCliente"
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Telefono"
             android:inputType="phone" />
@@ -56,6 +53,7 @@
             android:id="@+id/emailCliente"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress" />
@@ -64,25 +62,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp">
+            android:padding="10dp">
 
             <Button
                 android:id="@+id/button11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#67DBE6"
                 android:onClick="añadirCliente"
                 android:text="Añadir"
-                android:translationX="-10dp" />
+                android:textColor="#000000"
+                android:translationX="-10dp"
+                app:icon="@android:drawable/ic_input_add" />
 
             <Button
                 android:id="@+id/button12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#F37D7D"
                 android:onClick="cancelarCliente"
                 android:text="Cancelar"
-                android:translationX="10dp" />
+                android:textColor="#000000"
+                android:translationX="10dp"
+                app:icon="@android:drawable/ic_menu_delete" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

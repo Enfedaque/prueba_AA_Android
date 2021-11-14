@@ -3,26 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".nuevoTrabajadorActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ACE1AE"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="30dp">
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            tools:srcCompat="@tools:sample/avatars" />
 
         <EditText
             android:id="@+id/nombreTrabajador"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Nombre"
             android:inputType="textPersonName" />
@@ -31,6 +24,7 @@
             android:id="@+id/apellidoTrabajador"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Apellido"
             android:inputType="textPersonName" />
@@ -39,6 +33,7 @@
             android:id="@+id/dniTrabajador"
             android:layout_width="match_parent"
             android:layout_height="59dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="DNI"
             android:inputType="textPersonName" />
@@ -47,6 +42,7 @@
             android:id="@+id/telefonoTrabajador"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Telefono"
             android:inputType="phone" />
@@ -55,6 +51,7 @@
             android:id="@+id/emailTrabajador"
             android:layout_width="match_parent"
             android:layout_height="57dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress" />
@@ -63,6 +60,7 @@
             android:id="@+id/departamentoTrabajador"
             android:layout_width="match_parent"
             android:layout_height="61dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Departamento"
             android:inputType="textPersonName" />
@@ -71,13 +69,15 @@
             android:id="@+id/puestoTrabajador"
             android:layout_width="match_parent"
             android:layout_height="63dp"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Puesto"
             android:inputType="textPersonName" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -86,18 +86,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#67DBE6"
                 android:onClick="añadirTrabajador"
                 android:text="Añadir"
-                android:translationX="-10dp" />
+                android:textColor="#000000"
+                android:translationX="-10dp"
+                app:icon="@android:drawable/ic_input_add" />
 
             <Button
-                android:id="@+id/cancelarTrabajador"
+                android:id="@+id/cancelarTrabajador3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#F37D7D"
                 android:text="cancelar"
-                android:translationX="10dp" />
+                android:textColor="#000000"
+                android:translationX="10dp"
+                app:icon="@android:drawable/ic_menu_delete" />
+
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

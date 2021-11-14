@@ -24,7 +24,7 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#8BD57E"
+            android:backgroundTint="#67DBE6"
             android:onClick="zonaUsuarios"
             android:text="Zona usuarios"
             android:textColor="#000000" />
@@ -40,7 +40,7 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#8BD57E"
+            android:backgroundTint="#F37D7D"
             android:onClick="zonaVehiculos"
             android:text="Zona vehiculos"
             android:textColor="#000000" />

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F4C3"
+        android:orientation="vertical"
+        android:padding="45dp">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="Introduzca contraseña:"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/contraseña"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/okPasswordUsuarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:backgroundTint="#67DBE6"
+            android:onClick="acceso"
+            android:text="Acceder"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:icon="@android:drawable/ic_menu_send" />
+
+        <Button
+            android:id="@+id/cancelPasswordUsuarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:backgroundTint="#F37D7D"
+            android:onClick="cancelar"
+            android:text="Cancelar"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:icon="@android:drawable/ic_menu_close_clear_cancel" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

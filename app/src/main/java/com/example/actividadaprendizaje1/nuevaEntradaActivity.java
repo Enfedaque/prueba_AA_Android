@@ -76,6 +76,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
 
     public void añadirEntrada(View view){
 
+        //todo metodo para recoger la imagen y guardarla en la base da datos
         //recojo los campos segun el id
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
@@ -91,7 +92,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
                 || etMatricula.getText().toString().equals("")
                 || !spTrabajadorAlCargo.isClickable()
                 || etAveria.getText().toString().equals("") || !spCliente.isClickable()){
-            Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_SHORT).show();
             return;
         }
 

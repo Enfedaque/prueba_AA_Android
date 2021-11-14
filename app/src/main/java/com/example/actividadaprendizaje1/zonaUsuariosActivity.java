@@ -9,13 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Trabajadores;
 
 /*Activity de la zona de usuarios*/
 
@@ -31,12 +26,12 @@ public class zonaUsuariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zona_usuarios);
 
-        etBuscarCliente=findViewById(R.id.busquedaClienteIntro);
+        /*etBuscarCliente=findViewById(R.id.busquedaClienteIntro);
         etBuscarTrabajador=findViewById(R.id.busquedaTrabajadorIntro);
         String buscarTrabajador=etBuscarTrabajador.getText().toString();
         btConsultaCliente=findViewById(R.id.botonConsultaCliente);
         btConsultaTrabajador=findViewById(R.id.botonConsultaTrabajador);
-        mostrarInfo=findViewById(R.id.respuestaConsulta);
+        mostrarInfo=findViewById(R.id.respuestaConsulta);*/
 
     }
 
@@ -46,7 +41,7 @@ public class zonaUsuariosActivity extends AppCompatActivity {
     }
 
     //Metodo para mostrar los resultados de una busqueda
-    public void mostrarInfoClientes(View view){
+    /*public void mostrarInfoClientes(View view){
         //Vacio el textView del resultado cada vez
         mostrarInfo.setText("");
         String buscarCliente=etBuscarCliente.getText().toString();
@@ -66,10 +61,10 @@ public class zonaUsuariosActivity extends AppCompatActivity {
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();
             }
         }
-    }
+    }*/
 
     //Metodo para mostrar el buscador y buscar trabajadores
-    public void mostrarInfoTrabajadores(View view){
+    /*public void mostrarInfoTrabajadores(View view){
         //Vacio el textView del resultado cada vez
         mostrarInfo.setText("");
         String buscarTrabajadores=etBuscarTrabajador.getText().toString();
@@ -89,10 +84,10 @@ public class zonaUsuariosActivity extends AppCompatActivity {
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();
             }
         }
-    }
+    }*/
 
     //CheckBox para permitir o no las busquedas
-    public void checkBoxClicked(View view){
+    /*public void checkBoxClicked(View view){
         // Compruebo si esta clickado
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {
@@ -116,7 +111,7 @@ public class zonaUsuariosActivity extends AppCompatActivity {
                 break;
             // TODO: Veggie sandwich
         }
-    }
+    }*/
 
     //Menu actionBar
     @Override
