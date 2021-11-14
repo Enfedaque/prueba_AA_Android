@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase;
 import com.example.actividadaprendizaje1.DAO.ClientesDAO;
 import com.example.actividadaprendizaje1.domain.Clientes;
 
-@Database(entities = {Clientes.class}, version = 1)
+@Database(entities = {Clientes.class}, version = 2)
 public abstract class ClientesBBDD  extends RoomDatabase {
     //Aqui hace de intermediario entre la clase y el DAO
 

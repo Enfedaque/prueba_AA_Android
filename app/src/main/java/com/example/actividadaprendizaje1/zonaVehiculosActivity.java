@@ -17,6 +17,10 @@ public class zonaVehiculosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_zona_vehiculos);
     }
 
+    protected void onResume(){
+        super.onResume();
+
+    }
 
     //Menu actionBar
     @Override

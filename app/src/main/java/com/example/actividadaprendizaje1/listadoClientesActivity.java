@@ -36,6 +36,11 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     }
 
+    protected void onResume(){
+        super.onResume();
+
+    }
+
     //Menu actionBar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

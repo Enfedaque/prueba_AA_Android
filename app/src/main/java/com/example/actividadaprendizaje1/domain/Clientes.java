@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(inheritSuperIndices = true)
 public class Clientes extends Usuarios{
 
     //Lo tengo que definir como PrimaryKey autogenerado en la bbdd

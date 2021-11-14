@@ -35,6 +35,11 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         registerForContextMenu(lvListadoTrabajadores);
     }
 
+    protected void onResume(){
+        super.onResume();
+
+    }
+
     //Menu actionBar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

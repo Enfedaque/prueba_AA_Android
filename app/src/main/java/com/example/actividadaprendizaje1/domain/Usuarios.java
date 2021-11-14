@@ -1,11 +1,20 @@
 package com.example.actividadaprendizaje1.domain;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+
+@Entity
 public class Usuarios {
 
+    @ColumnInfo
     private String nombre;
+    @ColumnInfo
     private String apellido;
+    @ColumnInfo
     private String dni;
+    @ColumnInfo
     private String telefono;
+    @ColumnInfo
     private String email;
 
     public Usuarios(String nombre, String apellido, String dni, String telefono, String email) {
