@@ -34,6 +34,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cbApellidoTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="checkeado"
+                android:text="Por apellido"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/cbIdTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="checkeado"
+                android:text="Por Id_Trabajador"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
@@ -55,7 +79,36 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_weight="1"
                 android:backgroundTint="#67DBE6"
-                android:onClick="resultadoBusquedaTrabajador"
+                android:onClick="resultadoBusquedaTrabajadorPorApellido"
+                android:padding="5dp"
+                android:visibility="gone"
+                app:icon="@drawable/ic_search_black_24dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/idBuscadorTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Id_Trabajador"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/bt2BuscadorTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#67DBE6"
                 android:padding="5dp"
                 android:visibility="gone"
                 app:icon="@drawable/ic_search_black_24dp" />

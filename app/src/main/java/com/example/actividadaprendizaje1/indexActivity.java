@@ -31,6 +31,8 @@ public class indexActivity extends AppCompatActivity {
     public static ArrayList<Clientes> listadoClientes;
     public static ArrayList<Trabajadores> listadoTrabajadores;
     public static List<Vehiculos> listadoVehiculos;
+    public static ArrayList<String> departamentos;
+    public static ArrayList<String> puestos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +42,35 @@ public class indexActivity extends AppCompatActivity {
         listadoClientes=new ArrayList<>();
         listadoTrabajadores=new ArrayList<>();
         listadoVehiculos=new ArrayList<>();
+        departamentos=new ArrayList<>();
+        departamentos();
+        puestos=new ArrayList<>();
+        puestos();
 
     }
 
     protected void onResume(){
         super.onResume();
+
+    }
+
+    //TODO , hacer los spinner en en nuevoTrabajadores para mostrar los departamentos y los puestos
+    //Para rellena de forma mas bonita el departamento en vez de tirar el codigo en el create
+    private void  departamentos(){
+        departamentos.add("Ventas");
+        departamentos.add("Administración");
+        departamentos.add("Taller");
+        departamentos.add("Dirección");
+        departamentos.add("Atención al cliente");
+    }
+
+    //Rellena los puestos
+    private void  puestos(){
+        puestos.add("Peón");
+        puestos.add("Oficial");
+        puestos.add("Gerente");
+        puestos.add("Encargado");
+        puestos.add("Limpiador");
 
     }
 

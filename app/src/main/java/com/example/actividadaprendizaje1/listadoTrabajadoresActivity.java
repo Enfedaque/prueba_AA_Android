@@ -14,11 +14,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 
-import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 
 public class listadoTrabajadoresActivity extends AppCompatActivity {
@@ -27,6 +27,10 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
     Switch miSwitch;
     EditText apellidoBuscador;
     Button btBuscar;
+    EditText idBuscador;
+    Button btBuscar2;
+    CheckBox cbApellido;
+    CheckBox cbId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,10 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         miSwitch=findViewById(R.id.swBuscarTrabajador);
         apellidoBuscador=findViewById(R.id.apellidoBuscadorTrabajador);
         btBuscar=findViewById(R.id.btBuscadorTrabajador);
+        idBuscador =findViewById(R.id.idBuscadorTrabajador);
+        btBuscar2=findViewById(R.id.bt2BuscadorTrabajador);
+        cbApellido=findViewById(R.id.cbApellidoTrabajador);
+        cbId=findViewById(R.id.cbIdTrabajador);
 
         listadoTrabajadoresAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 indexActivity.listadoTrabajadores);
@@ -57,26 +65,91 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             if (miSwitch.isChecked()){
                 apellidoBuscador.setVisibility(View.VISIBLE);
                 btBuscar.setVisibility(View.VISIBLE);
+                cbApellido.setVisibility(View.VISIBLE);
+                cbId.setVisibility(View.VISIBLE);
+                cbApellido.setChecked(true);
             }else{
+                cbApellido.setVisibility(View.GONE);
+                cbId.setVisibility(View.GONE);
                 apellidoBuscador.setVisibility(View.GONE);
                 btBuscar.setVisibility(View.GONE);
+                idBuscador.setVisibility(View.GONE);
+                btBuscar2.setVisibility(View.GONE);
             }
         }
 
     }
 
-    //Metodo que busca al trabajador en la lista y lo muestra
-    public void resultadoBusquedaTrabajador(View view){
+    //Metodo para saber que mostrador de busqueda mostrar segun los checkbox
+    public void checkeado(View view){
+        if (view.getId()==R.id.cbApellidoTrabajador){
+            apellidoBuscador.setVisibility(View.VISIBLE);
+            btBuscar.setVisibility(View.VISIBLE);
+            idBuscador.setVisibility(View.GONE);
+            btBuscar2.setVisibility(View.GONE);
+            cbId.setChecked(false);
+        }else {
+            apellidoBuscador.setVisibility(View.GONE);
+            btBuscar.setVisibility(View.GONE);
+            idBuscador.setVisibility(View.VISIBLE);
+            btBuscar2.setVisibility(View.VISIBLE);
+            cbApellido.setChecked(false);
+        }
+    }
+
+    //Metodo que busca al trabajador en la lista por el apellido y lo muestra
+    public void resultadoBusquedaTrabajadorPorApellido(View view){
         for (Trabajadores miTrabajador : indexActivity.listadoTrabajadores){
-            if (miTrabajador.getApellido()
-                    .equalsIgnoreCase(apellidoBuscador.getText().toString())){
-                String mostrarResultado=miTrabajador.toString2();
-                //Muestro en un dialogo la informacion completa del usuario
-                AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-                dialogo.setTitle("Informarción");
-                dialogo.setMessage(mostrarResultado);
-                dialogo.show();
-            }else{
+            /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
+            en la busqueda
+             */
+            try {
+                if (miTrabajador.getApellido()
+                        .equalsIgnoreCase(apellidoBuscador.getText().toString())){
+                    String mostrarResultado=miTrabajador.toString2();
+                    //Muestro en un dialogo la informacion completa del usuario
+                    AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+                    dialogo.setTitle("Informarción");
+                    dialogo.setMessage(mostrarResultado);
+                    dialogo.show();
+                }else{
+                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setMessage("Usuario no encontrado");
+                    dialogoBorrar.show();
+                }
+
+            }catch (Exception ex){
+                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                dialogoBorrar.setTitle("Informarción");
+                dialogoBorrar.setMessage("Usuario no encontrado");
+                dialogoBorrar.show();
+            }
+        }
+    }
+
+    //Metodo que busca al trabajador en la lista por el Id y lo muestra
+    public void resultadoBusquedaTrabajadorPorIdTrabajador(View view){
+        for (Trabajadores miTrabajador : indexActivity.listadoTrabajadores){
+            /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
+            en la busqueda
+             */
+            try {
+                if (miTrabajador.getTrabajadorID() == Long.parseLong(idBuscador.getText().toString())){
+                    String mostrarResultado=miTrabajador.toString2();
+                    //Muestro en un dialogo la informacion completa del usuario
+                    AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+                    dialogo.setTitle("Informarción");
+                    dialogo.setMessage(mostrarResultado);
+                    dialogo.show();
+                }else{
+                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setMessage("Usuario no encontrado");
+                    dialogoBorrar.show();
+                }
+
+            }catch (Exception ex){
                 AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                 dialogoBorrar.setTitle("Informarción");
                 dialogoBorrar.setMessage("Usuario no encontrado");

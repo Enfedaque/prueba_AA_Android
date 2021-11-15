@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -25,7 +26,11 @@ public class listadoClientesActivity extends AppCompatActivity {
     private ArrayAdapter<Clientes> listadoClientesAdapter;
     Switch miSwitch;
     EditText apellidoBuscador;
+    EditText idBuscar;
     Button btBuscar;
+    Button btBuscar2;
+    CheckBox cbApellido;
+    CheckBox cbId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,11 @@ public class listadoClientesActivity extends AppCompatActivity {
 
         miSwitch=findViewById(R.id.swBuscarCliente);
         apellidoBuscador=findViewById(R.id.apellidosBuscadorCliente);
+        idBuscar=findViewById(R.id.idBuscadorCliente);
         btBuscar=findViewById(R.id.btBuscadorCliente);
+        btBuscar2=findViewById(R.id.bt2BuscadorCliente);
+        cbApellido=findViewById(R.id.cbApellidoCliente);
+        cbId=findViewById(R.id.cbIdCliente);
 
         listadoClientesAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 indexActivity.listadoClientes);
@@ -57,34 +66,95 @@ public class listadoClientesActivity extends AppCompatActivity {
             if (miSwitch.isChecked()){
                 apellidoBuscador.setVisibility(View.VISIBLE);
                 btBuscar.setVisibility(View.VISIBLE);
+                cbApellido.setVisibility(View.VISIBLE);
+                cbId.setVisibility(View.VISIBLE);
+                cbApellido.setChecked(true);
             }else{
+                cbApellido.setVisibility(View.GONE);
+                cbId.setVisibility(View.GONE);
                 apellidoBuscador.setVisibility(View.GONE);
                 btBuscar.setVisibility(View.GONE);
+                idBuscar.setVisibility(View.GONE);
+                btBuscar2.setVisibility(View.GONE);
             }
         }
 
     }
 
-    //Metodo que busca al cliente en la lista y lo muestra
-    public void resultadoBusquedaCliente(View view){
+    //Metodo para saber que mostrador de busqueda mostrar segun los checkbox
+    public void checkeado(View view){
+        if (view.getId()==R.id.cbApellidoCliente){
+            apellidoBuscador.setVisibility(View.VISIBLE);
+            btBuscar.setVisibility(View.VISIBLE);
+            idBuscar.setVisibility(View.GONE);
+            btBuscar2.setVisibility(View.GONE);
+            cbId.setChecked(false);
+        }else {
+            apellidoBuscador.setVisibility(View.GONE);
+            btBuscar.setVisibility(View.GONE);
+            idBuscar.setVisibility(View.VISIBLE);
+            btBuscar2.setVisibility(View.VISIBLE);
+            cbApellido.setChecked(false);
+        }
+    }
+
+    //Metodo del boton que busca al cliente por apellido en la lista y lo muestra
+    public void resultadoBusquedaClientePorApellido(View view){
         for (Clientes miCliente : indexActivity.listadoClientes){
-            if (miCliente.getApellido()
-                    .equalsIgnoreCase(apellidoBuscador.getText().toString())){
-                String mostrarResultado=miCliente.toString2();
-                //Muestro en un dialogo la informacion completa del usuario
-                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                dialogoBorrar.setTitle("Informarción");
-                dialogoBorrar.setMessage(mostrarResultado);
-                dialogoBorrar.show();
-            }else{
+            /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
+            en la busqueda
+             */
+            try {
+                if (miCliente.getApellido()
+                        .equalsIgnoreCase(apellidoBuscador.getText().toString())){
+                    String mostrarResultado=miCliente.toString2();
+                    //Muestro en un dialogo la informacion completa del usuario
+                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setMessage(mostrarResultado);
+                    dialogoBorrar.show();
+                }else{
+                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setMessage("Usuario no encontrado");
+                    dialogoBorrar.show();
+                }
+            }catch ( Exception ex){
                 AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                 dialogoBorrar.setTitle("Informarción");
                 dialogoBorrar.setMessage("Usuario no encontrado");
                 dialogoBorrar.show();
             }
+
         }
     }
 
+    //Metodo del boton que busca al cliente por Id_Cliente en la lista y lo muestra
+    public void resultadoBusquedaClientePorId(View view){
+        for (Clientes miCliente : indexActivity.listadoClientes){
+            try {
+                if (miCliente.getClienteID() == Long.parseLong(idBuscar.getText().toString())){
+                    String mostrarResultado=miCliente.toString2();
+                    //Muestro en un dialogo la informacion completa del usuario
+                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setMessage(mostrarResultado);
+                    dialogoBorrar.show();
+                }else{
+                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setMessage("Usuario no encontrado");
+                    dialogoBorrar.show();
+                }
+            }catch ( Exception ex){
+                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                dialogoBorrar.setTitle("Informarción");
+                dialogoBorrar.setMessage("Usuario no encontrado");
+                dialogoBorrar.show();
+            }
+
+        }
+    }
 
     //Menu actionBar
     @Override
