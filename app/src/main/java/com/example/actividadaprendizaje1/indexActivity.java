@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.domain.Facturas;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
 
@@ -33,6 +34,8 @@ public class indexActivity extends AppCompatActivity {
     public static List<Vehiculos> listadoVehiculos;
     public static ArrayList<String> departamentos;
     public static ArrayList<String> puestos;
+    //Lista de facturas
+    public static ArrayList<Facturas> listadoFacturas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class indexActivity extends AppCompatActivity {
         departamentos();
         puestos=new ArrayList<>();
         puestos();
+        listadoFacturas=new ArrayList<>();
 
     }
 
@@ -72,6 +76,12 @@ public class indexActivity extends AppCompatActivity {
         puestos.add("Encargado");
         puestos.add("Limpiador");
 
+    }
+
+    //Metodo que me manda al activity de la factura
+    public void facturar(View view){
+        Intent miIntent=new Intent(this, FacturaActivity.class);
+        startActivity(miIntent);
     }
 
     //Menu actionBar
