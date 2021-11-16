@@ -33,7 +33,7 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Si toca la casa lo envio al inicio
-        if(item.getItemId() == R.id.home){
+        /*if(item.getItemId() == R.id.home){
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
@@ -49,7 +49,7 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
         }else if (item.getItemId()==R.id.opcion2){
             //todo aun no se que opcion poner
             return true;
-        }
+        }*/
 
         return false;
     }

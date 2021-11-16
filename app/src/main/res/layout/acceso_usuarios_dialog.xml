@@ -8,6 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F6F4C3"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:isScrollContainer="false"
         android:orientation="vertical"
         android:padding="45dp">
 
@@ -18,6 +21,7 @@
             android:padding="15dp"
             android:text="Introduzca contraseña:"
             android:textAlignment="center"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -28,7 +32,8 @@
             android:layout_margin="20dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/okPasswordUsuarios"
@@ -49,7 +54,7 @@
             android:layout_marginHorizontal="20dp"
             android:backgroundTint="#F37D7D"
             android:onClick="cancelar"
-            android:text="Cancelar"
+            android:text="Borrar"
             android:textColor="#000000"
             android:textStyle="bold"
             app:icon="@android:drawable/ic_menu_close_clear_cancel" />

@@ -58,7 +58,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Si toca la casa lo envio al inicio
-        if(item.getItemId() == R.id.home){
+        /*if(item.getItemId() == R.id.home){
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
@@ -67,9 +67,9 @@ public class nuevaEntradaActivity extends AppCompatActivity {
             // aplicacion
         } else if (item.getItemId()==R.id.webCoches) {
             //todo aun no se que opcion poner
-        }else if (item.getItemId()==R.id.navegador){
+        }else if (item.getItemId()==R.id.abEliminarVehiculo){
             //todo aun no se que opcion poner
-        }
+        }*/
 
         return false;
     }

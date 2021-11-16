@@ -1,15 +1,25 @@
 package com.example.actividadaprendizaje1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.domain.Vehiculos;
 
 public class zonaVehiculosActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +46,48 @@ public class zonaVehiculosActivity extends AppCompatActivity {
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
-        }else if (item.getItemId()==R.id.acercaDe){
-            //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
-            // aplicacion
-        } else if (item.getItemId()==R.id.webCoches) {
-            //todo aun no se que opcion poner
-        }else if (item.getItemId()==R.id.navegador){
-            //todo aun no se que opcion poner
-        }
+        }else if (item.getItemId()==R.id.abEliminarVehiculo){
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            LayoutInflater in=getLayoutInflater();
+            View v=in.inflate(R.layout.borrar_vehiculos, null);
+            builder.setView(v);
+            Button eliminar=v.findViewById(R.id.btEliminarVehiculos);
+            EditText texto=v.findViewById(R.id.etMatriculaEliminar);
+            eliminar.setOnClickListener(v1 -> {
 
-        return false;
+                for (Vehiculos miVehiculo : indexActivity.listadoVehiculos){
+
+                    try {
+
+                        if (miVehiculo.getMatricula().equals(texto.getText().toString())){
+                            //Muestro en un de si esta seguro de querer borrarlo
+                            AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+                            dialogoBorrar.setTitle("Atención");
+                            dialogoBorrar.setMessage("¿Esta seguro de querer eliminar el vehiculo " +
+                                    "con la matricula " + texto + " ?");
+                            dialogoBorrar.setPositiveButton("Aceptar",((dialog, which) -> {
+                                        indexActivity.listadoVehiculos.remove(miVehiculo);
+                                        Toast.makeText(this, "Vehiculo eliminado" ,
+                                                Toast.LENGTH_SHORT).show();
+                                    }));
+                            dialogoBorrar.setNegativeButton("Cancelar",((dialog, which) ->
+                                    dialog.cancel()
+                            ));
+                            dialogoBorrar.show();
+                        }else{
+                            Toast.makeText(this, "Vehiculo no encontrado" ,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }catch ( Exception ex){
+                        Toast.makeText(this, "Vehiculo no encontrado" ,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            AlertDialog alertDialog= builder.create();
+            alertDialog.show();
+            return true;
+        }return true;
     }
 
     public void nuevoVehiculo(View view){
