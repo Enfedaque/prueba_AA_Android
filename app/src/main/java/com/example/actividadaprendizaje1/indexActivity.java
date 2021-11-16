@@ -25,7 +25,7 @@ import com.example.actividadaprendizaje1.domain.Vehiculos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class indexActivity extends AppCompatActivity {
+public class indexActivity extends AppCompatActivity{
 
     //Los ARRAyList los voy a usar para mostrar la info que me da la BBDD a traves del ListView,
     // ya que para guardar la informacion uso la BBDD
@@ -36,6 +36,7 @@ public class indexActivity extends AppCompatActivity {
     public static ArrayList<String> puestos;
     //Lista de facturas
     public static ArrayList<Facturas> listadoFacturas;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class indexActivity extends AppCompatActivity {
         puestos=new ArrayList<>();
         puestos();
         listadoFacturas=new ArrayList<>();
+
+
 
     }
 
@@ -78,10 +81,60 @@ public class indexActivity extends AppCompatActivity {
 
     }
 
-    //Metodo que me manda al activity de la factura
-    public void facturar(View view){
-        Intent miIntent=new Intent(this, FacturaActivity.class);
-        startActivity(miIntent);
+    //Metodo que me permite entrar a la zona usuarios
+    public void accesoUsuarios(View view){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        LayoutInflater in=getLayoutInflater();
+        View v=in.inflate(R.layout.acceso_usuarios_dialog, null);
+        builder.setView(v);
+        Button acceder=v.findViewById(R.id.okPasswordUsuarios);
+        Button cancelar=v.findViewById(R.id.cancelPasswordUsuarios);
+        EditText contraseña=v.findViewById(R.id.contraseña);
+        acceder.setOnClickListener(v1 -> {
+            //La contraseña es "usuarios"
+            if (contraseña.getText().toString().equals("usuarios")){
+                Intent miIntent=new Intent(this, zonaUsuariosActivity.class);
+                startActivity(miIntent);
+            }else{
+                Toast.makeText(this, "Contraseña incorrecta " , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancelar.setOnClickListener(v12 -> {
+            contraseña.setText("");
+        });
+
+        AlertDialog alertDialog= builder.create();
+        alertDialog.show();
+    }
+
+
+
+    //Boton para acceder a la zona de vehiculos, antes indtroduciendo la contraseña "vehiculos"
+    public void accesoVehiculos(View view){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        LayoutInflater in=getLayoutInflater();
+        View v=in.inflate(R.layout.acceso_usuarios_dialog, null);
+        builder.setView(v);
+        Button acceder=v.findViewById(R.id.okPasswordUsuarios);
+        Button cancelar=v.findViewById(R.id.cancelPasswordUsuarios);
+        EditText contraseña=v.findViewById(R.id.contraseña);
+        acceder.setOnClickListener(v1 -> {
+            //La contraseña es "vehiculos"
+            if (contraseña.getText().toString().equals("vehiculos")){
+                Intent miIntent=new Intent(this, zonaVehiculosActivity.class);
+                startActivity(miIntent);
+            }else{
+                Toast.makeText(this, "Contraseña incorrecta " , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancelar.setOnClickListener(v12 -> {
+            contraseña.setText("");
+        });
+
+        AlertDialog alertDialog= builder.create();
+        alertDialog.show();
     }
 
     //Menu actionBar
@@ -99,55 +152,4 @@ public class indexActivity extends AppCompatActivity {
 
         return false;
     }
-
-    //Boton para acceder a la zona de usuarios, antes introduceindo la contraseña "usuarios"
-    public void zonaUsuarios(View view){
-        Intent miIntent=new Intent(this, zonaUsuariosActivity.class);
-        startActivity(miIntent);
-    }
-
-    //Boton para acceder a la zona de vehiculos, antes indtroduciendo la contraseña "vehiculos"
-    public void zonaVehiculos(View view){
-        Intent miIntent=new Intent(this, zonaVehiculosActivity.class);
-        startActivity(miIntent);
-    }
-
-    //Boton para registrar un nuevo vehiculo averiado directamente
-    public void nuevaEntrada(View view){
-        Intent miIntent=new Intent(this, nuevaEntradaActivity.class);
-        startActivity(miIntent);
-    }
-
-    //TODO hacer que se muestre el layout qye cree a modo de dialogo con contraseña
-    //Metodo para mostrar el dialogo
-    public void mostrarDialogo(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-        View v = inflater.inflate(R.layout.acceso_usuarios_dialog, null);
-        builder.setView(v);
-        AlertDialog dialogo= builder.create();
-        dialogo.show();
-
-        Button btAcceder=findViewById(R.id.okPasswordUsuarios);
-        Button btCancelar=findViewById(R.id.cancelPasswordUsuarios);
-        EditText etContraseña=findViewById(R.id.contraseña);
-
-        btAcceder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent miIntent=new Intent(getBaseContext(), zonaUsuariosActivity.class);
-                startActivity(miIntent);
-                dialogo.dismiss();
-            }
-        });
-        btCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Contraseña incorrecta", Toast.LENGTH_LONG).show();
-                dialogo.dismiss();
-            }
-        });
-    }
-
-
 }
