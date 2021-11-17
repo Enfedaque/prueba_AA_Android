@@ -2,6 +2,7 @@ package com.example.actividadaprendizaje1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 
 /*Aqui se podra registar un nuevo trabajador que haya sido contratado*/
@@ -83,7 +85,10 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
         Trabajadores miTrabajador=new Trabajadores(nombre, apellido, dni, telefono, email, puesto,
                 departamento);
 
-        indexActivity.listadoTrabajadores.add(miTrabajador);
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        database.trabajadoresDAO().insert(miTrabajador);
+        
         Toast.makeText(this, "Trabajador registrado correctamente", Toast.LENGTH_LONG).show();
 
         etNombre.setText("");

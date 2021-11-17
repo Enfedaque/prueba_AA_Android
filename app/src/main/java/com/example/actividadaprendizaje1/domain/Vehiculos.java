@@ -92,12 +92,11 @@ public class Vehiculos {
 
     @Override
     public String toString() {
-        return "Vehiculos{" +
-                "miCliente=" + idCliente +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", matricula='" + matricula + '\'' +
-                ", miTrabajador=" + miTrabajador +
-                '}';
+        return getModelo().toUpperCase() + "/ " + getMarca() + " / " + getIdCliente();
+    }
+
+    public String toString2() {
+        return getMarca().toUpperCase() + ", " + getModelo().toUpperCase() + "/ " + getMatricula()
+                + " / " + getAveria() + "/ " + getIdCliente() ;
     }
 }

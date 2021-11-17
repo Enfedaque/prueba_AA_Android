@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
 import com.example.actividadaprendizaje1.BBDD.VehiculosBBDD;
 import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
@@ -108,14 +109,9 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         Vehiculos miVehiculo=new Vehiculos(miCliente.getClienteID(), marca, modelo,
                 matricula, trabajador.getTrabajadorID(), averia);
 
-        //Instancia la clase BBDD creada antes
-        VehiculosBBDD vDB= Room.databaseBuilder(getApplicationContext(), VehiculosBBDD.class,
-                "taller").build();
-
-        //Añado mi vehiculo a la BBDD a traves del DAO
-        vDB.vehiculosDAO().insert(miVehiculo);
-
-
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        database.vehiculosDAO().insert(miVehiculo);
 
         //Aqui hago que si esta marcado como urgente salga el primero en la lista
         if (cbUrgente.isChecked()){
