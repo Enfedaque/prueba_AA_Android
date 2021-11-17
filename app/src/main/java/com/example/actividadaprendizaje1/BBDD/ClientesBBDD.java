@@ -9,12 +9,18 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import com.example.actividadaprendizaje1.DAO.ClientesDAO;
+import com.example.actividadaprendizaje1.DAO.TrabajadoresDAO;
+import com.example.actividadaprendizaje1.DAO.VehiculosDAO;
 import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.domain.Trabajadores;
+import com.example.actividadaprendizaje1.domain.Vehiculos;
 
-@Database(entities = {Clientes.class}, version = 2)
+@Database(entities = {Clientes.class, Trabajadores.class, Vehiculos.class}, version = 3)
 public abstract class ClientesBBDD  extends RoomDatabase {
     //Aqui hace de intermediario entre la clase y el DAO
 
     //Me creo un metodo abstracto que me devuelva el DAO
     public abstract ClientesDAO clientesDAO();
+    public abstract TrabajadoresDAO trabajadoresDAO();
+    public abstract VehiculosDAO vehiculosDAO();
 }

@@ -35,9 +35,13 @@ public class zonaUsuariosActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         indexActivity.listadoClientes.clear();
+        indexActivity.listadoTrabajadores.clear();
+        indexActivity.listadoVehiculos.clear();
         ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         indexActivity.listadoClientes.addAll(database.clientesDAO().getAll());
+        indexActivity.listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
+        indexActivity.listadoVehiculos.addAll(database.vehiculosDAO().getAll());
     }
 
     //Menu actionBar

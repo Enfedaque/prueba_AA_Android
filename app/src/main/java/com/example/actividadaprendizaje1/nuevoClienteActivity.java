@@ -85,7 +85,6 @@ public class nuevoClienteActivity extends AppCompatActivity {
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.clientesDAO().insert(miCliente);
 
-        /*indexActivity.listadoClientes.add(miCliente);*/
         Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
 
         //Vacio los campos para poder seguir introduciendo

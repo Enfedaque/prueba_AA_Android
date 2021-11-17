@@ -35,7 +35,7 @@ public class indexActivity extends AppCompatActivity{
     * Voy a usar el ArrayList(List) de clientes para mostrar en una listView la informacion de la BBDD
     * */
     public static List<Clientes> listadoClientes;
-    public static ArrayList<Trabajadores> listadoTrabajadores;
+    public static List<Trabajadores> listadoTrabajadores;
     public static List<Vehiculos> listadoVehiculos;
     public static ArrayList<String> departamentos;
     public static ArrayList<String> puestos;
@@ -72,9 +72,13 @@ public class indexActivity extends AppCompatActivity{
     //Metodo que me carga la BBDD
     public void cargarDatabase(){
         listadoClientes.clear();
+        listadoTrabajadores.clear();
+        listadoVehiculos.clear();
         ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         listadoClientes.addAll(database.clientesDAO().getAll());
+        listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
+        listadoVehiculos.addAll(database.vehiculosDAO().getAll());
     }
 
     //TODO , hacer los spinner en en nuevoTrabajadores para mostrar los departamentos y los puestos

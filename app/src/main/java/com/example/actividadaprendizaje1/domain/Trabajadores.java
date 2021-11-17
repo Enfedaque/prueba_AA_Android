@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 
-@Entity(inheritSuperIndices = true)
+@Entity
 public class Trabajadores extends Usuarios{
 
     @PrimaryKey(autoGenerate = true)

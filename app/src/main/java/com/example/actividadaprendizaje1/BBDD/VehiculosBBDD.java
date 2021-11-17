@@ -16,6 +16,6 @@ public abstract class VehiculosBBDD extends RoomDatabase {
     //Aqui hace de intermediario entre la clase y el DAO
 
     //Me creo un metodo abstracto que me devuelva el DAO
-    public abstract   VehiculosDAO vehiculosDAO();
+
 
 }
