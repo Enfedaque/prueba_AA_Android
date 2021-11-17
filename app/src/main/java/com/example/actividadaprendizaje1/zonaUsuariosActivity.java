@@ -3,6 +3,7 @@ package com.example.actividadaprendizaje1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
 import com.example.actividadaprendizaje1.domain.Clientes;
 
 /*Activity de la zona de usuarios*/
@@ -32,7 +34,10 @@ public class zonaUsuariosActivity extends AppCompatActivity {
 
     protected void onResume(){
         super.onResume();
-
+        indexActivity.listadoClientes.clear();
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        indexActivity.listadoClientes.addAll(database.clientesDAO().getAll());
     }
 
     //Menu actionBar

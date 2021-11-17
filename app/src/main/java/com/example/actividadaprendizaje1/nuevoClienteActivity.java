@@ -2,6 +2,7 @@ package com.example.actividadaprendizaje1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
 import com.example.actividadaprendizaje1.domain.Clientes;
 
 public class nuevoClienteActivity extends AppCompatActivity {
@@ -78,7 +80,12 @@ public class nuevoClienteActivity extends AppCompatActivity {
 
         Clientes miCliente=new Clientes(nombre,apellido, dni, telefono, email);
 
-        indexActivity.listadoClientes.add(miCliente);
+        //Cojo mi base de datos creada y la construyo e incluyo mi cleinte
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        database.clientesDAO().insert(miCliente);
+
+        /*indexActivity.listadoClientes.add(miCliente);*/
         Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
 
         //Vacio los campos para poder seguir introduciendo

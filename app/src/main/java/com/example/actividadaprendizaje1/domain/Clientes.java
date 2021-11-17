@@ -1,12 +1,9 @@
 package com.example.actividadaprendizaje1.domain;
 
-import android.graphics.Bitmap;
-import android.widget.ImageView;
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(inheritSuperIndices = true)
+@Entity
 public class Clientes extends Usuarios{
 
     //Lo tengo que definir como PrimaryKey autogenerado en la bbdd

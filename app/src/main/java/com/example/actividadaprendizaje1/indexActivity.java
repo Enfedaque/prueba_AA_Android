@@ -3,6 +3,7 @@ package com.example.actividadaprendizaje1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
 import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Facturas;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
@@ -29,7 +31,10 @@ public class indexActivity extends AppCompatActivity{
 
     //Los ARRAyList los voy a usar para mostrar la info que me da la BBDD a traves del ListView,
     // ya que para guardar la informacion uso la BBDD
-    public static ArrayList<Clientes> listadoClientes;
+    /*
+    * Voy a usar el ArrayList(List) de clientes para mostrar en una listView la informacion de la BBDD
+    * */
+    public static List<Clientes> listadoClientes;
     public static ArrayList<Trabajadores> listadoTrabajadores;
     public static List<Vehiculos> listadoVehiculos;
     public static ArrayList<String> departamentos;
@@ -44,6 +49,7 @@ public class indexActivity extends AppCompatActivity{
         setContentView(R.layout.activity_index);
 
         listadoClientes=new ArrayList<>();
+
         listadoTrabajadores=new ArrayList<>();
         listadoVehiculos=new ArrayList<>();
         departamentos=new ArrayList<>();
@@ -59,6 +65,16 @@ public class indexActivity extends AppCompatActivity{
     protected void onResume(){
         super.onResume();
 
+        //Llamo al metodo para que recargue la BBDD
+        cargarDatabase();
+    }
+
+    //Metodo que me carga la BBDD
+    public void cargarDatabase(){
+        listadoClientes.clear();
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        listadoClientes.addAll(database.clientesDAO().getAll());
     }
 
     //TODO , hacer los spinner en en nuevoTrabajadores para mostrar los departamentos y los puestos
