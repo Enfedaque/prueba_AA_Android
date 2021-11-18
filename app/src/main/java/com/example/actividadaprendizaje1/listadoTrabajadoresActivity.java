@@ -3,11 +3,13 @@ package com.example.actividadaprendizaje1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 
+import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
+import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 
 public class listadoTrabajadoresActivity extends AppCompatActivity {
@@ -56,6 +60,11 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     protected void onResume(){
         super.onResume();
+
+        indexActivity.listadoTrabajadores.clear();
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        indexActivity.listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
 
     }
 
@@ -169,31 +178,24 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Si toca la casa lo envio al inicio
-        /*if(item.getItemId() == R.id.home){
+        if(item.getItemId() == R.id.home){
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
-        }else if (item.getItemId()==R.id.buscadorUsuarios){
-            //todo
-        }else if (item.getItemId()==R.id.acercaDe){
-            //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
-            // aplicacion
-            return true;
-        } else if (item.getItemId()==R.id.navegador) {
-            //todo aun no se que opcion poner
-            return true;
-        }else if (item.getItemId()==R.id.opcion2){
-            //todo aun no se que opcion poner
-            return true;
-        }*/
+        }else if (item.getItemId()==R.id.facturaNueva){
+            Intent miIntent=new Intent(this, FacturaActivity.class);
+            startActivity(miIntent);
+        }
 
         return false;
     }
 
     //Metodo para eliminar trabajadores de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        indexActivity.listadoTrabajadores.remove(info.position);
-        listadoTrabajadoresAdapter.notifyDataSetChanged();
+        Trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        database.trabajadoresDAO().eliminar(miTrabajador);
     }
 
     //MENU CONTEXTUAL
@@ -210,11 +212,10 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            //todo , no se como mostrar la info del objeto en el menu
-            //Muestro en un dialogo la informacion completa del usuario
+            Trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-            dialogo.setTitle("Informarción");
-            dialogo.setMessage("");
+            dialogo.setTitle("Información");
+            dialogo.setMessage(miTrabajador.toString2());
             dialogo.show();
             return true;
         }
@@ -227,17 +228,52 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             //Que hace si aprieta el boton de confirmar
             dialogoBorrar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
+
                     eliminar(info);
                 }
             });
             //Que hace si aprieta el boton de cancelar
             dialogoBorrar.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
+
                     finish();
                 }
             });
             dialogoBorrar.show();
             return true;
+        }
+        if (item.getItemId()==R.id.editar){
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            LayoutInflater in=getLayoutInflater();
+            View v=in.inflate(R.layout.editar_trabajadores, null);
+            builder.setView(v);
+            Button save=v.findViewById(R.id.guardarCambiosTrabajador);
+            EditText etNombre=v.findViewById(R.id.editarNombretrabajador);
+            EditText etApellido=v.findViewById(R.id.editarApellidoTrabajador);
+            EditText etDNI=v.findViewById(R.id.editarDNITrabajador);
+            EditText etTelefono=v.findViewById(R.id.editarTelefonoTrabajador);
+            EditText etEmail=v.findViewById(R.id.editarEmailTrabajador);
+            EditText etDepartamento=findViewById(R.id.editarDepartamentoTrabajador);
+            EditText etPuesto=findViewById(R.id.editarPuestoTrabajador);
+            save.setOnClickListener(v1 -> {
+
+                Trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+                miTrabajador.setNombre(etNombre.getText().toString());
+                miTrabajador.setApellido(etApellido.getText().toString());
+                miTrabajador.setDni(etDNI.getText().toString());
+                miTrabajador.setTelefono(etTelefono.getText().toString());
+                miTrabajador.setEmail(etEmail.getText().toString());
+                //todo aqui falla
+                miTrabajador.setDepartamento(etDepartamento.getText().toString());
+                miTrabajador.setPuesto(etPuesto.getText().toString());
+
+                ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                        "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+                database.trabajadoresDAO().editar(miTrabajador);
+            });
+
+            AlertDialog alertDialog= builder.create();
+            alertDialog.show();
         }
         return false;
     }

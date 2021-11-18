@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.actividadaprendizaje1.domain.Trabajadores;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
@@ -30,4 +31,7 @@ public interface TrabajadoresDAO {
     //Metodo para borrar un vehiculo
     @Delete
     void eliminar(Trabajadores miTrabajador);
+
+    @Update
+    void editar(Trabajadores miTrabajador);
 }
