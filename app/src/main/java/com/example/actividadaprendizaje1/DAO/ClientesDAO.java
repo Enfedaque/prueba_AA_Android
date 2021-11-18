@@ -1,9 +1,12 @@
 package com.example.actividadaprendizaje1.DAO;
 
+import android.widget.AdapterView;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.actividadaprendizaje1.domain.Clientes;
 import com.example.actividadaprendizaje1.domain.Vehiculos;
@@ -30,4 +33,7 @@ public interface ClientesDAO {
     //Metodo para borrar un cliente
     @Delete
     void eliminar(Clientes miCliente);
+
+    @Update
+    void editar(Clientes miCiente);
 }

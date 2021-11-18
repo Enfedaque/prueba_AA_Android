@@ -109,6 +109,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_weight="1"
                 android:backgroundTint="#67DBE6"
+                android:onClick="resultadoBusquedaTrabajadorPorIdTrabajador"
                 android:padding="5dp"
                 android:visibility="gone"
                 app:icon="@drawable/ic_search_black_24dp" />

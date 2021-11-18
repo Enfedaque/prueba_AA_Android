@@ -3,11 +3,13 @@ package com.example.actividadaprendizaje1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +20,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
 import com.example.actividadaprendizaje1.domain.Clientes;
 
 public class listadoClientesActivity extends AppCompatActivity {
@@ -58,6 +62,12 @@ public class listadoClientesActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
+        indexActivity.listadoClientes.clear();
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        indexActivity.listadoClientes.addAll(database.clientesDAO().getAll());
+
+        listadoClientesAdapter.notifyDataSetChanged();
     }
 
     //Metodo para el switch que muestra el buscador
@@ -166,31 +176,25 @@ public class listadoClientesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Si toca la casa lo envio al inicio
-        /*if(item.getItemId() == R.id.home){
+        if(item.getItemId() == R.id.home){
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
-        }else if (item.getItemId()==R.id.buscadorUsuarios){
-            //todo
-        }else if (item.getItemId()==R.id.acercaDe){
-            //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
-            // aplicacion
-            return true;
-        } else if (item.getItemId()==R.id.navegador) {
-            //todo aun no se que opcion poner
-            return true;
-        }else if (item.getItemId()==R.id.opcion2){
-            //todo aun no se que opcion poner
-            return true;
-        }*/
+        //Si toca lo mando a crear una factura
+        }else if (item.getItemId()==R.id.facturaNueva){
+            Intent miIntent=new Intent(this, FacturaActivity.class);
+            startActivity(miIntent);
+        }
 
         return false;
     }
 
     //Metodo para eliminar clientes de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        indexActivity.listadoClientes.remove(info.position);
-        listadoClientesAdapter.notifyDataSetChanged();
+        Clientes miCliente=indexActivity.listadoClientes.get(info.position);
+        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        database.clientesDAO().eliminar(miCliente);
     }
 
     //MENU CONTEXTUAL
@@ -207,7 +211,11 @@ public class listadoClientesActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            //todo crear pantalla que muestre la informacion
+            Clientes miCliente=indexActivity.listadoClientes.get(info.position);
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            dialogo.setTitle("Información");
+            dialogo.setMessage(miCliente.toString2());
+            dialogo.show();
             return true;
         }
         //Opcion de eliminar de la lista
@@ -219,7 +227,12 @@ public class listadoClientesActivity extends AppCompatActivity {
             //Que hace si aprieta el boton de confirmar
             dialogoBorrar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
+                    /*
+                    TODO , me lo borra pero no me lo muestra al instante borrado, tengo que salir
+                     de la activity y volver a entrar para ver que se ha borrado
+                     */
                     eliminar(info);
+                    listadoClientesAdapter.notifyDataSetChanged();
                 }
             });
             //Que hace si aprieta el boton de cancelar
@@ -230,6 +243,37 @@ public class listadoClientesActivity extends AppCompatActivity {
             });
             dialogoBorrar.show();
             return true;
+        }
+
+        if (item.getItemId()==R.id.editar){
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            LayoutInflater in=getLayoutInflater();
+            View v=in.inflate(R.layout.editar_clientes, null);
+            builder.setView(v);
+            Button save=v.findViewById(R.id.guardarCambiosCliente);
+            EditText etNombre=v.findViewById(R.id.editarNombreCliente);
+            EditText etApellido=v.findViewById(R.id.editarApellidoCliente);
+            EditText etDNI=v.findViewById(R.id.editarDNICliente);
+            EditText etTelefono=v.findViewById(R.id.editarTelefonoCliente);
+            EditText etEmail=v.findViewById(R.id.editarEmailCliente);
+            save.setOnClickListener(v1 -> {
+
+                Clientes miCliente=indexActivity.listadoClientes.get(info.position);
+                miCliente.setNombre(etNombre.getText().toString());
+                miCliente.setApellido(etApellido.getText().toString());
+                miCliente.setDni(etDNI.getText().toString());
+                miCliente.setTelefono(etTelefono.getText().toString());
+                miCliente.setEmail(etEmail.getText().toString());
+
+                ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                        "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+                database.clientesDAO().editar(miCliente);
+            });
+
+
+            AlertDialog alertDialog= builder.create();
+            alertDialog.show();
+
         }
         return false;
     }

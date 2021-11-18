@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/acceso_usuarios_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_editar_cliente.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_eliminar_vehiculos.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_factura.xml" value="0.2105978260869565" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_index.xml" value="0.24456521739130435" />
@@ -25,6 +26,9 @@
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/cabecera_navigation_view.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/content_fhjhjghjkjk.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/dialogo_buscador_clientes.xml" value="0.20516304347826086" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/editar_cliente.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/editar_clientes.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/editar_trabajadores.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/eliminar_vehiculos_personalizado.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/layout_lateral_menu_index.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/modelolistas.xml" value="0.23854166666666668" />
