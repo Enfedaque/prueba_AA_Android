@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.actividadaprendizaje1">
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -9,11 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ActividadAprendizaje1">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCLBgnBFBMy3SmyEmGUFF-RIt8UE9PAwpo"/>
+
         <activity
-            android:name=".FacturaActivity"
+            android:name=".talleresActivity"
             android:exported="false" />
         <activity
-            android:name=".InitActivity"
+            android:name=".facturaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".initActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

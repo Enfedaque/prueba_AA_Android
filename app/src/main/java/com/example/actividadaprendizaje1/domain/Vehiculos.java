@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 //Indico que quiero que se cree una tabla
 @Entity
-public class Vehiculos {
+public class vehiculos {
 
     //Con la anotacion @ColumnInfo hago que sea un campo de la tabla
     @PrimaryKey(autoGenerate = true)
@@ -24,7 +24,7 @@ public class Vehiculos {
     @ColumnInfo
     private String averia;
 
-    public Vehiculos(long idCliente, String marca, String modelo, String matricula,
+    public vehiculos(long idCliente, String marca, String modelo, String matricula,
                      long miTrabajador, String averia) {
         this.idCliente = idCliente;
         this.marca = marca;

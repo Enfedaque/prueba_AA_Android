@@ -1,17 +1,15 @@
 package com.example.actividadaprendizaje1.domain;
 
-import java.util.Date;
-
-public class Facturas {
+public class facturas {
 
     private long ID_Factura;
     private final String empresa="Garage Admin";
     private String direccion;
     private String fechaEmision;
-    private Clientes miCliente;
-    private Vehiculos miVehiculo;
+    private clientes miCliente;
+    private vehiculos miVehiculo;
 
-    public Facturas(String direccion, String fechaEmision, Clientes miCliente, Vehiculos miVehiculo) {
+    public facturas(String direccion, String fechaEmision, clientes miCliente, vehiculos miVehiculo) {
         this.direccion=direccion;
         this.fechaEmision = fechaEmision;
         this.miCliente = miCliente;
@@ -47,19 +45,19 @@ public class Facturas {
         this.fechaEmision = fechaEmision;
     }
 
-    public Clientes getMiCliente() {
+    public clientes getMiCliente() {
         return miCliente;
     }
 
-    public void setMiCliente(Clientes miCliente) {
+    public void setMiCliente(clientes miCliente) {
         this.miCliente = miCliente;
     }
 
-    public Vehiculos getMiVehiculo() {
+    public vehiculos getMiVehiculo() {
         return miVehiculo;
     }
 
-    public void setMiVehiculo(Vehiculos miVehiculo) {
+    public void setMiVehiculo(vehiculos miVehiculo) {
         this.miVehiculo = miVehiculo;
     }
 

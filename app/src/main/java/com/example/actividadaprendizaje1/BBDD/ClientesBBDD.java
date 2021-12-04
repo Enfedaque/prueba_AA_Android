@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1.BBDD;
+package com.example.actividadaprendizaje1.bbdd;
 
 //Le indico que es una bbdd y con que tabla voy a trabajar
 /*Cada vez que haga algun cambio en las anotaciones @ de la bbdd o algo que haga que afecte
@@ -8,19 +8,19 @@ package com.example.actividadaprendizaje1.BBDD;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.example.actividadaprendizaje1.DAO.ClientesDAO;
-import com.example.actividadaprendizaje1.DAO.TrabajadoresDAO;
-import com.example.actividadaprendizaje1.DAO.VehiculosDAO;
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Trabajadores;
-import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.dao.clientesDAO;
+import com.example.actividadaprendizaje1.dao.trabajadoresDAO;
+import com.example.actividadaprendizaje1.dao.vehiculosDAO;
+import com.example.actividadaprendizaje1.domain.clientes;
+import com.example.actividadaprendizaje1.domain.trabajadores;
+import com.example.actividadaprendizaje1.domain.vehiculos;
 
-@Database(entities = {Clientes.class, Trabajadores.class, Vehiculos.class}, version = 3)
-public abstract class ClientesBBDD  extends RoomDatabase {
+@Database(entities = {clientes.class, trabajadores.class, vehiculos.class}, version = 4)
+public abstract class clientesBBDD extends RoomDatabase {
     //Aqui hace de intermediario entre la clase y el DAO
 
     //Me creo un metodo abstracto que me devuelva el DAO
-    public abstract ClientesDAO clientesDAO();
-    public abstract TrabajadoresDAO trabajadoresDAO();
-    public abstract VehiculosDAO vehiculosDAO();
+    public abstract clientesDAO clientesDAO();
+    public abstract trabajadoresDAO trabajadoresDAO();
+    public abstract vehiculosDAO vehiculosDAO();
 }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,11 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
-import com.example.actividadaprendizaje1.BBDD.VehiculosBBDD;
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Trabajadores;
-import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.domain.clientes;
+import com.example.actividadaprendizaje1.domain.trabajadores;
+import com.example.actividadaprendizaje1.domain.vehiculos;
 
 /*Aqui se va a mostrar el registrar un nuevo vehiculo para arreglar en el taller*/
 
@@ -29,8 +27,8 @@ public class nuevaEntradaActivity extends AppCompatActivity {
     Spinner miSpinnerClientes;
     Spinner miSpinnerTrabajadores;
     //Adapter para el spinner
-    ArrayAdapter<Clientes> miAdapter;
-    ArrayAdapter<Trabajadores> miAdapter2;
+    ArrayAdapter<clientes> miAdapter;
+    ArrayAdapter<trabajadores> miAdapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,15 +99,15 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         String modelo=etModelo.getText().toString();
         String matricula=etMatricula.getText().toString();
         //Guardo como objeto trabajador la opcion del spinner selecionado
-        Trabajadores trabajador= (Trabajadores) spTrabajadorAlCargo.getSelectedItem();
+        trabajadores trabajador= (trabajadores) spTrabajadorAlCargo.getSelectedItem();
         String averia=etAveria.getText().toString();
         //Guardo como objeto cliente la opcion del spinner selecionado
-        Clientes miCliente= (Clientes) spCliente.getSelectedItem();
+        clientes miCliente= (clientes) spCliente.getSelectedItem();
 
-        Vehiculos miVehiculo=new Vehiculos(miCliente.getClienteID(), marca, modelo,
+        vehiculos miVehiculo=new vehiculos(miCliente.getClienteID(), marca, modelo,
                 matricula, trabajador.getTrabajadorID(), averia);
 
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.vehiculosDAO().insert(miVehiculo);
 

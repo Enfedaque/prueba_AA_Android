@@ -4,13 +4,13 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Clientes extends Usuarios{
+public class clientes extends usuarios {
 
     //Lo tengo que definir como PrimaryKey autogenerado en la bbdd
     @PrimaryKey(autoGenerate = true)
     private long clienteID;
 
-    public Clientes(String nombre, String apellido, String dni, String telefono, String email) {
+    public clientes(String nombre, String apellido, String dni, String telefono, String email) {
         super(nombre, apellido, dni, telefono, email);
     }
 

@@ -5,24 +5,22 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Facturas;
-import com.example.actividadaprendizaje1.domain.Trabajadores;
-import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.domain.clientes;
+import com.example.actividadaprendizaje1.domain.facturas;
+import com.example.actividadaprendizaje1.domain.trabajadores;
+import com.example.actividadaprendizaje1.domain.vehiculos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +32,13 @@ public class indexActivity extends AppCompatActivity{
     /*
     * Voy a usar el ArrayList(List) de clientes para mostrar en una listView la informacion de la BBDD
     * */
-    public static List<Clientes> listadoClientes;
-    public static List<Trabajadores> listadoTrabajadores;
-    public static List<Vehiculos> listadoVehiculos;
+    public static List<clientes> listadoClientes;
+    public static List<trabajadores> listadoTrabajadores;
+    public static List<vehiculos> listadoVehiculos;
     public static ArrayList<String> departamentos;
     public static ArrayList<String> puestos;
     //Lista de facturas
-    public static ArrayList<Facturas> listadoFacturas;
+    public static ArrayList<facturas> listadoFacturas;
 
 
     @Override
@@ -74,7 +72,7 @@ public class indexActivity extends AppCompatActivity{
         listadoClientes.clear();
         listadoTrabajadores.clear();
         listadoVehiculos.clear();
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         listadoClientes.addAll(database.clientesDAO().getAll());
         listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
@@ -157,6 +155,7 @@ public class indexActivity extends AppCompatActivity{
         alertDialog.show();
     }
 
+
     //Menu actionBar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -167,8 +166,11 @@ public class indexActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-
-        //todo por hacer las opciones
+        if(item.getItemId() == R.id.talleres) {
+                Intent miIntent=new Intent(this, talleresActivity.class);
+                startActivity(miIntent);
+            return true;
+        }
 
         return false;
     }

@@ -10,11 +10,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Facturas;
-import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.domain.clientes;
+import com.example.actividadaprendizaje1.domain.facturas;
+import com.example.actividadaprendizaje1.domain.vehiculos;
 
-public class FacturaActivity extends AppCompatActivity {
+public class facturaActivity extends AppCompatActivity {
 
     //Guardo el nombre ya que aunque tenga que seleccionar el cliente, puede que
     // la factura vaya a nombre de su empresa por ejemplo*/
@@ -26,8 +26,8 @@ public class FacturaActivity extends AppCompatActivity {
     Spinner spVehiculoFactura;
 
     //Adapter para los spinner
-    ArrayAdapter<Clientes> miSpinnerAdapterClientes;
-    ArrayAdapter<Vehiculos> miSpinnerAdapterVehiculos;
+    ArrayAdapter<clientes> miSpinnerAdapterClientes;
+    ArrayAdapter<vehiculos> miSpinnerAdapterVehiculos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +64,12 @@ public class FacturaActivity extends AppCompatActivity {
 
         String direccion=direccionFactura.getText().toString();
         String fecha= fechaFactura.getText().toString();
-        Clientes miCliente=(Clientes) spClienteFactura.getSelectedItem();
-        Vehiculos miVehiculo=(Vehiculos) spVehiculoFactura.getSelectedItem();
+        clientes miCliente=(clientes) spClienteFactura.getSelectedItem();
+        vehiculos miVehiculo=(vehiculos) spVehiculoFactura.getSelectedItem();
 
         try {
             //Creo y registro la nueva factura
-            Facturas miFactura=new Facturas(direccion, fecha, miCliente, miVehiculo);
+            facturas miFactura=new facturas(direccion, fecha, miCliente, miVehiculo);
             indexActivity.listadoFacturas.add(miFactura);
             Toast.makeText(this, "Factura creada", Toast.LENGTH_LONG).show();
         }catch (Exception exc){

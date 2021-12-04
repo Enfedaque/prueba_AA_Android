@@ -1,24 +1,16 @@
 package com.example.actividadaprendizaje1;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
-import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
 
 /*Activity de la zona de usuarios*/
 
@@ -37,7 +29,7 @@ public class zonaUsuariosActivity extends AppCompatActivity {
         indexActivity.listadoClientes.clear();
         indexActivity.listadoTrabajadores.clear();
         indexActivity.listadoVehiculos.clear();
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         indexActivity.listadoClientes.addAll(database.clientesDAO().getAll());
         indexActivity.listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
@@ -59,7 +51,7 @@ public class zonaUsuariosActivity extends AppCompatActivity {
             startActivity(miIntent);
             return true;
         }else if (item.getItemId()==R.id.facturaNueva){
-            Intent miIntent=new Intent(this, FacturaActivity.class);
+            Intent miIntent=new Intent(this, facturaActivity.class);
             startActivity(miIntent);
             return true;
         }

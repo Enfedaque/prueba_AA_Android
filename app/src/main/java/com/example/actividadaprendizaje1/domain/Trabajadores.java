@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 
 @Entity
-public class Trabajadores extends Usuarios{
+public class trabajadores extends usuarios {
 
     @PrimaryKey(autoGenerate = true)
     private long trabajadorID;
@@ -15,7 +15,7 @@ public class Trabajadores extends Usuarios{
     @ColumnInfo
     private String puesto;
 
-    public Trabajadores(String nombre, String apellido, String dni, String telefono, String email
+    public trabajadores(String nombre, String apellido, String dni, String telefono, String email
             , String departamento, String puesto) {
         super(nombre, apellido, dni, telefono, email);
         this.departamento = departamento;

@@ -10,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.domain.vehiculos;
 
 public class zonaVehiculosActivity extends AppCompatActivity {
 
@@ -55,7 +53,7 @@ public class zonaVehiculosActivity extends AppCompatActivity {
             EditText texto=v.findViewById(R.id.etMatriculaEliminar);
             eliminar.setOnClickListener(v1 -> {
 
-                for (Vehiculos miVehiculo : indexActivity.listadoVehiculos){
+                for (vehiculos miVehiculo : indexActivity.listadoVehiculos){
 
                     try {
 

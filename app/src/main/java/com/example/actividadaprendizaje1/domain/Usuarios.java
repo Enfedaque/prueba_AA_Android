@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
 @Entity
-public class Usuarios {
+public class usuarios {
 
     @ColumnInfo
     private String nombre;
@@ -17,7 +17,7 @@ public class Usuarios {
     @ColumnInfo
     private String email;
 
-    public Usuarios(String nombre, String apellido, String dni, String telefono, String email) {
+    public usuarios(String nombre, String apellido, String dni, String telefono, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;

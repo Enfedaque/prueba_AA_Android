@@ -3,9 +3,7 @@ package com.example.actividadaprendizaje1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,13 +14,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 
-import com.example.actividadaprendizaje1.BBDD.VehiculosBBDD;
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Vehiculos;
+import com.example.actividadaprendizaje1.domain.vehiculos;
 
 public class listadoVehiculosActivity extends AppCompatActivity {
 
-    private ArrayAdapter<Vehiculos> listadoVehiculosAdapter;
+    private ArrayAdapter<vehiculos> listadoVehiculosAdapter;
     Button btBuscar;
     EditText texto;
     Switch miSwitch;
@@ -65,7 +61,7 @@ public class listadoVehiculosActivity extends AppCompatActivity {
 
     //Metodo del boton que busca al cliente por apellido en la lista y lo muestra
     public void resultadoBusquedaVehiculo(View view){
-        for (Vehiculos miVehiculo : indexActivity.listadoVehiculos){
+        for (vehiculos miVehiculo : indexActivity.listadoVehiculos){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */

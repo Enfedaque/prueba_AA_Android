@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,8 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
-import com.example.actividadaprendizaje1.domain.Trabajadores;
+import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.domain.trabajadores;
 
 /*Aqui se podra registar un nuevo trabajador que haya sido contratado*/
 
@@ -82,10 +81,10 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
         String departamento=etDepartamento.getText().toString();
         String puesto=etPuesto.getText().toString();
 
-        Trabajadores miTrabajador=new Trabajadores(nombre, apellido, dni, telefono, email, puesto,
+        trabajadores miTrabajador=new trabajadores(nombre, apellido, dni, telefono, email, puesto,
                 departamento);
 
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.trabajadoresDAO().insert(miTrabajador);
         

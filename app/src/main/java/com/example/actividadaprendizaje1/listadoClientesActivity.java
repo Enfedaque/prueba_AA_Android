@@ -20,14 +20,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
-import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
-import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.domain.clientes;
 
 public class listadoClientesActivity extends AppCompatActivity {
 
-    private ArrayAdapter<Clientes> listadoClientesAdapter;
+    private ArrayAdapter<clientes> listadoClientesAdapter;
     Switch miSwitch;
     EditText apellidoBuscador;
     EditText idBuscar;
@@ -63,7 +62,7 @@ public class listadoClientesActivity extends AppCompatActivity {
         super.onResume();
 
         indexActivity.listadoClientes.clear();
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         indexActivity.listadoClientes.addAll(database.clientesDAO().getAll());
 
@@ -110,7 +109,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo del boton que busca al cliente por apellido en la lista y lo muestra
     public void resultadoBusquedaClientePorApellido(View view){
-        for (Clientes miCliente : indexActivity.listadoClientes){
+        for (clientes miCliente : indexActivity.listadoClientes){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
@@ -141,7 +140,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo del boton que busca al cliente por Id_Cliente en la lista y lo muestra
     public void resultadoBusquedaClientePorId(View view){
-        for (Clientes miCliente : indexActivity.listadoClientes){
+        for (clientes miCliente : indexActivity.listadoClientes){
             try {
                 if (miCliente.getClienteID() == Long.parseLong(idBuscar.getText().toString())){
                     String mostrarResultado=miCliente.toString2();
@@ -182,7 +181,7 @@ public class listadoClientesActivity extends AppCompatActivity {
             return true;
         //Si toca lo mando a crear una factura
         }else if (item.getItemId()==R.id.facturaNueva){
-            Intent miIntent=new Intent(this, FacturaActivity.class);
+            Intent miIntent=new Intent(this, facturaActivity.class);
             startActivity(miIntent);
         }
 
@@ -191,8 +190,8 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo para eliminar clientes de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        Clientes miCliente=indexActivity.listadoClientes.get(info.position);
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientes miCliente=indexActivity.listadoClientes.get(info.position);
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.clientesDAO().eliminar(miCliente);
     }
@@ -211,7 +210,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            Clientes miCliente=indexActivity.listadoClientes.get(info.position);
+            clientes miCliente=indexActivity.listadoClientes.get(info.position);
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
             dialogo.setTitle("Información");
             dialogo.setMessage(miCliente.toString2());
@@ -258,14 +257,14 @@ public class listadoClientesActivity extends AppCompatActivity {
             EditText etEmail=v.findViewById(R.id.editarEmailCliente);
             save.setOnClickListener(v1 -> {
 
-                Clientes miCliente=indexActivity.listadoClientes.get(info.position);
+                clientes miCliente=indexActivity.listadoClientes.get(info.position);
                 miCliente.setNombre(etNombre.getText().toString());
                 miCliente.setApellido(etApellido.getText().toString());
                 miCliente.setDni(etDNI.getText().toString());
                 miCliente.setTelefono(etTelefono.getText().toString());
                 miCliente.setEmail(etEmail.getText().toString());
 
-                ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                         "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
                 database.clientesDAO().editar(miCliente);
             });

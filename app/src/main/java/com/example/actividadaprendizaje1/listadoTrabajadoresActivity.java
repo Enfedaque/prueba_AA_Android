@@ -21,13 +21,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 
-import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
-import com.example.actividadaprendizaje1.domain.Clientes;
-import com.example.actividadaprendizaje1.domain.Trabajadores;
+import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.domain.trabajadores;
 
 public class listadoTrabajadoresActivity extends AppCompatActivity {
 
-    private ArrayAdapter<Trabajadores> listadoTrabajadoresAdapter;
+    private ArrayAdapter<trabajadores> listadoTrabajadoresAdapter;
     Switch miSwitch;
     EditText apellidoBuscador;
     Button btBuscar;
@@ -62,7 +61,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         super.onResume();
 
         indexActivity.listadoTrabajadores.clear();
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         indexActivity.listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
 
@@ -108,7 +107,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     //Metodo que busca al trabajador en la lista por el apellido y lo muestra
     public void resultadoBusquedaTrabajadorPorApellido(View view){
-        for (Trabajadores miTrabajador : indexActivity.listadoTrabajadores){
+        for (trabajadores miTrabajador : indexActivity.listadoTrabajadores){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
@@ -139,7 +138,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     //Metodo que busca al trabajador en la lista por el Id y lo muestra
     public void resultadoBusquedaTrabajadorPorIdTrabajador(View view){
-        for (Trabajadores miTrabajador : indexActivity.listadoTrabajadores){
+        for (trabajadores miTrabajador : indexActivity.listadoTrabajadores){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
@@ -183,7 +182,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             startActivity(miIntent);
             return true;
         }else if (item.getItemId()==R.id.facturaNueva){
-            Intent miIntent=new Intent(this, FacturaActivity.class);
+            Intent miIntent=new Intent(this, facturaActivity.class);
             startActivity(miIntent);
         }
 
@@ -192,8 +191,8 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     //Metodo para eliminar trabajadores de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        Trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.trabajadoresDAO().eliminar(miTrabajador);
     }
@@ -212,7 +211,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            Trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+            trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
             dialogo.setTitle("Información");
             dialogo.setMessage(miTrabajador.toString2());
@@ -257,7 +256,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             EditText etPuesto=findViewById(R.id.editarPuestoTrabajador);
             save.setOnClickListener(v1 -> {
 
-                Trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+                trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
                 miTrabajador.setNombre(etNombre.getText().toString());
                 miTrabajador.setApellido(etApellido.getText().toString());
                 miTrabajador.setDni(etDNI.getText().toString());
@@ -267,7 +266,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
                 miTrabajador.setDepartamento(etDepartamento.getText().toString());
                 miTrabajador.setPuesto(etPuesto.getText().toString());
 
-                ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+                clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                         "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
                 database.trabajadoresDAO().editar(miTrabajador);
             });

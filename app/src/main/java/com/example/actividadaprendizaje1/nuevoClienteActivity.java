@@ -4,18 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.BBDD.ClientesBBDD;
-import com.example.actividadaprendizaje1.domain.Clientes;
+import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.domain.clientes;
 
 public class nuevoClienteActivity extends AppCompatActivity {
 
@@ -78,10 +75,10 @@ public class nuevoClienteActivity extends AppCompatActivity {
         String telefono=etTelefono.getText().toString();
         String email=etEmail.getText().toString();
 
-        Clientes miCliente=new Clientes(nombre,apellido, dni, telefono, email);
+        clientes miCliente=new clientes(nombre,apellido, dni, telefono, email);
 
         //Cojo mi base de datos creada y la construyo e incluyo mi cleinte
-        ClientesBBDD database= Room.databaseBuilder(getApplicationContext(), ClientesBBDD.class,
+        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.clientesDAO().insert(miCliente);
 

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 
-public class InitActivity extends AppCompatActivity {
+public class initActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
     private int i;
