@@ -21,7 +21,7 @@ public interface clientesDAO {
 
     //Metodo para consultar la info de un  cliente a traves de su id
     @Query("SELECT * FROM clientes WHERE clienteID= :id")
-    List<clientes> findById(long id);
+    clientes findById(long id);
 
     //Metodo para regitsrar un nuevo cliente
     @Insert

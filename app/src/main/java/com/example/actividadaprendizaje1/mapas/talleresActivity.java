@@ -1,17 +1,27 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.mapas;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -20,9 +30,12 @@ import java.util.Objects;
 
 
 public class talleresActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
+        GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, LocationListener {
 
     private GoogleMap miMapa;
+    private LocationManager locationManager;
+    private LocationProvider locationProvider;
+
     LatLng taller1;
     LatLng taller2;
     LatLng taller3;
@@ -32,7 +45,10 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
     CheckBox particulares;
     CheckBox empresas;
     CheckBox global;
+    CheckBox limpiar;
 
+    baseDeDatos miClientesBBDD;
+    private int distanciaDesplazado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,16 +56,18 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_talleres);
 
         //Asi cargo el mapa
-        SupportMapFragment mapFragment=(SupportMapFragment) getSupportFragmentManager()
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapa);
 
-        if (mapFragment != null){
+        if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
 
-        empresas=findViewById(R.id.empresas);
-        particulares=findViewById(R.id.particulares);
-        global=findViewById(R.id.global);
+        empresas = findViewById(R.id.empresas);
+        particulares = findViewById(R.id.particulares);
+        global = findViewById(R.id.global);
+        limpiar=findViewById(R.id.limpiarMapa);
+
     }
 
     @Override
@@ -59,6 +77,20 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
         miMapa.setOnMarkerClickListener(this);
         miMapa.setOnMapClickListener(this);
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat
+                .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION} , 1);
+            return;
+        }
+        miMapa.setMyLocationEnabled(true);
+
+        locationManager=(LocationManager) getSystemService(LOCATION_SERVICE);
+        locationProvider=locationManager.getProvider(locationManager.GPS_PROVIDER);
+        locationManager.requestLocationUpdates(locationProvider.getName(), 4000, 200, this);
+
     }
 
     //Metodo segun lo elegido en el checkbox
@@ -66,9 +98,21 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
 
         crearMarkers();
 
+        //Limpio el mapa de cualquier marca
+        limpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                miMapa.clear();
+                empresas.setChecked(false);
+                particulares.setChecked(false);
+                global.setChecked(false);
+            }
+        });
+
         if (view.getId()==R.id.particulares){
             empresas.setChecked(false);
             global.setChecked(false);
+            limpiar.setChecked(false);
             miMapa.clear();
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
@@ -84,6 +128,7 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
         if (view.getId()==R.id.empresas){
             particulares.setChecked(false);
             global.setChecked(false);
+            limpiar.setChecked(false);
             miMapa.clear();
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
@@ -99,6 +144,7 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
         if (view.getId()==R.id.global){
             empresas.setChecked(false);
             particulares.setChecked(false);
+            limpiar.setChecked(false);
             miMapa.clear();
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
@@ -131,6 +177,7 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
                     .title("Taller global 2")))
                     .setSnippet("Recambios para todo tipo de vehiculos");
         }
+
     }
 
     private void crearMarkers() {
@@ -141,6 +188,7 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
         taller5 = new LatLng(42.76023393965538, -8.287488760748838);
         taller6 = new LatLng(39.47737854310233, -0.3492460469420232);
     }
+
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
@@ -153,5 +201,22 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
         miMapa.moveCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 
+
+    //Cada vez que yo me mueva me devuelve la nueva ubicacion
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+        dialogo.setTitle("GPS");
+        dialogo.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialogo.setMessage("Se ha desplazado " + distanciaDesplazado + " metros");
+        dialogo.show();
+        distanciaDesplazado+=200;
+
+    }
 
 }

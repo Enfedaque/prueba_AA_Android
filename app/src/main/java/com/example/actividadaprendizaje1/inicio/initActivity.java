@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.inicio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,9 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
+
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.inicio.indexActivity;
 
 public class initActivity extends AppCompatActivity {
 

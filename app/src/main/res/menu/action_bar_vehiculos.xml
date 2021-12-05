@@ -8,7 +8,7 @@
         android:title="Item"
         app:showAsAction="always" />
     <item
-        android:id="@+id/abEliminarVehiculo"
-        android:title="Eliminar"
+        android:id="@+id/buscarTalleres"
+        android:icon="@drawable/searching"
         app:showAsAction="always" />
 </menu>

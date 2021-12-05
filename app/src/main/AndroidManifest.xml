@@ -4,6 +4,7 @@
     
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -18,13 +19,13 @@
             android:value="AIzaSyCLBgnBFBMy3SmyEmGUFF-RIt8UE9PAwpo"/>
 
         <activity
-            android:name=".talleresActivity"
+            android:name=".mapas.talleresActivity"
             android:exported="false" />
         <activity
             android:name=".facturaActivity"
             android:exported="false" />
         <activity
-            android:name=".initActivity"
+            android:name=".inicio.initActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,25 +34,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".listadoVehiculosActivity"
+            android:name=".vehiculos.listadoVehiculosActivity"
             android:exported="false" />
         <activity
-            android:name=".listadoTrabajadoresActivity"
+            android:name=".usuarios.listadoTrabajadoresActivity"
             android:exported="false" />
         <activity
-            android:name=".listadoClientesActivity"
+            android:name=".usuarios.listadoClientesActivity"
             android:exported="false" />
         <activity
-            android:name=".nuevoClienteActivity"
+            android:name=".usuarios.nuevoClienteActivity"
             android:exported="false" />
         <activity
-            android:name=".zonaUsuariosActivity"
+            android:name=".usuarios.zonaUsuariosActivity"
             android:exported="false" />
         <activity
-            android:name=".zonaVehiculosActivity"
+            android:name=".vehiculos.zonaVehiculosActivity"
             android:exported="false" />
         <activity
-            android:name=".indexActivity"
+            android:name=".inicio.indexActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,10 +61,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".nuevoTrabajadorActivity"
+            android:name=".usuarios.nuevoTrabajadorActivity"
             android:exported="false" />
         <activity
-            android:name=".nuevaEntradaActivity"
+            android:name=".vehiculos.nuevaEntradaActivity"
             android:exported="false" />
     </application>
 

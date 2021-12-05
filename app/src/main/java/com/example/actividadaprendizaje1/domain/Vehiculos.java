@@ -12,7 +12,7 @@ public class vehiculos {
     @PrimaryKey(autoGenerate = true)
     private long idVehiculo; //No lo meto en el constructor porque sera automatico en la BBDD
     @ColumnInfo
-    private long idCliente;
+    private long clienteID;
     @ColumnInfo
     private String marca;
     @ColumnInfo
@@ -20,26 +20,29 @@ public class vehiculos {
     @ColumnInfo
     private String matricula;
     @ColumnInfo
-    private long miTrabajador;
+    private long trabajadorID;
     @ColumnInfo
     private String averia;
+    /*@ColumnInfo
+    private Image fotoVehiculo; //todo hacer todo lo que ello conlleva
+     */
 
-    public vehiculos(long idCliente, String marca, String modelo, String matricula,
-                     long miTrabajador, String averia) {
-        this.idCliente = idCliente;
+    public vehiculos(long clienteID, String marca, String modelo, String matricula,
+                     long trabajadorID, String averia) {
+        this.clienteID = clienteID;
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
-        this.miTrabajador = miTrabajador;
+        this.trabajadorID = trabajadorID;
         this.averia=averia;
     }
 
-    public long getIdCliente() {
-        return idCliente;
+    public long getClienteID() {
+        return clienteID;
     }
 
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
+    public void setClienteID(long clienteID) {
+        this.clienteID = clienteID;
     }
 
     public String getMarca() {
@@ -66,12 +69,12 @@ public class vehiculos {
         this.matricula = matricula;
     }
 
-    public long getMiTrabajador() {
-        return miTrabajador;
+    public long getTrabajadorID() {
+        return trabajadorID;
     }
 
-    public void setMiTrabajador(long miTrabajador) {
-        this.miTrabajador = miTrabajador;
+    public void setTrabajadorID(long trabajadorID) {
+        this.trabajadorID = trabajadorID;
     }
 
     public long getIdVehiculo() {
@@ -92,11 +95,11 @@ public class vehiculos {
 
     @Override
     public String toString() {
-        return getModelo().toUpperCase() + "/ " + getMarca() + " / " + getIdCliente();
+        return getModelo().toUpperCase() + "/ " + getMarca() + " / " + getClienteID();
     }
 
     public String toString2() {
         return getMarca().toUpperCase() + ", " + getModelo().toUpperCase() + "/ " + getMatricula()
-                + " / " + getAveria() + "/ " + getIdCliente() ;
+                + " / " + getAveria() + "/ " + getClienteID() ;
     }
 }

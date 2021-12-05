@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.inicio;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -7,7 +7,6 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,11 +15,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
 import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.domain.facturas;
 import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.domain.vehiculos;
+import com.example.actividadaprendizaje1.mapas.talleresActivity;
+import com.example.actividadaprendizaje1.usuarios.zonaUsuariosActivity;
+import com.example.actividadaprendizaje1.vehiculos.zonaVehiculosActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +75,7 @@ public class indexActivity extends AppCompatActivity{
         listadoClientes.clear();
         listadoTrabajadores.clear();
         listadoVehiculos.clear();
-        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
+        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         listadoClientes.addAll(database.clientesDAO().getAll());
         listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());

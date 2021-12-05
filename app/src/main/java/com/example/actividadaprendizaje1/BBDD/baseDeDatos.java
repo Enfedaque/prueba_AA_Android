@@ -15,8 +15,8 @@ import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.domain.vehiculos;
 
-@Database(entities = {clientes.class, trabajadores.class, vehiculos.class}, version = 4)
-public abstract class clientesBBDD extends RoomDatabase {
+@Database(entities = {clientes.class, trabajadores.class, vehiculos.class}, version = 5)
+public abstract class baseDeDatos extends RoomDatabase {
     //Aqui hace de intermediario entre la clase y el DAO
 
     //Me creo un metodo abstracto que me devuelva el DAO

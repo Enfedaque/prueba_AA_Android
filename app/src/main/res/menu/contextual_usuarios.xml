@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/informacion"
@@ -10,4 +11,8 @@
     <item
         android:id="@+id/editar"
         android:title="Editar" />
+    <item
+        android:id="@+id/llamar"
+        android:icon="@android:drawable/stat_sys_phone_call"
+        android:title="Llamar" />
 </menu>

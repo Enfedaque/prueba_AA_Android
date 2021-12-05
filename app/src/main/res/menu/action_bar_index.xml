@@ -4,8 +4,7 @@
 
     <item
         android:id="@+id/talleres"
-        android:icon="@drawable/icons8_servicio_de_coche_100"
-        android:iconTint="#FFFFFF"
+        android:icon="@drawable/searching"
         android:title="Item"
         app:showAsAction="always" />
 </menu>

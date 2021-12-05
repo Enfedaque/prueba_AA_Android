@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.usuarios;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -7,6 +7,7 @@ import androidx.room.Room;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -21,16 +22,19 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Switch;
 
-import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
-import com.example.actividadaprendizaje1.domain.clientes;
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
+import com.example.actividadaprendizaje1.domain.trabajadores;
+import com.example.actividadaprendizaje1.inicio.indexActivity;
+import com.example.actividadaprendizaje1.mapas.talleresActivity;
 
-public class listadoClientesActivity extends AppCompatActivity {
+public class listadoTrabajadoresActivity extends AppCompatActivity {
 
-    private ArrayAdapter<clientes> listadoClientesAdapter;
+    private ArrayAdapter<trabajadores> listadoTrabajadoresAdapter;
     Switch miSwitch;
     EditText apellidoBuscador;
-    EditText idBuscar;
     Button btBuscar;
+    EditText idBuscador;
     Button btBuscar2;
     CheckBox cbApellido;
     CheckBox cbId;
@@ -38,40 +42,38 @@ public class listadoClientesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listado_clientes);
+        setContentView(R.layout.activity_listado_trabajadores);
 
-        miSwitch=findViewById(R.id.swBuscarCliente);
-        apellidoBuscador=findViewById(R.id.apellidosBuscadorCliente);
-        idBuscar=findViewById(R.id.idBuscadorCliente);
-        btBuscar=findViewById(R.id.btBuscadorCliente);
-        btBuscar2=findViewById(R.id.bt2BuscadorCliente);
-        cbApellido=findViewById(R.id.cbApellidoCliente);
-        cbId=findViewById(R.id.cbIdCliente);
+        miSwitch=findViewById(R.id.swBuscarTrabajador);
+        apellidoBuscador=findViewById(R.id.apellidoBuscadorTrabajador);
+        btBuscar=findViewById(R.id.btBuscadorTrabajador);
+        idBuscador =findViewById(R.id.idBuscadorTrabajador);
+        btBuscar2=findViewById(R.id.bt2BuscadorTrabajador);
+        cbApellido=findViewById(R.id.cbApellidoTrabajador);
+        cbId=findViewById(R.id.cbIdTrabajador);
 
-        listadoClientesAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                indexActivity.listadoClientes);
+        listadoTrabajadoresAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                indexActivity.listadoTrabajadores);
 
-        ListView lvListadoClientes=findViewById(R.id.listadoClientes);
-        lvListadoClientes.setAdapter(listadoClientesAdapter);
+        ListView lvListadoTrabajadores=findViewById(R.id.listadoTrabajadores);
+        lvListadoTrabajadores.setAdapter(listadoTrabajadoresAdapter);
 
-        registerForContextMenu(lvListadoClientes);
-
+        registerForContextMenu(lvListadoTrabajadores);
     }
 
     protected void onResume(){
         super.onResume();
 
-        indexActivity.listadoClientes.clear();
-        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
+        indexActivity.listadoTrabajadores.clear();
+        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        indexActivity.listadoClientes.addAll(database.clientesDAO().getAll());
+        indexActivity.listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
 
-        listadoClientesAdapter.notifyDataSetChanged();
     }
 
     //Metodo para el switch que muestra el buscador
-    public void buscadorClientesVisible(View view){
-        if (view.getId()==R.id.swBuscarCliente){
+    public void buscadorTrabajadoresVisible(View view){
+        if (view.getId()==R.id.swBuscarTrabajador){
             if (miSwitch.isChecked()){
                 apellidoBuscador.setVisibility(View.VISIBLE);
                 btBuscar.setVisibility(View.VISIBLE);
@@ -83,7 +85,7 @@ public class listadoClientesActivity extends AppCompatActivity {
                 cbId.setVisibility(View.GONE);
                 apellidoBuscador.setVisibility(View.GONE);
                 btBuscar.setVisibility(View.GONE);
-                idBuscar.setVisibility(View.GONE);
+                idBuscador.setVisibility(View.GONE);
                 btBuscar2.setVisibility(View.GONE);
             }
         }
@@ -92,78 +94,82 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo para saber que mostrador de busqueda mostrar segun los checkbox
     public void checkeado(View view){
-        if (view.getId()==R.id.cbApellidoCliente){
+        if (view.getId()==R.id.cbApellidoTrabajador){
             apellidoBuscador.setVisibility(View.VISIBLE);
             btBuscar.setVisibility(View.VISIBLE);
-            idBuscar.setVisibility(View.GONE);
+            idBuscador.setVisibility(View.GONE);
             btBuscar2.setVisibility(View.GONE);
             cbId.setChecked(false);
         }else {
             apellidoBuscador.setVisibility(View.GONE);
             btBuscar.setVisibility(View.GONE);
-            idBuscar.setVisibility(View.VISIBLE);
+            idBuscador.setVisibility(View.VISIBLE);
             btBuscar2.setVisibility(View.VISIBLE);
             cbApellido.setChecked(false);
         }
     }
 
-    //Metodo del boton que busca al cliente por apellido en la lista y lo muestra
-    public void resultadoBusquedaClientePorApellido(View view){
-        for (clientes miCliente : indexActivity.listadoClientes){
+    //Metodo que busca al trabajador en la lista por el apellido y lo muestra
+    public void resultadoBusquedaTrabajadorPorApellido(View view){
+        for (trabajadores miTrabajador : indexActivity.listadoTrabajadores){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
             try {
-                if (miCliente.getApellido()
+                if (miTrabajador.getApellido()
                         .equalsIgnoreCase(apellidoBuscador.getText().toString())){
-                    String mostrarResultado=miCliente.toString2();
+                    String mostrarResultado=miTrabajador.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
-                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle("Informarción");
-                    dialogoBorrar.setMessage(mostrarResultado);
-                    dialogoBorrar.show();
+                    AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+                    dialogo.setTitle("Informarción");
+                    dialogo.setMessage(mostrarResultado);
+                    dialogo.show();
                 }else{
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                     dialogoBorrar.setTitle("Informarción");
                     dialogoBorrar.setMessage("Usuario no encontrado");
                     dialogoBorrar.show();
                 }
-            }catch ( Exception ex){
+
+            }catch (Exception ex){
                 AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                 dialogoBorrar.setTitle("Informarción");
                 dialogoBorrar.setMessage("Usuario no encontrado");
                 dialogoBorrar.show();
             }
-
         }
     }
 
-    //Metodo del boton que busca al cliente por Id_Cliente en la lista y lo muestra
-    public void resultadoBusquedaClientePorId(View view){
-        for (clientes miCliente : indexActivity.listadoClientes){
+    //Metodo que busca al trabajador en la lista por el Id y lo muestra
+    public void resultadoBusquedaTrabajadorPorIdTrabajador(View view){
+        for (trabajadores miTrabajador : indexActivity.listadoTrabajadores){
+            /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
+            en la busqueda
+             */
             try {
-                if (miCliente.getClienteID() == Long.parseLong(idBuscar.getText().toString())){
-                    String mostrarResultado=miCliente.toString2();
+                if (miTrabajador.getTrabajadorID() == Long.parseLong(idBuscador.getText().toString())){
+                    String mostrarResultado=miTrabajador.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
-                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle("Informarción");
-                    dialogoBorrar.setMessage(mostrarResultado);
-                    dialogoBorrar.show();
+                    AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+                    dialogo.setTitle("Informarción");
+                    dialogo.setMessage(mostrarResultado);
+                    dialogo.show();
                 }else{
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                     dialogoBorrar.setTitle("Informarción");
                     dialogoBorrar.setMessage("Usuario no encontrado");
                     dialogoBorrar.show();
                 }
-            }catch ( Exception ex){
+
+            }catch (Exception ex){
                 AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                 dialogoBorrar.setTitle("Informarción");
                 dialogoBorrar.setMessage("Usuario no encontrado");
                 dialogoBorrar.show();
             }
-
         }
     }
+
 
     //Menu actionBar
     @Override
@@ -179,21 +185,21 @@ public class listadoClientesActivity extends AppCompatActivity {
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
-        //Si toca lo mando a crear una factura
-        }else if (item.getItemId()==R.id.facturaNueva){
-            Intent miIntent=new Intent(this, facturaActivity.class);
+        }else if (item.getItemId()==R.id.buscarTalleres2){
+            Intent miIntent=new Intent(this, talleresActivity.class);
             startActivity(miIntent);
+            return true;
         }
 
         return false;
     }
 
-    //Metodo para eliminar clientes de mi lista
+    //Metodo para eliminar trabajadores de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        clientes miCliente=indexActivity.listadoClientes.get(info.position);
-        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
+        trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        database.clientesDAO().eliminar(miCliente);
+        database.trabajadoresDAO().eliminar(miTrabajador);
     }
 
     //MENU CONTEXTUAL
@@ -210,10 +216,10 @@ public class listadoClientesActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            clientes miCliente=indexActivity.listadoClientes.get(info.position);
+            trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
             dialogo.setTitle("Información");
-            dialogo.setMessage(miCliente.toString2());
+            dialogo.setMessage(miTrabajador.toString2());
             dialogo.show();
             return true;
         }
@@ -222,61 +228,76 @@ public class listadoClientesActivity extends AppCompatActivity {
             //DIALOGO PARA PREGUNTAR EL QUERER ELIMINAR
             AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
             dialogoBorrar.setTitle("Importante");
-            dialogoBorrar.setMessage("¿ Estas seguro de eliminar este cliente ?");
+            dialogoBorrar.setMessage("¿ Estas seguro de eliminar este trabajador ?");
             //Que hace si aprieta el boton de confirmar
             dialogoBorrar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
-                    /*
-                    TODO , me lo borra pero no me lo muestra al instante borrado, tengo que salir
-                     de la activity y volver a entrar para ver que se ha borrado
-                     */
+
                     eliminar(info);
-                    listadoClientesAdapter.notifyDataSetChanged();
                 }
             });
             //Que hace si aprieta el boton de cancelar
             dialogoBorrar.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
-                    finish();
+
+                    dialogo1.cancel();
                 }
             });
             dialogoBorrar.show();
             return true;
         }
-
         if (item.getItemId()==R.id.editar){
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             LayoutInflater in=getLayoutInflater();
-            View v=in.inflate(R.layout.editar_clientes, null);
+            View v=in.inflate(R.layout.editar_trabajadores, null);
             builder.setView(v);
-            Button save=v.findViewById(R.id.guardarCambiosCliente);
-            EditText etNombre=v.findViewById(R.id.editarNombreCliente);
-            EditText etApellido=v.findViewById(R.id.editarApellidoCliente);
-            EditText etDNI=v.findViewById(R.id.editarDNICliente);
-            EditText etTelefono=v.findViewById(R.id.editarTelefonoCliente);
-            EditText etEmail=v.findViewById(R.id.editarEmailCliente);
+            Button save=v.findViewById(R.id.guardarCambiosTrabajador);
+            EditText etNombre=v.findViewById(R.id.editarNombretrabajador);
+            EditText etApellido=v.findViewById(R.id.editarApellidoTrabajador);
+            EditText etDNI=v.findViewById(R.id.editarDNITrabajador);
+            EditText etTelefono=v.findViewById(R.id.editarTelefonoTrabajador);
+            EditText etEmail=v.findViewById(R.id.editarEmailTrabajador);
+            EditText etDepartamento=findViewById(R.id.editarDepartamentoTrabajador);
+            EditText etPuesto=findViewById(R.id.editarPuestoTrabajador);
             save.setOnClickListener(v1 -> {
 
-                clientes miCliente=indexActivity.listadoClientes.get(info.position);
-                miCliente.setNombre(etNombre.getText().toString());
-                miCliente.setApellido(etApellido.getText().toString());
-                miCliente.setDni(etDNI.getText().toString());
-                miCliente.setTelefono(etTelefono.getText().toString());
-                miCliente.setEmail(etEmail.getText().toString());
+                trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+                miTrabajador.setNombre(etNombre.getText().toString());
+                miTrabajador.setApellido(etApellido.getText().toString());
+                miTrabajador.setDni(etDNI.getText().toString());
+                miTrabajador.setTelefono(etTelefono.getText().toString());
+                miTrabajador.setEmail(etEmail.getText().toString());
+                //todo aqui falla
+                miTrabajador.setDepartamento(etDepartamento.getText().toString());
+                miTrabajador.setPuesto(etPuesto.getText().toString());
 
-                clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
+                baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                         "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-                database.clientesDAO().editar(miCliente);
+                database.trabajadoresDAO().editar(miTrabajador);
             });
-
 
             AlertDialog alertDialog= builder.create();
             alertDialog.show();
-
         }
+
+        //Opcion de llamar al trabajador
+        if (item.getItemId()==R.id.llamar){
+            trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+            String numeroTelefono=miTrabajador.getTelefono();
+
+            if (!numeroTelefono.equals("")){
+                Intent miIntent=new Intent(Intent.ACTION_DIAL);
+                miIntent.setData(Uri.parse("tel: " + numeroTelefono));
+                startActivity(miIntent);
+            }else{
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+                dialogo.setTitle("Información");
+                dialogo.setMessage("Algo ha fallado, intentelo de nuevo");
+                dialogo.show();
+            }
+            return true;
+        }
+
         return false;
     }
-
-
-
 }

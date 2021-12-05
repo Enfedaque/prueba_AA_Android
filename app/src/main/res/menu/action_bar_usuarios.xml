@@ -4,12 +4,13 @@
 
     <item
         android:id="@+id/home"
-        android:icon="@drawable/icons8_casa_150"
+        android:icon="@drawable/casa__1_"
         android:title="home"
         app:showAsAction="always" />
     <item
-        android:id="@+id/facturaNueva"
-        android:icon="@drawable/factura"
+        android:id="@+id/buscarTalleres2"
+        android:icon="@drawable/searching"
         android:title="Item"
+        android:visible="true"
         app:showAsAction="always" />
 </menu>

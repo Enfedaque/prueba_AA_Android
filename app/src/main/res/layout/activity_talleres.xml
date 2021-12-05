@@ -4,23 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".talleresActivity">
+    tools:context=".mapas.talleresActivity">
 
     <fragment
         android:id="@+id/mapa"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".talleresActivity" />
+        tools:context=".mapas.talleresActivity" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp"
-        android:alpha="0.5"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="10dp">
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/empresas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="mostrarMarkers"
+            android:text="Empresas"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <CheckBox
             android:id="@+id/particulares"
@@ -30,17 +37,7 @@
             android:onClick="mostrarMarkers"
             android:text="Particulares"
             android:textColor="#000000"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <CheckBox
-            android:id="@+id/empresas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="mostrarMarkers"
-            android:text="Empresas"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <CheckBox
@@ -50,9 +47,18 @@
             android:layout_weight="1"
             android:onClick="mostrarMarkers"
             android:text="Todos"
-            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
+        <CheckBox
+            android:id="@+id/limpiarMapa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Limpiar"
+            android:textColor="#000000"
+            android:textStyle="bold" />
     </LinearLayout>
 
 

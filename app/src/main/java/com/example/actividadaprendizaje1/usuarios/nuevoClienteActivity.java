@@ -1,9 +1,10 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.usuarios;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +12,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.actividadaprendizaje1.bbdd.clientesBBDD;
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
 import com.example.actividadaprendizaje1.domain.clientes;
+import com.example.actividadaprendizaje1.inicio.indexActivity;
+import com.example.actividadaprendizaje1.mapas.talleresActivity;
 
 public class nuevoClienteActivity extends AppCompatActivity {
 
@@ -34,23 +38,15 @@ public class nuevoClienteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Si toca la casa lo envio al inicio
-        /*if(item.getItemId() == R.id.home){
+        if(item.getItemId() == R.id.home){
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
-        }else if (item.getItemId()==R.id.buscadorUsuarios){
-            //todo
-        }else if (item.getItemId()==R.id.acercaDe){
-            //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
-            // aplicacion
+        }else if (item.getItemId()==R.id.buscarTalleres2){
+            Intent miIntent=new Intent(this, talleresActivity.class);
+            startActivity(miIntent);
             return true;
-        } else if (item.getItemId()==R.id.navegador) {
-            //todo aun no se que opcion poner
-            return true;
-        }else if (item.getItemId()==R.id.opcion2){
-            //todo aun no se que opcion poner
-            return true;
-        }*/
+        }
 
         return false;
     }
@@ -78,7 +74,7 @@ public class nuevoClienteActivity extends AppCompatActivity {
         clientes miCliente=new clientes(nombre,apellido, dni, telefono, email);
 
         //Cojo mi base de datos creada y la construyo e incluyo mi cleinte
-        clientesBBDD database= Room.databaseBuilder(getApplicationContext(), clientesBBDD.class,
+        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.clientesDAO().insert(miCliente);
 
