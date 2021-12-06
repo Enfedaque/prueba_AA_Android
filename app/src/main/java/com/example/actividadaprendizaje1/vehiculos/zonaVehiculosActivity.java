@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.facturas.facturaActivity;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
 
@@ -26,6 +27,8 @@ public class zonaVehiculosActivity extends AppCompatActivity {
         super.onResume();
 
     }
+
+
 
     //Menu actionBar
     @Override
@@ -45,7 +48,12 @@ public class zonaVehiculosActivity extends AppCompatActivity {
             Intent miIntent=new Intent(this, talleresActivity.class);
             startActivity(miIntent);
             return true;
-        }return true;
+        }else if (item.getItemId()==R.id.activityFacturas){
+            Intent miIntent=new Intent(this, facturaActivity.class);
+            startActivity(miIntent);
+            return true;
+        }
+        return true;
     }
 
     public void nuevoVehiculo(View view){

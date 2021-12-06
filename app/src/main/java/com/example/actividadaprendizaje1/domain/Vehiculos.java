@@ -23,18 +23,26 @@ public class vehiculos {
     private long trabajadorID;
     @ColumnInfo
     private String averia;
-    /*@ColumnInfo
-    private Image fotoVehiculo; //todo hacer todo lo que ello conlleva
-     */
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] fotoVehiculo;
+
 
     public vehiculos(long clienteID, String marca, String modelo, String matricula,
-                     long trabajadorID, String averia) {
+                     long trabajadorID, String averia, byte[] fotoVehiculo) {
         this.clienteID = clienteID;
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
         this.trabajadorID = trabajadorID;
         this.averia=averia;
+        this.fotoVehiculo=fotoVehiculo;
+    }
+    public byte[] getFotoVehiculo() {
+        return fotoVehiculo;
+    }
+
+    public void setFotoVehiculo(byte[] fotoVehiculo) {
+        this.fotoVehiculo = fotoVehiculo;
     }
 
     public long getClienteID() {

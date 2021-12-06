@@ -12,6 +12,13 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+        <ImageView
+            android:id="@+id/fotoVehiculo"
+            android:layout_width="wrap_content"
+            android:layout_height="69dp"
+            app:srcCompat="@drawable/dialogo"
+            tools:srcCompat="@drawable/dialogo" />
+
         <EditText
             android:id="@+id/marca"
             android:layout_width="match_parent"
@@ -77,28 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/urgente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="URGENTE" />
-
-            <Button
-                android:id="@+id/button20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="50dp"
-                android:backgroundTint="#7A7979"
-                android:text="foto"
-                app:icon="@android:drawable/ic_menu_gallery" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

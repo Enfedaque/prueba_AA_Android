@@ -11,4 +11,8 @@
         android:id="@+id/buscarTalleres"
         android:icon="@drawable/searching"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/activityFacturas"
+        android:icon="@drawable/factura__1_"
+        app:showAsAction="always" />
 </menu>

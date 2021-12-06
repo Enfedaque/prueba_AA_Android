@@ -4,7 +4,9 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
+import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.domain.vehiculos;
 
 import java.util.List;
@@ -30,4 +32,6 @@ public interface vehiculosDAO {
     @Delete
     void eliminar(vehiculos miVehiculo);
 
+    @Update
+    void editar(vehiculos miVehiculo);
 }

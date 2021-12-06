@@ -18,6 +18,8 @@ import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
 
+import java.util.List;
+
 public class nuevoClienteActivity extends AppCompatActivity {
 
 

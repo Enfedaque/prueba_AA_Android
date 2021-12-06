@@ -1,15 +1,25 @@
 package com.example.actividadaprendizaje1.domain;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class facturas {
 
+    @PrimaryKey(autoGenerate = true)
     private long ID_Factura;
     private final String empresa="Garage Admin";
+    @ColumnInfo
     private String direccion;
+    @ColumnInfo
     private String fechaEmision;
-    private clientes miCliente;
-    private vehiculos miVehiculo;
+    @ColumnInfo
+    private long miCliente;
+    @ColumnInfo
+    private long miVehiculo;
 
-    public facturas(String direccion, String fechaEmision, clientes miCliente, vehiculos miVehiculo) {
+    public facturas(String direccion, String fechaEmision, long miCliente, long miVehiculo) {
         this.direccion=direccion;
         this.fechaEmision = fechaEmision;
         this.miCliente = miCliente;
@@ -45,19 +55,19 @@ public class facturas {
         this.fechaEmision = fechaEmision;
     }
 
-    public clientes getMiCliente() {
+    public long getMiCliente() {
         return miCliente;
     }
 
-    public void setMiCliente(clientes miCliente) {
+    public void setMiCliente(long miCliente) {
         this.miCliente = miCliente;
     }
 
-    public vehiculos getMiVehiculo() {
+    public long getMiVehiculo() {
         return miVehiculo;
     }
 
-    public void setMiVehiculo(vehiculos miVehiculo) {
+    public void setMiVehiculo(long miVehiculo) {
         this.miVehiculo = miVehiculo;
     }
 

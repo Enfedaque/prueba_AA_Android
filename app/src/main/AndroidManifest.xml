@@ -22,7 +22,7 @@
             android:name=".mapas.talleresActivity"
             android:exported="false" />
         <activity
-            android:name=".facturaActivity"
+            android:name=".facturas.facturaActivity"
             android:exported="false" />
         <activity
             android:name=".inicio.initActivity"

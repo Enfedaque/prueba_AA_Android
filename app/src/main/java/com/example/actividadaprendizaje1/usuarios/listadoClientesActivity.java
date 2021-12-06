@@ -28,9 +28,16 @@ import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class listadoClientesActivity extends AppCompatActivity {
 
-    private ArrayAdapter<clientes> listadoClientesAdapter;
+    //Lista para cargar los clientes de la BBDD y mostrarlos
+    //Es estatica para poder acceder a ella en los spinner de crear vehiculo
+    public static List<clientes> mostrarClientes;
+    //Adapter para la lista y la BBDD
+    private ArrayAdapter<clientes> mostrarClientesAdapter;
     Switch miSwitch;
     EditText apellidoBuscador;
     EditText idBuscar;
@@ -46,6 +53,8 @@ public class listadoClientesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_clientes);
 
+        mostrarClientes=new ArrayList<>();
+
         miSwitch=findViewById(R.id.swBuscarCliente);
         apellidoBuscador=findViewById(R.id.apellidosBuscadorCliente);
         idBuscar=findViewById(R.id.idBuscadorCliente);
@@ -54,11 +63,11 @@ public class listadoClientesActivity extends AppCompatActivity {
         cbApellido=findViewById(R.id.cbApellidoCliente);
         cbId=findViewById(R.id.cbIdCliente);
 
-        listadoClientesAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                indexActivity.listadoClientes);
+        mostrarClientesAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                mostrarClientes);
 
         ListView lvListadoClientes=findViewById(R.id.listadoClientes);
-        lvListadoClientes.setAdapter(listadoClientesAdapter);
+        lvListadoClientes.setAdapter(mostrarClientesAdapter);
 
         registerForContextMenu(lvListadoClientes);
 
@@ -67,12 +76,29 @@ public class listadoClientesActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
-        indexActivity.listadoClientes.clear();
+        cargarBBDDenLista();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        cargarBBDDenLista();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        cargarBBDDenLista();
+    }
+
+    //Metodo para recargar y refrescar la lista
+    private void cargarBBDDenLista(){
+        mostrarClientes.clear();
         baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        indexActivity.listadoClientes.addAll(database.clientesDAO().getAll());
+        mostrarClientes.addAll(database.clientesDAO().getAll());
 
-        listadoClientesAdapter.notifyDataSetChanged();
+        mostrarClientesAdapter.notifyDataSetChanged();
     }
 
     //Metodo para el switch que muestra el buscador
@@ -115,7 +141,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo del boton que busca al cliente por apellido en la lista y lo muestra
     public void resultadoBusquedaClientePorApellido(View view){
-        for (clientes miCliente : indexActivity.listadoClientes){
+        for (clientes miCliente : mostrarClientes){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
@@ -146,7 +172,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo del boton que busca al cliente por Id_Cliente en la lista y lo muestra
     public void resultadoBusquedaClientePorId(View view){
-        for (clientes miCliente : indexActivity.listadoClientes){
+        for (clientes miCliente : mostrarClientes){
             try {
                 if (miCliente.getClienteID() == Long.parseLong(idBuscar.getText().toString())){
                     String mostrarResultado=miCliente.toString2();
@@ -196,7 +222,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo para eliminar clientes de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        clientes miCliente=indexActivity.listadoClientes.get(info.position);
+        clientes miCliente=mostrarClientes.get(info.position);
         baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.clientesDAO().eliminar(miCliente);
@@ -216,7 +242,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            clientes miCliente=indexActivity.listadoClientes.get(info.position);
+            clientes miCliente=mostrarClientes.get(info.position);
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
             dialogo.setTitle("Información");
             dialogo.setMessage(miCliente.toString2());
@@ -232,12 +258,8 @@ public class listadoClientesActivity extends AppCompatActivity {
             //Que hace si aprieta el boton de confirmar
             dialogoBorrar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
-                    /*
-                    TODO , me lo borra pero no me lo muestra al instante borrado, tengo que salir
-                     de la activity y volver a entrar para ver que se ha borrado
-                     */
                     eliminar(info);
-                    listadoClientesAdapter.notifyDataSetChanged();
+                    cargarBBDDenLista();
                 }
             });
             //Que hace si aprieta el boton de cancelar
@@ -252,8 +274,7 @@ public class listadoClientesActivity extends AppCompatActivity {
         }
 
         if (item.getItemId()==R.id.editar){
-            //TODO
-            // Si que me lo edita pero tengo que salir y volver a entrar para verlo editado*/
+
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             LayoutInflater in=getLayoutInflater();
             View v=in.inflate(R.layout.editar_clientes, null);
@@ -266,7 +287,7 @@ public class listadoClientesActivity extends AppCompatActivity {
             EditText etEmail=v.findViewById(R.id.editarEmailCliente);
             save.setOnClickListener(v1 -> {
 
-                clientes miCliente=indexActivity.listadoClientes.get(info.position);
+                clientes miCliente=mostrarClientes.get(info.position);
                 miCliente.setNombre(etNombre.getText().toString());
                 miCliente.setApellido(etApellido.getText().toString());
                 miCliente.setDni(etDNI.getText().toString());
@@ -276,6 +297,8 @@ public class listadoClientesActivity extends AppCompatActivity {
                 baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                         "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
                 database.clientesDAO().editar(miCliente);
+
+                cargarBBDDenLista();
             });
 
 
@@ -285,7 +308,7 @@ public class listadoClientesActivity extends AppCompatActivity {
 
         //Opcion de llamar al cliente
         if (item.getItemId()==R.id.llamar){
-            clientes miCliente=indexActivity.listadoClientes.get(info.position);
+            clientes miCliente=mostrarClientes.get(info.position);
             String numeroTelefono=miCliente.getTelefono();
 
             if (!numeroTelefono.equals("")){
@@ -296,6 +319,26 @@ public class listadoClientesActivity extends AppCompatActivity {
                 AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
                 dialogo.setTitle("Información");
                 dialogo.setMessage("Algo ha fallado, intentelo de nuevo");
+                dialogo.show();
+            }
+            return true;
+        }
+
+        //Opcion de llamar al cliente
+        if (item.getItemId()==R.id.notificar){
+            clientes miCliente=mostrarClientes.get(info.position);
+            String email=miCliente.getEmail();
+
+            try {
+                Intent intent=new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto: "));
+                String[] to = {email};
+                intent.putExtra(Intent.EXTRA_EMAIL, to);
+                startActivity(Intent.createChooser(intent, "Enviar email"));
+            }catch (Exception e){
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(getApplicationContext());
+                dialogo.setTitle("Error");
+                dialogo.setMessage("Algo ha salido mal...");
                 dialogo.show();
             }
             return true;

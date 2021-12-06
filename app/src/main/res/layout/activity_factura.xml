@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".facturaActivity">
+    tools:context=".facturas.facturaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,18 +22,12 @@
                 android:id="@+id/textView18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Factura nº:"
+                android:text="Factura "
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/numFactura"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="#000000" />
         </LinearLayout>
 
         <LinearLayout

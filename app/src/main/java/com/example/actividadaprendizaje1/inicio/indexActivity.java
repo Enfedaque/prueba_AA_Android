@@ -35,13 +35,13 @@ public class indexActivity extends AppCompatActivity{
     /*
     * Voy a usar el ArrayList(List) de clientes para mostrar en una listView la informacion de la BBDD
     * */
-    public static List<clientes> listadoClientes;
+    /*public static List<clientes> listadoClientes;
     public static List<trabajadores> listadoTrabajadores;
     public static List<vehiculos> listadoVehiculos;
     public static ArrayList<String> departamentos;
     public static ArrayList<String> puestos;
     //Lista de facturas
-    public static ArrayList<facturas> listadoFacturas;
+    public static ArrayList<facturas> listadoFacturas;*/
 
 
     @Override
@@ -49,7 +49,7 @@ public class indexActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
 
-        listadoClientes=new ArrayList<>();
+        /*listadoClientes=new ArrayList<>();
 
         listadoTrabajadores=new ArrayList<>();
         listadoVehiculos=new ArrayList<>();
@@ -57,7 +57,7 @@ public class indexActivity extends AppCompatActivity{
         departamentos();
         puestos=new ArrayList<>();
         puestos();
-        listadoFacturas=new ArrayList<>();
+        listadoFacturas=new ArrayList<>();*/
 
 
 
@@ -67,11 +67,11 @@ public class indexActivity extends AppCompatActivity{
         super.onResume();
 
         //Llamo al metodo para que recargue la BBDD
-        cargarDatabase();
+        //cargarDatabase();
     }
 
     //Metodo que me carga la BBDD
-    public void cargarDatabase(){
+    /*public void cargarDatabase(){
         listadoClientes.clear();
         listadoTrabajadores.clear();
         listadoVehiculos.clear();
@@ -80,11 +80,11 @@ public class indexActivity extends AppCompatActivity{
         listadoClientes.addAll(database.clientesDAO().getAll());
         listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
         listadoVehiculos.addAll(database.vehiculosDAO().getAll());
-    }
+    }*/
 
     //TODO , hacer los spinner en en nuevoTrabajadores para mostrar los departamentos y los puestos
     //Para rellena de forma mas bonita el departamento en vez de tirar el codigo en el create
-    private void  departamentos(){
+    /*private void  departamentos(){
         departamentos.add("Ventas");
         departamentos.add("Administración");
         departamentos.add("Taller");
@@ -100,7 +100,7 @@ public class indexActivity extends AppCompatActivity{
         puestos.add("Encargado");
         puestos.add("Limpiador");
 
-    }
+    }*/
 
     //Metodo que me permite entrar a la zona usuarios
     public void accesoUsuarios(View view){

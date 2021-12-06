@@ -15,4 +15,7 @@
         android:id="@+id/llamar"
         android:icon="@android:drawable/stat_sys_phone_call"
         android:title="Llamar" />
+    <item
+        android:id="@+id/notificar"
+        android:title="Notificar" />
 </menu>

@@ -1,5 +1,7 @@
 package com.example.actividadaprendizaje1.vehiculos;
 
+import static com.example.actividadaprendizaje1.vehiculos.listadoVehiculosActivity.mostrarVehiculos;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +25,11 @@ import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.domain.vehiculos;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
+import com.example.actividadaprendizaje1.util.imagenes;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /*Aqui se va a mostrar el registrar un nuevo vehiculo para arreglar en el taller*/
 
@@ -34,21 +42,36 @@ public class nuevaEntradaActivity extends AppCompatActivity {
     ArrayAdapter<clientes> miAdapter;
     ArrayAdapter<trabajadores> miAdapter2;
 
+    private List<clientes> mostrarSpinnerClientes;
+    private List<trabajadores> mostrarSpinnerTrabajadores;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_entrada);
 
+        mostrarSpinnerClientes=new ArrayList<>();
+        mostrarSpinnerTrabajadores=new ArrayList<>();
+
+        cargarListasSpinner();
+
         //Instancio el spinner y el adapter
         miSpinnerClientes =findViewById(R.id.spClientes);
         miSpinnerTrabajadores=findViewById(R.id.spTrabajadores);
         miAdapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                indexActivity.listadoClientes);
+                mostrarSpinnerClientes);
         miSpinnerClientes.setAdapter(miAdapter);
         miAdapter2=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                indexActivity.listadoTrabajadores);
+                mostrarSpinnerTrabajadores);
         miSpinnerTrabajadores.setAdapter(miAdapter2);
 
+    }
+
+    private void cargarListasSpinner(){
+        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        mostrarSpinnerClientes.addAll(database.clientesDAO().getAll());
+        mostrarSpinnerTrabajadores.addAll(database.trabajadoresDAO().getAll());
     }
 
     //Menu actionBar
@@ -76,8 +99,8 @@ public class nuevaEntradaActivity extends AppCompatActivity {
 
     public void añadirEntrada(View view){
 
-        //todo metodo para recoger la imagen y guardarla en la base da datos
         //recojo los campos segun el id
+        ImageView fotoVehiculo=findViewById(R.id.fotoVehiculo);
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
@@ -85,9 +108,9 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         EditText etAveria=findViewById(R.id.averia);
         Spinner spCliente=findViewById(R.id.spClientes);
 
-        CheckBox cbUrgente=findViewById(R.id.urgente);
 
         if(etMarca.getText().toString().equals("")
+                || fotoVehiculo==null
                 || etModelo.getText().toString().equals("")
                 || etMatricula.getText().toString().equals("")
                 || spTrabajadorAlCargo==null
@@ -95,6 +118,8 @@ public class nuevaEntradaActivity extends AppCompatActivity {
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_SHORT).show();
             return;
         }
+
+        byte[] imageBytes= imagenes.fromImageViewToByteArray(fotoVehiculo);
 
         String marca=etMarca.getText().toString();
         String modelo=etModelo.getText().toString();
@@ -106,20 +131,13 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         clientes miCliente= (clientes) spCliente.getSelectedItem();
 
         vehiculos miVehiculo=new vehiculos(miCliente.getClienteID(), marca, modelo,
-                matricula, trabajador.getTrabajadorID(), averia);
+                matricula, trabajador.getTrabajadorID(), averia, imageBytes);
 
         baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.vehiculosDAO().insert(miVehiculo);
+        Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
 
-        //Aqui hago que si esta marcado como urgente salga el primero en la lista
-        if (cbUrgente.isChecked()){
-            indexActivity.listadoVehiculos.add(0, miVehiculo);
-            Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
-        }else{
-            indexActivity.listadoVehiculos.add(miVehiculo);
-            Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
-        }
     }
 
     public void cancelarEntrada(View view){
@@ -128,12 +146,10 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
         EditText etAveria=findViewById(R.id.averia);
-        CheckBox cbUrgente=findViewById(R.id.urgente);
 
         etMarca.setText("");
         etModelo.setText("");
         etMatricula.setText("");
         etAveria.setText("");
-        cbUrgente.setChecked(false);
     }
 }

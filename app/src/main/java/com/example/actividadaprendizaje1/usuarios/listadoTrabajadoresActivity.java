@@ -28,9 +28,14 @@ import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class listadoTrabajadoresActivity extends AppCompatActivity {
 
-    private ArrayAdapter<trabajadores> listadoTrabajadoresAdapter;
+    public static List<trabajadores> mostrarTrabajadores;
+    //Adapter para la lista y la BBDD
+    private ArrayAdapter<trabajadores> mostrarTrabajadoresAdapter;
     Switch miSwitch;
     EditText apellidoBuscador;
     Button btBuscar;
@@ -44,6 +49,8 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_trabajadores);
 
+        mostrarTrabajadores=new ArrayList<>();
+
         miSwitch=findViewById(R.id.swBuscarTrabajador);
         apellidoBuscador=findViewById(R.id.apellidoBuscadorTrabajador);
         btBuscar=findViewById(R.id.btBuscadorTrabajador);
@@ -52,23 +59,37 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
         cbApellido=findViewById(R.id.cbApellidoTrabajador);
         cbId=findViewById(R.id.cbIdTrabajador);
 
-        listadoTrabajadoresAdapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
-                indexActivity.listadoTrabajadores);
+        mostrarTrabajadoresAdapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                mostrarTrabajadores);
 
         ListView lvListadoTrabajadores=findViewById(R.id.listadoTrabajadores);
-        lvListadoTrabajadores.setAdapter(listadoTrabajadoresAdapter);
+        lvListadoTrabajadores.setAdapter(mostrarTrabajadoresAdapter);
 
         registerForContextMenu(lvListadoTrabajadores);
     }
 
     protected void onResume(){
         super.onResume();
+        cargarBaseDeDatos();
+    }
 
-        indexActivity.listadoTrabajadores.clear();
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        cargarBaseDeDatos();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        cargarBaseDeDatos();
+    }
+
+    private void cargarBaseDeDatos(){
+        mostrarTrabajadores.clear();
         baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        indexActivity.listadoTrabajadores.addAll(database.trabajadoresDAO().getAll());
-
+        mostrarTrabajadores.addAll(database.trabajadoresDAO().getAll());
     }
 
     //Metodo para el switch que muestra el buscador
@@ -111,7 +132,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     //Metodo que busca al trabajador en la lista por el apellido y lo muestra
     public void resultadoBusquedaTrabajadorPorApellido(View view){
-        for (trabajadores miTrabajador : indexActivity.listadoTrabajadores){
+        for (trabajadores miTrabajador : mostrarTrabajadores){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
@@ -142,7 +163,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     //Metodo que busca al trabajador en la lista por el Id y lo muestra
     public void resultadoBusquedaTrabajadorPorIdTrabajador(View view){
-        for (trabajadores miTrabajador : indexActivity.listadoTrabajadores){
+        for (trabajadores miTrabajador : mostrarTrabajadores){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
@@ -196,7 +217,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     //Metodo para eliminar trabajadores de mi lista
     private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+        trabajadores miTrabajador=mostrarTrabajadores.get(info.position);
         baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.trabajadoresDAO().eliminar(miTrabajador);
@@ -216,7 +237,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.informacion){
-            trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+            trabajadores miTrabajador=mostrarTrabajadores.get(info.position);
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
             dialogo.setTitle("Información");
             dialogo.setMessage(miTrabajador.toString2());
@@ -234,6 +255,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialogo1, int id) {
 
                     eliminar(info);
+                    cargarBaseDeDatos();
                 }
             });
             //Que hace si aprieta el boton de cancelar
@@ -247,6 +269,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             return true;
         }
         if (item.getItemId()==R.id.editar){
+
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             LayoutInflater in=getLayoutInflater();
             View v=in.inflate(R.layout.editar_trabajadores, null);
@@ -259,21 +282,22 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
             EditText etEmail=v.findViewById(R.id.editarEmailTrabajador);
             EditText etDepartamento=findViewById(R.id.editarDepartamentoTrabajador);
             EditText etPuesto=findViewById(R.id.editarPuestoTrabajador);
+
             save.setOnClickListener(v1 -> {
 
-                trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+                trabajadores miTrabajador=mostrarTrabajadores.get(info.position);
                 miTrabajador.setNombre(etNombre.getText().toString());
                 miTrabajador.setApellido(etApellido.getText().toString());
                 miTrabajador.setDni(etDNI.getText().toString());
                 miTrabajador.setTelefono(etTelefono.getText().toString());
                 miTrabajador.setEmail(etEmail.getText().toString());
-                //todo aqui falla
                 miTrabajador.setDepartamento(etDepartamento.getText().toString());
                 miTrabajador.setPuesto(etPuesto.getText().toString());
 
                 baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                         "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
                 database.trabajadoresDAO().editar(miTrabajador);
+                cargarBaseDeDatos();
             });
 
             AlertDialog alertDialog= builder.create();
@@ -282,7 +306,7 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
         //Opcion de llamar al trabajador
         if (item.getItemId()==R.id.llamar){
-            trabajadores miTrabajador=indexActivity.listadoTrabajadores.get(info.position);
+            trabajadores miTrabajador=mostrarTrabajadores.get(info.position);
             String numeroTelefono=miTrabajador.getTelefono();
 
             if (!numeroTelefono.equals("")){

@@ -1,6 +1,7 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.facturas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
 import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.domain.facturas;
 import com.example.actividadaprendizaje1.domain.vehiculos;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class facturaActivity extends AppCompatActivity {
 
+    public static List<facturas> mostrarFacturas;
+    private List<clientes> mostrarSpinnerClientes;
+    private List<vehiculos> mostrarSpinnerVehiculos;
     //Guardo el nombre ya que aunque tenga que seleccionar el cliente, puede que
     // la factura vaya a nombre de su empresa por ejemplo*/
     TextView numeroFactura;
@@ -35,21 +44,33 @@ public class facturaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_factura);
 
+        mostrarSpinnerClientes=new ArrayList<>();
+        mostrarSpinnerVehiculos=new ArrayList<>();
+
+        cargarListasSpinner();
+
         spClienteFactura=findViewById(R.id.spClientesFactura);
         spVehiculoFactura=findViewById(R.id.spVehiculosFactura);
 
         miSpinnerAdapterClientes=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                indexActivity.listadoClientes);
+                mostrarSpinnerClientes);
         spClienteFactura.setAdapter(miSpinnerAdapterClientes);
         miSpinnerAdapterVehiculos=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                indexActivity.listadoVehiculos);
+                mostrarSpinnerVehiculos);
         spVehiculoFactura.setAdapter(miSpinnerAdapterVehiculos);
 
     }
 
+    private void cargarListasSpinner(){
+        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
+                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        mostrarSpinnerClientes.addAll(database.clientesDAO().getAll());
+        mostrarSpinnerVehiculos.addAll(database.vehiculosDAO().getAll());
+    }
+
     //Metodo que crea la nueva factura
     public void nuevaFactura(View view){
-        numeroFactura=findViewById(R.id.numFactura);
+
         nombreFactura=findViewById(R.id.nombreFactura);
         direccionFactura=findViewById(R.id.direccionFactura);
         fechaFactura=findViewById(R.id.fechaFactura);
@@ -57,8 +78,8 @@ public class facturaActivity extends AppCompatActivity {
 
         if (direccionFactura.getText().toString().equals("")
                 || fechaFactura.getText().toString().equals("")
-                || (!spClienteFactura.isClickable()
-                && !spVehiculoFactura.isClickable())){
+                || spClienteFactura==null
+                || spVehiculoFactura==null){
             Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_SHORT).show();
             return;
         }
@@ -70,17 +91,19 @@ public class facturaActivity extends AppCompatActivity {
 
         try {
             //Creo y registro la nueva factura
-            facturas miFactura=new facturas(direccion, fecha, miCliente, miVehiculo);
-            indexActivity.listadoFacturas.add(miFactura);
+            facturas miFactura=new facturas(direccion, fecha, miCliente.getClienteID(), miVehiculo.getIdVehiculo());
+            mostrarFacturas.add(miFactura);
             Toast.makeText(this, "Factura creada", Toast.LENGTH_LONG).show();
+
         }catch (Exception exc){
             Toast.makeText(this, "No se ha podido crear la factura, intentelo de nuevo...",
                     Toast.LENGTH_LONG).show();
         }
 
+        nombreFactura.setText("");
         numeroFactura.setText("");
         direccionFactura.setText("");
-
+        fechaFactura.setText("");
 
     }
 }
