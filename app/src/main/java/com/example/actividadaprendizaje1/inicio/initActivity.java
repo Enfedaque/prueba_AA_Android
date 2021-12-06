@@ -1,28 +1,39 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.inicio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.VideoView;
 
-public class InitActivity extends AppCompatActivity {
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.inicio.indexActivity;
 
-    ImageView ivLogo;
+public class initActivity extends AppCompatActivity {
+
     ProgressBar progressBar;
     private int i;
     Handler handler;
     Intent miIntent;
+    VideoView videoLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initt);
 
-        ivLogo=findViewById(R.id.logo);
+        //Video del logo
+        videoLogo=findViewById(R.id.video);
+        //Ruta del video
+        String videoURL="android.resource://" + getPackageName() + "/" + R.raw.logo;
+        Uri videoUri=Uri.parse(videoURL);
+        videoLogo.setVideoURI(videoUri);
+        videoLogo.start();
+
         progressBar=findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE); //Para que no sea visible al principio
 
@@ -32,7 +43,7 @@ public class InitActivity extends AppCompatActivity {
         Thread miHilo=new Thread(new Runnable() {
             @Override
             public void run() {
-                while(i<=100){
+                while(i<=80){
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -44,7 +55,7 @@ public class InitActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (i==100){
+                    if (i==80){
                         startActivity(miIntent);
                     }
                     i++;

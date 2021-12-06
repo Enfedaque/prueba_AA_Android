@@ -1,33 +1,56 @@
 package com.example.actividadaprendizaje1.domain;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-public class Vehiculos {
+//Indico que quiero que se cree una tabla
+@Entity
+public class vehiculos {
 
-    private Clientes miCliente;
+    //Con la anotacion @ColumnInfo hago que sea un campo de la tabla
+    @PrimaryKey(autoGenerate = true)
+    private long idVehiculo; //No lo meto en el constructor porque sera automatico en la BBDD
+    @ColumnInfo
+    private long clienteID;
+    @ColumnInfo
     private String marca;
+    @ColumnInfo
     private String modelo;
+    @ColumnInfo
     private String matricula;
-
-    private Trabajadores miTrabajador;
-
+    @ColumnInfo
+    private long trabajadorID;
+    @ColumnInfo
     private String averia;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] fotoVehiculo;
 
-    public Vehiculos(Clientes miCliente, String marca, String modelo, String matricula,
-                     Trabajadores miTrabajador, String averia) {
-        this.miCliente = miCliente;
+
+    public vehiculos(long clienteID, String marca, String modelo, String matricula,
+                     long trabajadorID, String averia, byte[] fotoVehiculo) {
+        this.clienteID = clienteID;
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
-        this.miTrabajador = miTrabajador;
+        this.trabajadorID = trabajadorID;
         this.averia=averia;
+        this.fotoVehiculo=fotoVehiculo;
+    }
+    public byte[] getFotoVehiculo() {
+        return fotoVehiculo;
     }
 
-    public Clientes getMiCliente() {
-        return miCliente;
+    public void setFotoVehiculo(byte[] fotoVehiculo) {
+        this.fotoVehiculo = fotoVehiculo;
     }
 
-    public void setMiCliente(Clientes miCliente) {
-        this.miCliente = miCliente;
+    public long getClienteID() {
+        return clienteID;
+    }
+
+    public void setClienteID(long clienteID) {
+        this.clienteID = clienteID;
     }
 
     public String getMarca() {
@@ -54,22 +77,37 @@ public class Vehiculos {
         this.matricula = matricula;
     }
 
-    public Trabajadores getMiTrabajador() {
-        return miTrabajador;
+    public long getTrabajadorID() {
+        return trabajadorID;
     }
 
-    public void setMiTrabajador(Trabajadores miTrabajador) {
-        this.miTrabajador = miTrabajador;
+    public void setTrabajadorID(long trabajadorID) {
+        this.trabajadorID = trabajadorID;
+    }
+
+    public long getIdVehiculo() {
+        return idVehiculo;
+    }
+
+    public void setIdVehiculo(long idVehiculo) {
+        this.idVehiculo = idVehiculo;
+    }
+
+    public String getAveria() {
+        return averia;
+    }
+
+    public void setAveria(String averia) {
+        this.averia = averia;
     }
 
     @Override
     public String toString() {
-        return "Vehiculos{" +
-                "miCliente=" + miCliente +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", matricula='" + matricula + '\'' +
-                ", miTrabajador=" + miTrabajador +
-                '}';
+        return getModelo().toUpperCase() + "/ " + getMarca() + " / " + getClienteID();
+    }
+
+    public String toString2() {
+        return getMarca().toUpperCase() + ", " + getModelo().toUpperCase() + "/ " + getMatricula()
+                + " / " + getAveria() + "/ " + getClienteID() ;
     }
 }

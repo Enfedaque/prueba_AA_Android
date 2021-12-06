@@ -4,27 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".listadoTrabajadoresActivity">
+    tools:context=".usuarios.listadoTrabajadoresActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ACE1AE"
         android:orientation="vertical"
-        android:padding="30dp">
+        android:padding="40dp">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/busqueda"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/swBuscarTrabajador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:onClick="buscadorTrabajadoresVisible"
+            android:text="@string/activar_busqueda"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cbApellidoTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="checkeado"
+                android:text="@string/por_apellido"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/cbIdTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="checkeado"
+                android:text="@string/por_id_trabajador"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/apellidoBuscadorTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/apellido"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btBuscadorTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#67DBE6"
+                android:onClick="resultadoBusquedaTrabajadorPorApellido"
+                android:padding="5dp"
+                android:visibility="gone"
+                app:icon="@drawable/ic_search_black_24dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/idBuscadorTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/id_trabajador"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/bt2BuscadorTrabajador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_weight="1"
+                android:backgroundTint="#67DBE6"
+                android:onClick="resultadoBusquedaTrabajadorPorIdTrabajador"
+                android:padding="5dp"
+                android:visibility="gone"
+                app:icon="@drawable/ic_search_black_24dp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Listado de trabajadores"
+            android:text="@string/listado_de_trabajadores"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/listadoTrabajadores"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
+
+        </ListView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

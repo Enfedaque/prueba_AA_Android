@@ -5,19 +5,18 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/icons8_casa_150"
-        android:title="Item"
+        android:title="@string/item"
         app:showAsAction="always" />
     <item
-        android:id="@+id/acercaDe"
-        android:icon="@drawable/icons8_informaci_n_150"
-        android:title="Item"
+        android:id="@+id/buscarTalleres"
+        android:icon="@drawable/searching"
         app:showAsAction="always" />
     <item
-        android:id="@+id/webCoches"
-        android:icon="@drawable/icons8_alquiler_de_coches_100"
-        android:title="Item"
+        android:id="@+id/activityFacturas"
+        android:icon="@drawable/factura__1_"
         app:showAsAction="always" />
     <item
-        android:id="@+id/navegador"
-        android:title="opcion1" />
+        android:id="@+id/activityListarFacturas"
+        android:icon="@drawable/lista"
+        app:showAsAction="always" />
 </menu>

@@ -3,171 +3,127 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".zonaUsuariosActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="40dp"
-        tools:layout_editor_absoluteX="-81dp"
-        tools:layout_editor_absoluteY="-67dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView2"
+        <ImageView
+            android:id="@+id/imageView7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Clientes"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            android:layout_height="321dp"
+            android:layout_margin="15dp"
+            app:srcCompat="@drawable/fondo_usuarios2" />
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#F46639"
-                android:onClick="nuevoCliente"
-                android:padding="10dp"
-                android:text="Nuevo"
-                android:translationX="-10dp" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#F46639"
-                android:onClick="listadoClientes"
-                android:text="Listado"
-                android:translationX="10dp" />
-
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/busquedaCliente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="checkBoxClicked"
-            android:text="Busqueda de clientes"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
-
-            <EditText
-                android:id="@+id/busquedaClienteIntro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Escriba apellido"
-                android:inputType="textPersonName"
-                android:visibility="invisible" />
-
-            <Button
-                android:id="@+id/botonConsultaCliente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#D8D2D2"
-                android:onClick="mostrarInfoClientes"
-                android:visibility="invisible"
-                app:icon="@drawable/ic_search_black_24dp"
-                app:iconTint="#000000" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:text="Trabajadores"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#F46639"
-                android:onClick="nuevoTrabajador"
-                android:text="Nuevo"
-                android:translationX="-10dp" />
-
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#F46639"
-                android:onClick="listadoTrabajadores"
-                android:text="Listado"
-                android:translationX="10dp" />
-
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/busquedaTrabajador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:onClick="checkBoxClicked"
-            android:text="Busqueda de trabajadores"
-            android:textSize="18sp"
-            tools:visibility="visible" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
-
-            <EditText
-                android:id="@+id/busquedaTrabajadorIntro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Escriba  apellido"
-                android:inputType="textPersonName"
-                android:visibility="invisible" />
-
-            <Button
-                android:id="@+id/botonConsultaTrabajador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#D8D2D2"
-                android:onClick="mostrarInfoTrabajadores"
-                android:visibility="invisible"
-                app:icon="@drawable/ic_search_black_24dp"
-                app:iconTint="#000000" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/respuestaConsulta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="30dp" />
-
+            android:layout_height="313dp"
+            android:layout_margin="15dp"
+            app:srcCompat="@drawable/fondo_usuarios" />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="90dp"
+            android:paddingRight="30dp">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="@string/clientes"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#67DBE6"
+                    android:onClick="nuevoCliente"
+                    android:text="@string/nuevo"
+                    android:textColor="#000000"
+                    android:textIsSelectable="false"
+                    app:icon="@android:drawable/ic_input_add" />
+
+                <Button
+                    android:id="@+id/button15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#F37D7D"
+                    android:onClick="listadoClientes"
+                    android:text="@string/listado"
+                    android:textColor="#000000"
+                    app:icon="@android:drawable/ic_menu_save"
+                    app:iconTint="#FFFFFF" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:paddingTop="180dp"
+                android:text="@string/trabajadores"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#67DBE6"
+                    android:onClick="nuevoTrabajador"
+                    android:text="@string/nuevo"
+                    android:textColor="#000000"
+                    app:icon="@android:drawable/ic_input_add" />
+
+                <Button
+                    android:id="@+id/button17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#F37D7D"
+                    android:onClick="listadoTrabajadores"
+                    android:text="@string/listado2"
+                    android:textColor="#000000"
+                    app:icon="@android:drawable/ic_menu_save" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

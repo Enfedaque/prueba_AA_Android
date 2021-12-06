@@ -1,4 +1,4 @@
-package com.example.actividadaprendizaje1;
+package com.example.actividadaprendizaje1.vehiculos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.actividadaprendizaje1.R;
+import com.example.actividadaprendizaje1.facturas.listadoFacturasActivity;
+import com.example.actividadaprendizaje1.facturas.nuevaFacturaActivity;
+import com.example.actividadaprendizaje1.inicio.indexActivity;
+import com.example.actividadaprendizaje1.mapas.talleresActivity;
+
 public class zonaVehiculosActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zona_vehiculos);
     }
+
+    protected void onResume(){
+        super.onResume();
+
+    }
+
 
 
     //Menu actionBar
@@ -32,16 +45,20 @@ public class zonaVehiculosActivity extends AppCompatActivity {
             Intent miIntent=new Intent(this, indexActivity.class);
             startActivity(miIntent);
             return true;
-        }else if (item.getItemId()==R.id.acercaDe){
-            //todo aqui quiero mostrar un activity o un alert o algo con informacion de la
-            // aplicacion
-        } else if (item.getItemId()==R.id.webCoches) {
-            //todo aun no se que opcion poner
-        }else if (item.getItemId()==R.id.navegador){
-            //todo aun no se que opcion poner
+        }else if (item.getItemId()==R.id.buscarTalleres){
+            Intent miIntent=new Intent(this, talleresActivity.class);
+            startActivity(miIntent);
+            return true;
+        }else if (item.getItemId()==R.id.activityFacturas){
+            Intent miIntent=new Intent(this, nuevaFacturaActivity.class);
+            startActivity(miIntent);
+            return true;
+        }else if (item.getItemId()==R.id.activityListarFacturas){
+            Intent miIntent=new Intent(this, listadoFacturasActivity.class);
+            startActivity(miIntent);
+            return true;
         }
-
-        return false;
+        return true;
     }
 
     public void nuevoVehiculo(View view){

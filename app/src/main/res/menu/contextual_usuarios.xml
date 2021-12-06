@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/informacion"
-        android:title="Informacion" />
+        android:title="@string/informacion" />
     <item
         android:id="@+id/borrar"
-        android:title="Borrar" />
+        android:title="@string/borrar" />
+    <item
+        android:id="@+id/editar"
+        android:title="@string/editar" />
+    <item
+        android:id="@+id/llamar"
+        android:icon="@android:drawable/stat_sys_phone_call"
+        android:title="@string/llamar" />
+    <item
+        android:id="@+id/notificar"
+        android:title="@string/notificar" />
 </menu>

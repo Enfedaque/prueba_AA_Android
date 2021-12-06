@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".indexActivity">
+    tools:context=".inicio.indexActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,12 +21,13 @@
             app:srcCompat="@drawable/imagenprincipal2" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/zonaUsuarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#8BD57E"
-            android:onClick="zonaUsuarios"
-            android:text="Zona usuarios"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#67DBE6"
+            android:onClick="accesoUsuarios"
+            android:text="@string/zona_usuarios"
             android:textColor="#000000" />
 
         <ImageView
@@ -40,30 +41,9 @@
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#8BD57E"
-            android:onClick="zonaVehiculos"
-            android:text="Zona vehiculos"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="Registrar nueva entrada:"
-            android:textAlignment="center"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#AAA0A0"
-            android:onClick="nuevaEntrada"
-            android:paddingHorizontal="20dp"
-            android:paddingLeft="16dp"
-            android:text="Añadir"
-            android:textAlignment="center"
+            android:backgroundTint="#F37D7D"
+            android:onClick="accesoVehiculos"
+            android:text="@string/zona_vehiculos"
             android:textColor="#000000" />
 
     </LinearLayout>

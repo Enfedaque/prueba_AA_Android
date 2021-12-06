@@ -12,11 +12,10 @@
         android:orientation="vertical"
         android:padding="45dp">
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/_0211111_223905_0000" />
+        <VideoView
+            android:id="@+id/video"
+            android:layout_width="wrap_content"
+            android:layout_height="397dp" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -28,7 +27,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cargando informacion..."
+            android:text="@string/cargando_informacion"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold" />
