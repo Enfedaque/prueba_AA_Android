@@ -25,7 +25,7 @@
             android:layout_height="59dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Marca"
+            android:hint="@string/marca"
             android:inputType="textPersonName" />
 
         <EditText
@@ -34,7 +34,7 @@
             android:layout_height="69dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Modelo"
+            android:hint="@string/modelo"
             android:inputType="textPersonName" />
 
         <EditText
@@ -43,7 +43,7 @@
             android:layout_height="61dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Matricula"
+            android:hint="@string/matricula"
             android:inputType="textPersonName" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Trabajador al cargo"
+            android:text="@string/trabajador_al_cargo"
             android:textAlignment="center"
             android:textSize="18dp" />
 
@@ -67,7 +67,7 @@
             android:layout_height="67dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Descripcion de la averia"
+            android:hint="@string/descripcion_de_la_averia"
             android:inputType="textPersonName" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Seleccionar cliente"
+            android:text="@string/seleccionar_cliente"
             android:textAlignment="center"
             android:textSize="18dp" />
 
@@ -98,7 +98,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#67DBE6"
                 android:onClick="añadirEntrada"
-                android:text="Añadir"
+                android:text="@string/a_adir"
                 android:textColor="#000000"
                 android:translationX="-10dp"
                 app:icon="@android:drawable/ic_input_add" />
@@ -110,7 +110,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#F37D7D"
                 android:onClick="cancelarEntrada"
-                android:text="cancelar"
+                android:text="@string/cancelar"
                 android:textColor="#000000"
                 android:translationX="10dp"
                 app:icon="@android:drawable/ic_menu_delete" />

@@ -115,7 +115,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
                 || etMatricula.getText().toString().equals("")
                 || spTrabajadorAlCargo==null
                 || etAveria.getText().toString().equals("") || spCliente==null){
-            Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.obligatorioRellenar , Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -136,7 +136,7 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.vehiculosDAO().insert(miVehiculo);
-        Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.vehiculoRegistradoCorrectamente, Toast.LENGTH_LONG).show();
 
     }
 

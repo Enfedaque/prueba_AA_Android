@@ -117,13 +117,13 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller1)
-                    .title("Taller particular 1")))
-                    .setSnippet("Recambios para particulares");
+                    .title(getString(R.string.particular1))))
+                    .setSnippet(getString(R.string.particular11));
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller2)
-                    .title("Taller particular 2")))
-                    .setSnippet("Recambios para particulares");
+                    .title(getString(R.string.particular2))))
+                    .setSnippet(getString(R.string.particular22));
         }
         if (view.getId()==R.id.empresas){
             particulares.setChecked(false);
@@ -133,13 +133,13 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller3)
-                    .title("Taller empresas 1")))
-                    .setSnippet("Recambios para uso profesional");
+                    .title(getString(R.string.empresas1))))
+                    .setSnippet(getString(R.string.empresas11));
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller4)
-                    .title("Taller empresas 2")))
-                    .setSnippet("Recambios para uso profesional");
+                    .title(getString(R.string.empresas2))))
+                    .setSnippet(getString(R.string.empresas22));
         }
         if (view.getId()==R.id.global){
             empresas.setChecked(false);
@@ -149,33 +149,33 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller1)
-                    .title("Taller particular 1")))
-                    .setSnippet("Recambios para particulares");
+                    .title(getString(R.string.particular111))))
+                    .setSnippet(getString(R.string.particular1111));
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller2)
-                    .title("Taller particular 2")))
-                    .setSnippet("Recambios para particulares");
+                    .title(getString(R.string.particular222))))
+                    .setSnippet(getString(R.string.particular2222));
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller3)
-                    .title("Taller empresas 1")))
-                    .setSnippet("Recambios para uso profesional");
+                    .title(getString(R.string.empresas111))))
+                    .setSnippet(getString(R.string.empresas1111));
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller4)
-                    .title("Taller empresas 2")))
-                    .setSnippet("Recambios para uso profesional");
+                    .title(getString(R.string.empresas222))))
+                    .setSnippet(getString(R.string.empresas2222));
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller5)
-                    .title("Taller global 1")))
-                    .setSnippet("Recambios para todo tipo de vehiculos");
+                    .title(getString(R.string.global1))))
+                    .setSnippet(getString(R.string.global11));
 
             Objects.requireNonNull(miMapa.addMarker(new MarkerOptions()
                     .position(taller6)
-                    .title("Taller global 2")))
-                    .setSnippet("Recambios para todo tipo de vehiculos");
+                    .title(getString(R.string.global2))))
+                    .setSnippet(getString(R.string.global22));
         }
 
     }
@@ -213,7 +213,7 @@ public class talleresActivity extends AppCompatActivity implements OnMapReadyCal
                 dialog.cancel();
             }
         });
-        dialogo.setMessage("Se ha desplazado " + distanciaDesplazado + " metros");
+        dialogo.setMessage(R.string.desplazado);
         dialogo.show();
         distanciaDesplazado+=200;
 

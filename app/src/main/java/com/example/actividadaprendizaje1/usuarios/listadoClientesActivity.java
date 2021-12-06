@@ -151,19 +151,19 @@ public class listadoClientesActivity extends AppCompatActivity {
                     String mostrarResultado=miCliente.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setTitle(R.string.info);
                     dialogoBorrar.setMessage(mostrarResultado);
                     dialogoBorrar.show();
                 }else{
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle("Informarción");
-                    dialogoBorrar.setMessage("Usuario no encontrado");
+                    dialogoBorrar.setTitle(R.string.info);
+                    dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
                     dialogoBorrar.show();
                 }
             }catch ( Exception ex){
                 AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                dialogoBorrar.setTitle("Informarción");
-                dialogoBorrar.setMessage("Usuario no encontrado");
+                dialogoBorrar.setTitle(R.string.info);
+                dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
                 dialogoBorrar.show();
             }
 
@@ -178,19 +178,19 @@ public class listadoClientesActivity extends AppCompatActivity {
                     String mostrarResultado=miCliente.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle("Informarción");
+                    dialogoBorrar.setTitle(R.string.info);
                     dialogoBorrar.setMessage(mostrarResultado);
                     dialogoBorrar.show();
                 }else{
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle("Informarción");
-                    dialogoBorrar.setMessage("Usuario no encontrado");
+                    dialogoBorrar.setTitle(R.string.info);
+                    dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
                     dialogoBorrar.show();
                 }
             }catch ( Exception ex){
                 AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                dialogoBorrar.setTitle("Informarción");
-                dialogoBorrar.setMessage("Usuario no encontrado");
+                dialogoBorrar.setTitle(R.string.info);
+                dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
                 dialogoBorrar.show();
             }
 
@@ -244,7 +244,7 @@ public class listadoClientesActivity extends AppCompatActivity {
         if (item.getItemId()==R.id.informacion){
             clientes miCliente=mostrarClientes.get(info.position);
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-            dialogo.setTitle("Información");
+            dialogo.setTitle(R.string.info);
             dialogo.setMessage(miCliente.toString2());
             dialogo.show();
             return true;
@@ -253,17 +253,17 @@ public class listadoClientesActivity extends AppCompatActivity {
         if(item.getItemId()==R.id.borrar){
             //DIALOGO PARA PREGUNTAR EL QUERER ELIMINAR
             AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-            dialogoBorrar.setTitle("Importante");
-            dialogoBorrar.setMessage("¿ Estas seguro de eliminar este cliente ?");
+            dialogoBorrar.setTitle(R.string.importante);
+            dialogoBorrar.setMessage(R.string.preguntaEliminarMensaje);
             //Que hace si aprieta el boton de confirmar
-            dialogoBorrar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            dialogoBorrar.setPositiveButton(R.string.confirmar, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
                     eliminar(info);
                     cargarBBDDenLista();
                 }
             });
             //Que hace si aprieta el boton de cancelar
-            dialogoBorrar.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            dialogoBorrar.setNegativeButton(R.string.cancelar2, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
 
                     dialogo1.cancel();
@@ -317,8 +317,8 @@ public class listadoClientesActivity extends AppCompatActivity {
                 startActivity(miIntent);
             }else{
                 AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-                dialogo.setTitle("Información");
-                dialogo.setMessage("Algo ha fallado, intentelo de nuevo");
+                dialogo.setTitle(R.string.info);
+                dialogo.setMessage(R.string.fallo);
                 dialogo.show();
             }
             return true;
@@ -337,8 +337,8 @@ public class listadoClientesActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(intent, "Enviar email"));
             }catch (Exception e){
                 AlertDialog.Builder dialogo = new AlertDialog.Builder(getApplicationContext());
-                dialogo.setTitle("Error");
-                dialogo.setMessage("Algo ha salido mal...");
+                dialogo.setTitle(R.string.error);
+                dialogo.setMessage(R.string.algoHaSalidoMal);
                 dialogo.show();
             }
             return true;

@@ -15,7 +15,7 @@ import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.domain.vehiculos;
 
-@Database(entities = {clientes.class, trabajadores.class, vehiculos.class}, version = 7)
+@Database(entities = {clientes.class, trabajadores.class, vehiculos.class}, version = 8)
 public abstract class baseDeDatos extends RoomDatabase {
     //Aqui hace de intermediario entre la clase y el DAO
 

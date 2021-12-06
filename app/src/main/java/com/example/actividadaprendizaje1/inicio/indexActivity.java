@@ -117,7 +117,7 @@ public class indexActivity extends AppCompatActivity{
                 Intent miIntent=new Intent(this, zonaUsuariosActivity.class);
                 startActivity(miIntent);
             }else{
-                Toast.makeText(this, "Contraseña incorrecta " , Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.contraseña_incorrecta , Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -146,7 +146,7 @@ public class indexActivity extends AppCompatActivity{
                 Intent miIntent=new Intent(this, zonaVehiculosActivity.class);
                 startActivity(miIntent);
             }else{
-                Toast.makeText(this, "Contraseña incorrecta " , Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.contraseña_incorrecta , Toast.LENGTH_SHORT).show();
             }
         });
 

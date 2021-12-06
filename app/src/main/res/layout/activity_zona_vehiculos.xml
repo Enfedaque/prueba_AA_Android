@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:background="#3EFFFFFF"
-                android:text="VEHICULOS"
+                android:text="@string/vehiculos"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -52,7 +52,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#67DBE6"
                     android:onClick="nuevoVehiculo"
-                    android:text="Nuevo"
+                    android:text="@string/nuevo"
                     app:icon="@android:drawable/ic_input_add" />
 
                 <Button
@@ -63,7 +63,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#F37D7D"
                     android:onClick="listadoVehiculos"
-                    android:text="Listado"
+                    android:text="@string/listado"
                     app:icon="@android:drawable/ic_menu_save" />
             </LinearLayout>
         </LinearLayout>

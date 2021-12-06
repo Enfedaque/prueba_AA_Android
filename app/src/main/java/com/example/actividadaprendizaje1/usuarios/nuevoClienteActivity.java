@@ -64,7 +64,7 @@ public class nuevoClienteActivity extends AppCompatActivity {
         if(etNombre.getText().toString().equals("") || etApellido.getText().toString().equals("") ||
                 etDNI.getText().toString().equals("") || etTelefono.getText().toString().equals("") ||
                 etEmail.getText().toString().equals("")){
-            Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.obligatorioRellenar , Toast.LENGTH_LONG).show();
         }
 
         String nombre=etNombre.getText().toString();
@@ -80,7 +80,7 @@ public class nuevoClienteActivity extends AppCompatActivity {
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.clientesDAO().insert(miCliente);
 
-        Toast.makeText(this, "Cliente registrado correctamente", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.clienteRegistradoCorrectamente, Toast.LENGTH_LONG).show();
 
         //Vacio los campos para poder seguir introduciendo
         etNombre.setText("");

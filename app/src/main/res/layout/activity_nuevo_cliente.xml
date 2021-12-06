@@ -19,7 +19,7 @@
             android:layout_height="58dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Nombre"
+            android:hint="@string/nombre"
             android:inputType="textPersonName" />
 
         <EditText
@@ -28,7 +28,7 @@
             android:layout_height="58dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Apellido"
+            android:hint="@string/apellido"
             android:inputType="textPersonName" />
 
         <EditText
@@ -37,7 +37,7 @@
             android:layout_height="65dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="DNI"
+            android:hint="@string/dni"
             android:inputType="textPersonName" />
 
         <EditText
@@ -46,7 +46,7 @@
             android:layout_height="58dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Telefono"
+            android:hint="@string/telefono"
             android:inputType="phone" />
 
         <EditText
@@ -55,7 +55,7 @@
             android:layout_height="55dp"
             android:layout_margin="10dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
 
         <LinearLayout
@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#67DBE6"
                 android:onClick="añadirCliente"
-                android:text="Añadir"
+                android:text="@string/a_adir"
                 android:textColor="#000000"
                 android:translationX="-10dp"
                 app:icon="@android:drawable/ic_input_add" />
@@ -83,7 +83,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="#F37D7D"
                 android:onClick="cancelarCliente"
-                android:text="Cancelar"
+                android:text="@string/cancelar2"
                 android:textColor="#000000"
                 android:translationX="10dp"
                 app:icon="@android:drawable/ic_menu_delete" />

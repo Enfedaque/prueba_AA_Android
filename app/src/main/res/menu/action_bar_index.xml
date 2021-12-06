@@ -5,6 +5,6 @@
     <item
         android:id="@+id/talleres"
         android:icon="@drawable/searching"
-        android:title="Item"
+        android:title="@string/item"
         app:showAsAction="always" />
 </menu>

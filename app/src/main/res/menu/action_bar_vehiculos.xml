@@ -5,7 +5,7 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/icons8_casa_150"
-        android:title="Item"
+        android:title="@string/item"
         app:showAsAction="always" />
     <item
         android:id="@+id/buscarTalleres"

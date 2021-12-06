@@ -66,7 +66,7 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
                 etEmail.getText().toString().equals("")
                 || etDepartamento.getText().toString().equals("")
                 || etPuesto.getText().toString().equals("")){
-            Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.obligatorioRellenar , Toast.LENGTH_LONG).show();
         }
 
         String nombre=etNombre.getText().toString();
@@ -84,7 +84,7 @@ public class nuevoTrabajadorActivity extends AppCompatActivity {
                 "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         database.trabajadoresDAO().insert(miTrabajador);
         
-        Toast.makeText(this, "Trabajador registrado correctamente", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.trabajadorRegistradoCorrectamente, Toast.LENGTH_LONG).show();
 
         etNombre.setText("");
         etApellido.setText("");

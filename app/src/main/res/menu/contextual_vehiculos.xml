@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/terminar"
-        android:title="Terminar / Eliminar" />
+        android:title="@string/terminar_eliminar" />
     <item
         android:id="@+id/edicionVehiculos"
-        android:title="Editar" />
+        android:title="@string/editar" />
 </menu>

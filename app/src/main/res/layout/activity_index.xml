@@ -27,7 +27,7 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="#67DBE6"
             android:onClick="accesoUsuarios"
-            android:text="Zona usuarios"
+            android:text="@string/zona_usuarios"
             android:textColor="#000000" />
 
         <ImageView
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#F37D7D"
             android:onClick="accesoVehiculos"
-            android:text="Zona vehiculos"
+            android:text="@string/zona_vehiculos"
             android:textColor="#000000" />
 
     </LinearLayout>

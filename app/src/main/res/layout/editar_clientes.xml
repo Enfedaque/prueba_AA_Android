@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Nombre" />
+                android:text="@string/nombre" />
 
             <EditText
                 android:id="@+id/editarNombreCliente"
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Apellido" />
+                android:text="@string/apellido" />
 
             <EditText
                 android:id="@+id/editarApellidoCliente"
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="DNI" />
+                android:text="@string/dni" />
 
             <EditText
                 android:id="@+id/editarDNICliente"
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Telefono" />
+                android:text="@string/telefono" />
 
             <EditText
                 android:id="@+id/editarTelefonoCliente"
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Email" />
+                android:text="@string/email" />
 
             <EditText
                 android:id="@+id/editarEmailCliente"
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:backgroundTint="#ACF363"
-            android:text="Guardar cambios"
+            android:text="@string/guardar_cambios"
             android:textColor="#000000" />
 
     </LinearLayout>

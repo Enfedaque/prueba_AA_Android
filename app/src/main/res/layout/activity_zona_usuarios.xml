@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="CLIENTES"
+                android:text="@string/clientes"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -62,7 +62,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#67DBE6"
                     android:onClick="nuevoCliente"
-                    android:text="Nuevo"
+                    android:text="@string/nuevo"
                     android:textColor="#000000"
                     android:textIsSelectable="false"
                     app:icon="@android:drawable/ic_input_add" />
@@ -75,7 +75,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#F37D7D"
                     android:onClick="listadoClientes"
-                    android:text="Listado"
+                    android:text="@string/listado"
                     android:textColor="#000000"
                     app:icon="@android:drawable/ic_menu_save"
                     app:iconTint="#FFFFFF" />
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:paddingTop="180dp"
-                android:text="TRABAJADORES"
+                android:text="@string/trabajadores"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
@@ -107,7 +107,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#67DBE6"
                     android:onClick="nuevoTrabajador"
-                    android:text="Nuevo"
+                    android:text="@string/nuevo"
                     android:textColor="#000000"
                     app:icon="@android:drawable/ic_input_add" />
 
@@ -119,7 +119,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#F37D7D"
                     android:onClick="listadoTrabajadores"
-                    android:text="LISTADO"
+                    android:text="@string/listado2"
                     android:textColor="#000000"
                     app:icon="@android:drawable/ic_menu_save" />
             </LinearLayout>

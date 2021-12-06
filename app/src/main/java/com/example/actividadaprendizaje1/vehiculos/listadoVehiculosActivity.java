@@ -136,19 +136,19 @@ public class listadoVehiculosActivity extends AppCompatActivity {
                     String mostrarResultado=miVehiculo.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-                    dialogo.setTitle("Informarción");
+                    dialogo.setTitle(R.string.info);
                     dialogo.setMessage(mostrarResultado);
                     dialogo.show();
                 }else{
                     AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-                    dialogo.setTitle("Informarción");
-                    dialogo.setMessage("Vehiculo no encontrado");
+                    dialogo.setTitle(R.string.info);
+                    dialogo.setMessage(R.string.vehiculoNoEncontrado);
                     dialogo.show();
                 }
             }catch ( Exception ex){
                 AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-                dialogo.setTitle("Informarción");
-                dialogo.setMessage("Vehiculo no encontrado");
+                dialogo.setTitle(R.string.info);
+                dialogo.setMessage(R.string.vehiculoNoEncontrado);
                 dialogo.show();
             }
 
@@ -198,9 +198,9 @@ public class listadoVehiculosActivity extends AppCompatActivity {
         if (item.getItemId()==R.id.terminar){
             //TODO
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-            dialogo.setTitle("Atención");
-            dialogo.setMessage("¿Estas seguro de eliminar este vehiculo?");
-            dialogo.setPositiveButton("Si",new DialogInterface.OnClickListener(){
+            dialogo.setTitle(R.string.atencion);
+            dialogo.setMessage(R.string.preguntaEliminarVehiculo);
+            dialogo.setPositiveButton(R.string.si,new DialogInterface.OnClickListener(){
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     vehiculos miVehiculo=mostrarVehiculos.get(info.position);
@@ -213,7 +213,7 @@ public class listadoVehiculosActivity extends AppCompatActivity {
                     }
                 }
             });
-            dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            dialogo.setNegativeButton(R.string.cancelar2, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 

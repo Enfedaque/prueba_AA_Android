@@ -80,7 +80,7 @@ public class facturaActivity extends AppCompatActivity {
                 || fechaFactura.getText().toString().equals("")
                 || spClienteFactura==null
                 || spVehiculoFactura==null){
-            Toast.makeText(this, "Es obligaorio rellenar todos los campos" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.factura1 , Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -93,10 +93,10 @@ public class facturaActivity extends AppCompatActivity {
             //Creo y registro la nueva factura
             facturas miFactura=new facturas(direccion, fecha, miCliente.getClienteID(), miVehiculo.getIdVehiculo());
             mostrarFacturas.add(miFactura);
-            Toast.makeText(this, "Factura creada", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.factura2, Toast.LENGTH_LONG).show();
 
         }catch (Exception exc){
-            Toast.makeText(this, "No se ha podido crear la factura, intentelo de nuevo...",
+            Toast.makeText(this, R.string.factura3,
                     Toast.LENGTH_LONG).show();
         }
 
