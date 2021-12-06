@@ -10,7 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.actividadaprendizaje1.R;
-import com.example.actividadaprendizaje1.facturas.facturaActivity;
+import com.example.actividadaprendizaje1.facturas.listadoFacturasActivity;
+import com.example.actividadaprendizaje1.facturas.nuevaFacturaActivity;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
 
@@ -49,7 +50,11 @@ public class zonaVehiculosActivity extends AppCompatActivity {
             startActivity(miIntent);
             return true;
         }else if (item.getItemId()==R.id.activityFacturas){
-            Intent miIntent=new Intent(this, facturaActivity.class);
+            Intent miIntent=new Intent(this, nuevaFacturaActivity.class);
+            startActivity(miIntent);
+            return true;
+        }else if (item.getItemId()==R.id.activityListarFacturas){
+            Intent miIntent=new Intent(this, listadoFacturasActivity.class);
             startActivity(miIntent);
             return true;
         }

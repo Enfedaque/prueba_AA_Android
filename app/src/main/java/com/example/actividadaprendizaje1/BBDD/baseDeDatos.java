@@ -9,13 +9,15 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import com.example.actividadaprendizaje1.dao.clientesDAO;
+import com.example.actividadaprendizaje1.dao.facturasDAO;
 import com.example.actividadaprendizaje1.dao.trabajadoresDAO;
 import com.example.actividadaprendizaje1.dao.vehiculosDAO;
 import com.example.actividadaprendizaje1.domain.clientes;
+import com.example.actividadaprendizaje1.domain.facturas;
 import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.domain.vehiculos;
 
-@Database(entities = {clientes.class, trabajadores.class, vehiculos.class}, version = 8)
+@Database(entities = {clientes.class, trabajadores.class, vehiculos.class, facturas.class}, version = 10)
 public abstract class baseDeDatos extends RoomDatabase {
     //Aqui hace de intermediario entre la clase y el DAO
 
@@ -23,4 +25,5 @@ public abstract class baseDeDatos extends RoomDatabase {
     public abstract clientesDAO clientesDAO();
     public abstract trabajadoresDAO trabajadoresDAO();
     public abstract vehiculosDAO vehiculosDAO();
+    public abstract facturasDAO facturasDAO();
 }

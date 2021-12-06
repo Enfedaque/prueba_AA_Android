@@ -23,6 +23,8 @@ import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
 import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.domain.vehiculos;
+import com.example.actividadaprendizaje1.facturas.listadoFacturasActivity;
+import com.example.actividadaprendizaje1.facturas.nuevaFacturaActivity;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
 import com.example.actividadaprendizaje1.util.imagenes;
@@ -90,6 +92,14 @@ public class nuevaEntradaActivity extends AppCompatActivity {
             return true;
         }else if (item.getItemId()==R.id.buscarTalleres){
             Intent miIntent=new Intent(this, talleresActivity.class);
+            startActivity(miIntent);
+            return true;
+        }else if (item.getItemId()==R.id.activityFacturas){
+            Intent miIntent=new Intent(this, nuevaFacturaActivity.class);
+            startActivity(miIntent);
+            return true;
+        }else if (item.getItemId()==R.id.activityListarFacturas){
+            Intent miIntent=new Intent(this, listadoFacturasActivity.class);
             startActivity(miIntent);
             return true;
         }

@@ -1,19 +1,14 @@
 package com.example.actividadaprendizaje1.vehiculos;
 
-import static com.example.actividadaprendizaje1.usuarios.listadoClientesActivity.mostrarClientes;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.room.Room;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -29,17 +24,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.R;
 import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
 import com.example.actividadaprendizaje1.domain.clientes;
 import com.example.actividadaprendizaje1.domain.trabajadores;
 import com.example.actividadaprendizaje1.domain.vehiculos;
-import com.example.actividadaprendizaje1.facturas.facturaActivity;
+import com.example.actividadaprendizaje1.facturas.listadoFacturasActivity;
+import com.example.actividadaprendizaje1.facturas.nuevaFacturaActivity;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
-import com.example.actividadaprendizaje1.util.imagenes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -174,7 +168,11 @@ public class listadoVehiculosActivity extends AppCompatActivity {
             startActivity(miIntent);
             return true;
         }else if (item.getItemId()==R.id.activityFacturas){
-            Intent miIntent=new Intent(this, facturaActivity.class);
+            Intent miIntent=new Intent(this, nuevaFacturaActivity.class);
+            startActivity(miIntent);
+            return true;
+        }else if (item.getItemId()==R.id.activityListarFacturas){
+            Intent miIntent=new Intent(this, listadoFacturasActivity.class);
             startActivity(miIntent);
             return true;
         }
@@ -261,6 +259,15 @@ public class listadoVehiculosActivity extends AppCompatActivity {
                 }
             });
 
+        }
+
+        if (item.getItemId()==R.id.infoVehiculoContextual){
+            vehiculos miVehiculo=mostrarVehiculos.get(info.position);
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            dialogo.setTitle(R.string.info);
+            dialogo.setMessage(miVehiculo.toString2());
+            dialogo.show();
+            return true;
         }
 
         return false;

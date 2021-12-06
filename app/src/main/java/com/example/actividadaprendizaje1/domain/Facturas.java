@@ -9,7 +9,6 @@ public class facturas {
 
     @PrimaryKey(autoGenerate = true)
     private long ID_Factura;
-    private final String empresa="Garage Admin";
     @ColumnInfo
     private String direccion;
     @ColumnInfo
@@ -43,10 +42,6 @@ public class facturas {
         this.ID_Factura = ID_Factura;
     }
 
-    public String getEmpresa() {
-        return empresa;
-    }
-
     public String getFechaEmision() {
         return fechaEmision;
     }
@@ -73,12 +68,6 @@ public class facturas {
 
     @Override
     public String toString() {
-        return "Facturas{" +
-                "ID_Factura=" + ID_Factura +
-                ", empresa='" + empresa + '\'' +
-                ", fechaEmision=" + fechaEmision +
-                ", miCliente=" + miCliente +
-                ", miVehiculo=" + miVehiculo +
-                '}';
+        return   direccion + " / " + miCliente   +" / " + miVehiculo;
     }
 }

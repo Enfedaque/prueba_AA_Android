@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.actividadaprendizaje1">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,16 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ActividadAprendizaje1">
+        <activity
+            android:name=".facturas.listadoFacturasActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCLBgnBFBMy3SmyEmGUFF-RIt8UE9PAwpo"/>
+            android:value="AIzaSyCLBgnBFBMy3SmyEmGUFF-RIt8UE9PAwpo" />
 
         <activity
             android:name=".mapas.talleresActivity"
             android:exported="false" />
         <activity
-            android:name=".facturas.facturaActivity"
+            android:name=".facturas.nuevaFacturaActivity"
             android:exported="false" />
         <activity
             android:name=".inicio.initActivity"

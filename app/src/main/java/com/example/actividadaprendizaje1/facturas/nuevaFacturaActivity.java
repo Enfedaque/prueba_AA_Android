@@ -21,7 +21,7 @@ import com.example.actividadaprendizaje1.inicio.indexActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class facturaActivity extends AppCompatActivity {
+public class nuevaFacturaActivity extends AppCompatActivity {
 
     public static List<facturas> mostrarFacturas;
     private List<clientes> mostrarSpinnerClientes;
@@ -46,11 +46,11 @@ public class facturaActivity extends AppCompatActivity {
 
         mostrarSpinnerClientes=new ArrayList<>();
         mostrarSpinnerVehiculos=new ArrayList<>();
-
-        cargarListasSpinner();
-
         spClienteFactura=findViewById(R.id.spClientesFactura);
         spVehiculoFactura=findViewById(R.id.spVehiculosFactura);
+
+
+        cargarListasSpinner();
 
         miSpinnerAdapterClientes=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 mostrarSpinnerClientes);
@@ -77,6 +77,7 @@ public class facturaActivity extends AppCompatActivity {
 
 
         if (direccionFactura.getText().toString().equals("")
+                || nombreFactura.getText().toString().equals("")
                 || fechaFactura.getText().toString().equals("")
                 || spClienteFactura==null
                 || spVehiculoFactura==null){
@@ -92,16 +93,18 @@ public class facturaActivity extends AppCompatActivity {
         try {
             //Creo y registro la nueva factura
             facturas miFactura=new facturas(direccion, fecha, miCliente.getClienteID(), miVehiculo.getIdVehiculo());
-            mostrarFacturas.add(miFactura);
+            baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
+                    "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+            database.facturasDAO().insertar(miFactura);
             Toast.makeText(this, R.string.factura2, Toast.LENGTH_LONG).show();
 
         }catch (Exception exc){
+            exc.printStackTrace();
             Toast.makeText(this, R.string.factura3,
                     Toast.LENGTH_LONG).show();
         }
 
         nombreFactura.setText("");
-        numeroFactura.setText("");
         direccionFactura.setText("");
         fechaFactura.setText("");
 

@@ -15,4 +15,8 @@
         android:id="@+id/activityFacturas"
         android:icon="@drawable/factura__1_"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/activityListarFacturas"
+        android:icon="@drawable/lista"
+        app:showAsAction="always" />
 </menu>
