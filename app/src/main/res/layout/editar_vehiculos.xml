@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:layout_editor_absoluteX="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textAlignment="center">
+
+            <ImageView
+                android:id="@+id/editFoto"
+                android:layout_width="165dp"
+                android:layout_height="99dp"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/dialogo"
+                tools:srcCompat="@drawable/dialogo" />
+
+            <EditText
+                android:id="@+id/editMarca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/marca"
+                android:inputType="textPersonName"
+                android:paddingTop="30dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editModelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:ems="10"
+            android:hint="@string/modelo"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editMatricula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:ems="10"
+            android:hint="@string/matricula"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editAveria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:ems="10"
+            android:hint="@string/descripcion_de_la_averia"
+            android:inputType="textPersonName" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/editOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#67DBE6"
+                android:text="@string/guardar_cambios"
+                android:textColor="#000000"
+                app:icon="@android:drawable/ic_input_add" />
+
+            <Button
+                android:id="@+id/editCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F37D7D"
+                android:textColor="#000000"
+                app:icon="@android:drawable/ic_menu_delete"
+                android:text="@string/cancelar" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,8 @@
         android:icon="@drawable/searching"
         android:title="@string/item"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/preferencias"
+        android:icon="@drawable/configuracion"
+        app:showAsAction="always" />
 </menu>

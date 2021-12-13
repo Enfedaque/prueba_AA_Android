@@ -7,6 +7,7 @@ import androidx.room.Room;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.R;
 import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
@@ -34,6 +36,7 @@ import com.example.actividadaprendizaje1.facturas.listadoFacturasActivity;
 import com.example.actividadaprendizaje1.facturas.nuevaFacturaActivity;
 import com.example.actividadaprendizaje1.inicio.indexActivity;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
+import com.example.actividadaprendizaje1.util.imagenes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +50,6 @@ public class listadoVehiculosActivity extends AppCompatActivity {
     EditText texto;
     Switch miSwitch;
 
-    //Para las notificaciones
-    private final String CHANNEL_ID="Notificacion";
-    private final int NOTIFICATION_ID=01;
     baseDeDatos baseDeDatos;
 
     @Override
@@ -120,32 +120,26 @@ public class listadoVehiculosActivity extends AppCompatActivity {
 
     //Metodo del boton que busca al cliente por apellido en la lista y lo muestra
     public void resultadoBusquedaVehiculo(View view){
+        String mostrarResultado="";
         for (vehiculos miVehiculo : mostrarVehiculos){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
-            try {
                 if (miVehiculo.getMatricula()
                         .equalsIgnoreCase(texto.getText().toString())){
-                    String mostrarResultado=miVehiculo.toString2();
+                    mostrarResultado=miVehiculo.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
                     dialogo.setTitle(R.string.info);
                     dialogo.setMessage(mostrarResultado);
                     dialogo.show();
-                }else{
-                    AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-                    dialogo.setTitle(R.string.info);
-                    dialogo.setMessage(R.string.vehiculoNoEncontrado);
-                    dialogo.show();
                 }
-            }catch ( Exception ex){
-                AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
-                dialogo.setTitle(R.string.info);
-                dialogo.setMessage(R.string.vehiculoNoEncontrado);
-                dialogo.show();
-            }
-
+        }
+        if (mostrarResultado.equalsIgnoreCase("")){
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            dialogo.setTitle(R.string.info);
+            dialogo.setMessage(R.string.vehiculoNoEncontrado);
+            dialogo.show();
         }
     }
 
@@ -194,7 +188,6 @@ public class listadoVehiculosActivity extends AppCompatActivity {
 
         //Opcion de mostrar la informacion
         if (item.getItemId()==R.id.terminar){
-            //TODO
             AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
             dialogo.setTitle(R.string.atencion);
             dialogo.setMessage(R.string.preguntaEliminarVehiculo);
@@ -222,42 +215,75 @@ public class listadoVehiculosActivity extends AppCompatActivity {
             return true;
         }
 
-        //TODO, AQUI FALLA
+        //TODO, REVISAR PORQUE SIGUE FALLANDO
         if(item.getItemId()==R.id.edicionVehiculos){
 
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             LayoutInflater in=getLayoutInflater();
-            View v=in.inflate(R.layout.activity_nueva_entrada, null);
+            View v=in.inflate(R.layout.editar_vehiculos, null);
             builder.setView(v);
-            //recojo los campos segun el id
-            ImageView fotoVehiculo=findViewById(R.id.fotoVehiculo);
-            EditText etMarca=findViewById(R.id.marca);
-            EditText etModelo=findViewById(R.id.modelo);
-            EditText etMatricula=findViewById(R.id.matricula);
-            Spinner spTrabajadorAlCargo=findViewById(R.id.spTrabajadores);
-            EditText etAveria=findViewById(R.id.averia);
-            Spinner spCliente=findViewById(R.id.spClientes);
-            Button editar=findViewById(R.id.button13);
 
-            editar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            ImageView foto=findViewById(R.id.editFoto);
+            EditText marca=findViewById(R.id.editMarca);
+            EditText modelo=findViewById(R.id.editModelo);
+            EditText matricula =findViewById(R.id.editMatricula);
+            EditText averia=findViewById(R.id.editAveria);
+            Button ok=v.findViewById(R.id.editOk);
+            Button cancel=v.findViewById(R.id.editCancel);
+
+            ok.setOnClickListener(v1 -> {
+                byte[] imageBytes= imagenes.fromImageViewToByteArray(foto);
+                String stMarca=marca.getText().toString();
+                String stModelo=modelo.getText().toString();
+                String stMatricula=matricula.getText().toString();
+                String stAveria=averia.getText().toString();
+
+                if(marca.getText().toString().equals("")
+                        || foto==null
+                        || modelo.getText().toString().equals("")
+                        || matricula.getText().toString().equals("")
+                        || averia.getText().toString().equals("")){
+                    marca.setText("");
+                    modelo.setText("");
+                    matricula.setText("");
+                    averia.setText("");
+                    AlertDialog.Builder dialogo = new AlertDialog.Builder((Context) item);
+                    dialogo.setTitle(R.string.atencion);
+                    dialogo.setMessage(R.string.obligatorioRellenar);
+                    dialogo.show();
+                }else{
                     vehiculos miVehiculo=mostrarVehiculos.get(info.position);
-                    miVehiculo.setMarca(etMarca.getText().toString());
-                    miVehiculo.setModelo(etModelo.getText().toString());
-                    miVehiculo.setMatricula(etMatricula.getText().toString());
-                    clientes cliente=(clientes) spCliente.getSelectedItem();
-                    miVehiculo.setClienteID(cliente.getClienteID());
-                    trabajadores trabajadores=(trabajadores) spTrabajadorAlCargo.getSelectedItem();
-                    miVehiculo.setTrabajadorID(trabajadores.getTrabajadorID());
-                    miVehiculo.setAveria(etAveria.getText().toString());
+                    miVehiculo.setMarca(stMarca);
+                    miVehiculo.setModelo(stModelo);
+                    miVehiculo.setMatricula(stMatricula);
+                    miVehiculo.setFotoVehiculo(imageBytes);
+                    miVehiculo.setAveria(stAveria);
 
-                    baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
-                            "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-                    database.vehiculosDAO().editar(miVehiculo);
-                    cargarBBDDenLista();
+                    try {
+                        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
+                                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+                        database.vehiculosDAO().editar(miVehiculo);
+
+                        cargarBBDDenLista();
+
+                    }catch (Exception exc){
+                        AlertDialog.Builder dialogo = new AlertDialog.Builder((Context) item);
+                        dialogo.setTitle(R.string.atencion);
+                        dialogo.setMessage(R.string.algoHaSalidoMal);
+                        dialogo.show();
+                    }
                 }
             });
+
+            cancel.setOnClickListener(v12 -> {
+                marca.setText("");
+                modelo.setText("");
+                matricula.setText("");
+                averia.setText("");
+            });
+
+            AlertDialog alertDialog= builder.create();
+            alertDialog.show();
 
         }
 
@@ -273,27 +299,21 @@ public class listadoVehiculosActivity extends AppCompatActivity {
         return false;
     }
 
+
     //Metodo para eliminar clientes de mi lista
-    private void eliminar(AdapterView.AdapterContextMenuInfo info){
-        vehiculos miVehiculo=mostrarVehiculos.get(info.position);
-        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
-                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        database.vehiculosDAO().eliminar(miVehiculo);
-    }
-
-
-    //Metodo para mandar notificaciones
-    private void mandarNotificacion(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence nombre= "Notificacion";
-            String descripcion= "Notificacion simple";
-            int importancia= NotificationManager.IMPORTANCE_DEFAULT;
-
-            NotificationChannel notificationChannel=new NotificationChannel(CHANNEL_ID, nombre,importancia);
-            notificationChannel.setDescription(descripcion);
-
-            NotificationManager notificationManager=getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(notificationChannel);
+    private void eliminar(AdapterView.AdapterContextMenuInfo info) throws Exception{
+        try {
+            vehiculos miVehiculo=mostrarVehiculos.get(info.position);
+            baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
+                    "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+            database.vehiculosDAO().eliminar(miVehiculo);
+        }catch (Exception exc){
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+            dialogo.setTitle(R.string.info);
+            dialogo.setMessage("Hubo un problema con la base de datos");
+            dialogo.show();
         }
+        
     }
+
 }

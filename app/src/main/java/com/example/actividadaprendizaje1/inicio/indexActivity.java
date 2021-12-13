@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,14 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.actividadaprendizaje1.R;
-import com.example.actividadaprendizaje1.bbdd.baseDeDatos;
-import com.example.actividadaprendizaje1.domain.clientes;
-import com.example.actividadaprendizaje1.domain.facturas;
-import com.example.actividadaprendizaje1.domain.trabajadores;
-import com.example.actividadaprendizaje1.domain.vehiculos;
 import com.example.actividadaprendizaje1.mapas.talleresActivity;
 import com.example.actividadaprendizaje1.usuarios.zonaUsuariosActivity;
 import com.example.actividadaprendizaje1.vehiculos.zonaVehiculosActivity;
@@ -173,8 +170,14 @@ public class indexActivity extends AppCompatActivity{
                 Intent miIntent=new Intent(this, talleresActivity.class);
                 startActivity(miIntent);
             return true;
+        }else if(item.getItemId() == R.id.preferencias) {
+            Intent miIntent=new Intent(Intent.ACTION_MAIN);
+            miIntent.setClassName("com.android.settings",
+                    "com.android.settings.LanguageSettings");
+            startActivity(miIntent);
+            return true;
         }
-
         return false;
     }
+
 }

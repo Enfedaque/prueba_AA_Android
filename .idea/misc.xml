@@ -18,6 +18,7 @@
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_nueva_entrada.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_nuevo_cliente.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_nuevo_trabajador.xml" value="0.24456521739130435" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_preferencias.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_principal.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_talleres.xml" value="0.18206521739130435" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/activity_vehiculos_pendientes.xml" value="0.24456521739130435" />
@@ -31,6 +32,7 @@
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/editar_cliente.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/editar_clientes.xml" value="0.19384057971014493" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/editar_trabajadores.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/editar_vehiculos.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/eliminar_vehiculos_personalizado.xml" value="0.20516304347826086" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/fragment_first.xml" value="0.22056159420289856" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/fragment_second.xml" value="0.22056159420289856" />
@@ -41,6 +43,7 @@
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/pruebas_spinner.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/pruebas_zona_usuarios.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/pruebas_zona_vehiculos.xml" value="0.22056159420289856" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/layout/settings_activity.xml" value="0.22056159420289856" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/menu/action_bar_index.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/menu/action_bar_usuarios.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/menu/action_bar_vehiculos.xml" value="0.25416666666666665" />
@@ -52,6 +55,8 @@
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/menu/lateral_index.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/menu/layout_menu_lateral_index.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/menu/menu_navigation_view.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/xml/preferencias.xml" value="0.22056159420289856" />
+        <entry key="..\:/Users/David Enfedaque/Desktop/DISPOSITIVOS MULTIMEDIA/app/src/main/res/xml/root_preferences.xml" value="0.22056159420289856" />
       </map>
     </option>
   </component>
