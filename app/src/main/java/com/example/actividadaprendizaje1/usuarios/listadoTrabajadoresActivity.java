@@ -132,62 +132,46 @@ public class listadoTrabajadoresActivity extends AppCompatActivity {
 
     //Metodo que busca al trabajador en la lista por el apellido y lo muestra
     public void resultadoBusquedaTrabajadorPorApellido(View view){
+        String mostrarResultado= "";
         for (trabajadores miTrabajador : mostrarTrabajadores){
-            /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
-            en la busqueda
-             */
-            try {
+
                 if (miTrabajador.getApellido()
                         .equalsIgnoreCase(apellidoBuscador.getText().toString())){
-                    String mostrarResultado=miTrabajador.toString2();
+                    mostrarResultado=miTrabajador.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
                     dialogo.setTitle(R.string.info);
                     dialogo.setMessage(mostrarResultado);
                     dialogo.show();
-                }else{
-                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle(R.string.info);
-                    dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                    dialogoBorrar.show();
                 }
-
-            }catch (Exception ex){
-                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                dialogoBorrar.setTitle(R.string.info);
-                dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                dialogoBorrar.show();
-            }
+        }
+        if (mostrarResultado.equalsIgnoreCase("")){
+            AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+            dialogoBorrar.setTitle(R.string.info);
+            dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
+            dialogoBorrar.show();
         }
     }
 
     //Metodo que busca al trabajador en la lista por el Id y lo muestra
     public void resultadoBusquedaTrabajadorPorIdTrabajador(View view){
+        String mostrarResultado="";
         for (trabajadores miTrabajador : mostrarTrabajadores){
-            /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
-            en la busqueda
-             */
-            try {
+
                 if (miTrabajador.getTrabajadorID() == Long.parseLong(idBuscador.getText().toString())){
-                    String mostrarResultado=miTrabajador.toString2();
+                    mostrarResultado=miTrabajador.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
                     dialogo.setTitle(R.string.info);
                     dialogo.setMessage(mostrarResultado);
                     dialogo.show();
-                }else{
-                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle(R.string.info);
-                    dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                    dialogoBorrar.show();
                 }
-
-            }catch (Exception ex){
-                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                dialogoBorrar.setTitle(R.string.info);
-                dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                dialogoBorrar.show();
-            }
+        }
+        if (mostrarResultado.equalsIgnoreCase("")){
+            AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+            dialogoBorrar.setTitle(R.string.info);
+            dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
+            dialogoBorrar.show();
         }
     }
 

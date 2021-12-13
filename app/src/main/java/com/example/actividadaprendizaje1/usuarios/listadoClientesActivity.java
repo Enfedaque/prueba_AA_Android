@@ -141,59 +141,49 @@ public class listadoClientesActivity extends AppCompatActivity {
 
     //Metodo del boton que busca al cliente por apellido en la lista y lo muestra
     public void resultadoBusquedaClientePorApellido(View view){
+        String mostrarResultado="";
         for (clientes miCliente : mostrarClientes){
             /*Controlo las excepciones que puedan saltar como intrudicr un tipo de dato incorrecto
             en la busqueda
              */
-            try {
                 if (miCliente.getApellido()
                         .equalsIgnoreCase(apellidoBuscador.getText().toString())){
-                    String mostrarResultado=miCliente.toString2();
+                    mostrarResultado=miCliente.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                     dialogoBorrar.setTitle(R.string.info);
                     dialogoBorrar.setMessage(mostrarResultado);
                     dialogoBorrar.show();
-                }else{
-                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle(R.string.info);
-                    dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                    dialogoBorrar.show();
+                    return;
                 }
-            }catch ( Exception ex){
-                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                dialogoBorrar.setTitle(R.string.info);
-                dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                dialogoBorrar.show();
-            }
-
         }
+        if (mostrarResultado.equalsIgnoreCase("")){
+            AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+            dialogoBorrar.setTitle(R.string.info);
+            dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
+            dialogoBorrar.show();
+        }
+
     }
 
     //Metodo del boton que busca al cliente por Id_Cliente en la lista y lo muestra
     public void resultadoBusquedaClientePorId(View view){
+        String mostrarResultado="";
         for (clientes miCliente : mostrarClientes){
-            try {
                 if (miCliente.getClienteID() == Long.parseLong(idBuscar.getText().toString())){
-                    String mostrarResultado=miCliente.toString2();
+                    mostrarResultado=miCliente.toString2();
                     //Muestro en un dialogo la informacion completa del usuario
                     AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
                     dialogoBorrar.setTitle(R.string.info);
                     dialogoBorrar.setMessage(mostrarResultado);
                     dialogoBorrar.show();
-                }else{
-                    AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                    dialogoBorrar.setTitle(R.string.info);
-                    dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                    dialogoBorrar.show();
                 }
-            }catch ( Exception ex){
-                AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
-                dialogoBorrar.setTitle(R.string.info);
-                dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
-                dialogoBorrar.show();
-            }
-
+        }
+        if (mostrarResultado.equalsIgnoreCase("")){
+            AlertDialog.Builder dialogoBorrar = new AlertDialog.Builder(this);
+            dialogoBorrar.setTitle(R.string.info);
+            dialogoBorrar.setMessage(R.string.usurioNoEncontrado);
+            dialogoBorrar.show();
         }
     }
 
