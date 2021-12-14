@@ -10,8 +10,10 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -51,6 +53,9 @@ public class listadoVehiculosActivity extends AppCompatActivity {
     Switch miSwitch;
 
     baseDeDatos baseDeDatos;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    ImageView etFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,63 +228,34 @@ public class listadoVehiculosActivity extends AppCompatActivity {
             View v=in.inflate(R.layout.editar_vehiculos, null);
             builder.setView(v);
 
-            ImageView foto=findViewById(R.id.editFoto);
-            EditText marca=findViewById(R.id.editMarca);
-            EditText modelo=findViewById(R.id.editModelo);
-            EditText matricula =findViewById(R.id.editMatricula);
-            EditText averia=findViewById(R.id.editAveria);
-            Button ok=v.findViewById(R.id.editOk);
-            Button cancel=v.findViewById(R.id.editCancel);
+            Button foto=v.findViewById(R.id.editHacerFoto);
+            Button editok=v.findViewById(R.id.editOk);
+            etFoto=v.findViewById(R.id.editFoto);
+            EditText etMarca=v.findViewById(R.id.editMarca);
+            EditText etModelo=v.findViewById(R.id.editModelo);
+            EditText etMatricula=v.findViewById(R.id.editMatricula);
+            EditText etAveria=v.findViewById(R.id.editAveria);
 
-            ok.setOnClickListener(v1 -> {
-                byte[] imageBytes= imagenes.fromImageViewToByteArray(foto);
-                String stMarca=marca.getText().toString();
-                String stModelo=modelo.getText().toString();
-                String stMatricula=matricula.getText().toString();
-                String stAveria=averia.getText().toString();
-
-                if(marca.getText().toString().equals("")
-                        || foto==null
-                        || modelo.getText().toString().equals("")
-                        || matricula.getText().toString().equals("")
-                        || averia.getText().toString().equals("")){
-                    marca.setText("");
-                    modelo.setText("");
-                    matricula.setText("");
-                    averia.setText("");
-                    AlertDialog.Builder dialogo = new AlertDialog.Builder((Context) item);
-                    dialogo.setTitle(R.string.atencion);
-                    dialogo.setMessage(R.string.obligatorioRellenar);
-                    dialogo.show();
-                }else{
-                    vehiculos miVehiculo=mostrarVehiculos.get(info.position);
-                    miVehiculo.setMarca(stMarca);
-                    miVehiculo.setModelo(stModelo);
-                    miVehiculo.setMatricula(stMatricula);
-                    miVehiculo.setFotoVehiculo(imageBytes);
-                    miVehiculo.setAveria(stAveria);
-
-                    try {
-                        baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
-                                "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-                        database.vehiculosDAO().editar(miVehiculo);
-
-                        cargarBBDDenLista();
-
-                    }catch (Exception exc){
-                        AlertDialog.Builder dialogo = new AlertDialog.Builder((Context) item);
-                        dialogo.setTitle(R.string.atencion);
-                        dialogo.setMessage(R.string.algoHaSalidoMal);
-                        dialogo.show();
-                    }
-                }
+            foto.setOnClickListener(v12 -> {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             });
 
-            cancel.setOnClickListener(v12 -> {
-                marca.setText("");
-                modelo.setText("");
-                matricula.setText("");
-                averia.setText("");
+            editok.setOnClickListener(v1 -> {
+                byte[] imageBytes= imagenes.fromImageViewToByteArray(etFoto);
+
+                vehiculos miVehiculo=mostrarVehiculos.get(info.position);
+                miVehiculo.setFotoVehiculo(imageBytes);
+                miVehiculo.setMarca(etMarca.getText().toString());
+                miVehiculo.setModelo(etModelo.getText().toString());
+                miVehiculo.setMatricula(etMatricula.getText().toString());
+                miVehiculo.setAveria(etAveria.getText().toString());
+
+                baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
+                        "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+                database.vehiculosDAO().editar(miVehiculo);
+
+                cargarBBDDenLista();
             });
 
             AlertDialog alertDialog= builder.create();
@@ -315,5 +291,16 @@ public class listadoVehiculosActivity extends AppCompatActivity {
         }
         
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            etFoto.setImageBitmap(imageBitmap);
+        }
+    }
+
 
 }
