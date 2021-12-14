@@ -244,18 +244,26 @@ public class listadoVehiculosActivity extends AppCompatActivity {
             editok.setOnClickListener(v1 -> {
                 byte[] imageBytes= imagenes.fromImageViewToByteArray(etFoto);
 
-                vehiculos miVehiculo=mostrarVehiculos.get(info.position);
-                miVehiculo.setFotoVehiculo(imageBytes);
-                miVehiculo.setMarca(etMarca.getText().toString());
-                miVehiculo.setModelo(etModelo.getText().toString());
-                miVehiculo.setMatricula(etMatricula.getText().toString());
-                miVehiculo.setAveria(etAveria.getText().toString());
+                if(etMarca.getText().toString().equals("")
+                        || etFoto==null
+                        || etModelo.getText().toString().equals("")
+                        || etMatricula.getText().toString().equals("")
+                        || etAveria.getText().toString().equals("") ){
+                    Toast.makeText(this, R.string.obligatorioRellenar , Toast.LENGTH_SHORT).show();
+                }else{
+                    vehiculos miVehiculo=mostrarVehiculos.get(info.position);
+                    miVehiculo.setFotoVehiculo(imageBytes);
+                    miVehiculo.setMarca(etMarca.getText().toString());
+                    miVehiculo.setModelo(etModelo.getText().toString());
+                    miVehiculo.setMatricula(etMatricula.getText().toString());
+                    miVehiculo.setAveria(etAveria.getText().toString());
 
-                baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
-                        "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-                database.vehiculosDAO().editar(miVehiculo);
+                    baseDeDatos database= Room.databaseBuilder(getApplicationContext(), baseDeDatos.class,
+                            "Taller").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+                    database.vehiculosDAO().editar(miVehiculo);
 
-                cargarBBDDenLista();
+                    cargarBBDDenLista();
+                }
             });
 
             AlertDialog alertDialog= builder.create();
