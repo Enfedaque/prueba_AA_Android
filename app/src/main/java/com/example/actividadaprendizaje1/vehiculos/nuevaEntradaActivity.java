@@ -7,11 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,6 +50,11 @@ public class nuevaEntradaActivity extends AppCompatActivity {
     private List<clientes> mostrarSpinnerClientes;
     private List<trabajadores> mostrarSpinnerTrabajadores;
 
+    //Para hacer fotos con la camara
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    ImageView fotoVehiculo;
+    Button hacerFoto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +74,33 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         miAdapter2=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                 mostrarSpinnerTrabajadores);
         miSpinnerTrabajadores.setAdapter(miAdapter2);
+
+        fotoVehiculo=findViewById(R.id.fotoVehiculo);
+        hacerFoto=findViewById(R.id.hacerFotoVehiculo);
+
+        hacerFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intentFoto();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            fotoVehiculo.setImageBitmap(imageBitmap);
+        }
+    }
+
+    //Abro la camara que ya le he dado permisos en el manifest
+    public void intentFoto(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 
     }
 
@@ -110,7 +145,6 @@ public class nuevaEntradaActivity extends AppCompatActivity {
     public void añadirEntrada(View view){
 
         //recojo los campos segun el id
-        ImageView fotoVehiculo=findViewById(R.id.fotoVehiculo);
         EditText etMarca=findViewById(R.id.marca);
         EditText etModelo=findViewById(R.id.modelo);
         EditText etMatricula=findViewById(R.id.matricula);
@@ -162,4 +196,5 @@ public class nuevaEntradaActivity extends AppCompatActivity {
         etMatricula.setText("");
         etAveria.setText("");
     }
+
 }
