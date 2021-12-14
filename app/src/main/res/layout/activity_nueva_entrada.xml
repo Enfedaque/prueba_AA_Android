@@ -9,20 +9,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="#A4E1A7"
         android:orientation="vertical"
         android:padding="10dp">
 
         <ImageView
             android:id="@+id/fotoVehiculo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="69dp"
-            app:srcCompat="@drawable/dialogo"
-            tools:srcCompat="@drawable/dialogo" />
+            tools:srcCompat="@drawable/coche_ecologico" />
+
+        <Button
+            android:id="@+id/hacerFotoVehiculo"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:backgroundTint="#B4D8B6"
+            android:text="@string/hacer_foto"
+            android:textColor="#020202" />
 
         <EditText
             android:id="@+id/marca"
             android:layout_width="match_parent"
-            android:layout_height="59dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="@string/marca"
@@ -31,7 +39,7 @@
         <EditText
             android:id="@+id/modelo"
             android:layout_width="match_parent"
-            android:layout_height="69dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="@string/modelo"
@@ -40,7 +48,7 @@
         <EditText
             android:id="@+id/matricula"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
+            android:layout_height="43dp"
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="@string/matricula"
@@ -64,7 +72,7 @@
         <EditText
             android:id="@+id/averia"
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="47dp"
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="@string/descripcion_de_la_averia"
