@@ -269,6 +269,7 @@ public class listadoClientesActivity extends AppCompatActivity {
             LayoutInflater in=getLayoutInflater();
             View v=in.inflate(R.layout.editar_clientes, null);
             builder.setView(v);
+
             Button save=v.findViewById(R.id.guardarCambiosCliente);
             EditText etNombre=v.findViewById(R.id.editarNombreCliente);
             EditText etApellido=v.findViewById(R.id.editarApellidoCliente);
